@@ -1,0 +1,14 @@
+# Svi tekstualni fajlovi sa LF krajem reda (Prettier, Linux build na Netlify-u), i na Windows-u.
+* text=auto eol=lf
+
+# Binarni fajlovi se ne diraju
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

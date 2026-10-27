@@ -1,0 +1,338 @@
+@import 'tailwindcss';
+
+/*
+ * Cambio design tokeni, 1:1 iz Figme (fajl 8NTVA5QbejndGYZ3AX7fej).
+ *
+ * Pravilo: na širini 1440px svaka vrednost je tačno ona iz Figme. Ispod 1440px veličine
+ * se linearno smanjuju do mobilnog minimuma na 320px (clamp), iznad 1440px ostaju fiksne
+ * a sadržaj je u kontejneru od 1280px. Mobilni minimumi su izvedeni (Figma nema mobilne
+ * frejmove, vidi PLAN.md poglavlje 7 i DECISIONS.md).
+ */
+
+@theme {
+  /* --- Boje (Figma varijable) --- */
+  --color-primary: #0462cd; /* brand/primary, interactive/primary */
+  --color-primary-dark: #0051ad; /* brand/primary dark */
+  --color-accent: #5478ff; /* brand/accent */
+  --color-yellow: #ffde00; /* brand/yellow */
+  --color-beige: #f3f0e9; /* brand/beige */
+  --color-black: #0f0f0f; /* brand/black, text/primary, neutral/900 */
+  --color-white: #ffffff;
+  --color-neutral-50: #f9f9fa; /* background/secondary */
+  --color-neutral-100: #f5f5f5; /* background/tertiary */
+  --color-neutral-200: #f3f3f3;
+  --color-neutral-400: #adadad; /* text/tertiary */
+  --color-neutral-700: #444444; /* text/secondary */
+  --color-neutral-1000: #000000;
+  --color-paper: #fafaf8; /* pozadina kontakt stranice */
+  --color-sand-50: #f6f4ee; /* pozadina hero sekcije kolekcije */
+  --color-sand-100: #f5f3ef; /* dugme za zatvaranje panela */
+  --color-sand-200: #d8d5cd; /* obod pill filtera */
+  --color-sand-300: #d8d4cd; /* obod opcija u panelu filtera */
+  --color-stone-600: #6b6b66; /* broj proizvoda */
+  --color-stone-700: #716f6a;
+  --color-ink: #171717; /* tekst panela filtera */
+
+  --color-text: #0f0f0f;
+  --color-text-secondary: #444444;
+  --color-text-tertiary: #adadad;
+  --color-text-inverse: #ffffff;
+  --color-danger: #c62828;
+  --color-success: #12805c;
+
+  /* --- Fontovi (next/font postavlja promenljive u layout.tsx) --- */
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Radijusi iz Figme --- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-card: 22px; /* kartice proizvoda, slike kategorija */
+  --radius-frame: 33px; /* hero okvir, kategorije, recenzije, pill oznake */
+  --radius-pill: 99px;
+
+  /* --- Senke (Figma Elevation) --- */
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 1px 3px rgb(0 0 0 / 0.08), 0 4px 12px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 4px 6px rgb(0 0 0 / 0.1), 0 1px 1.5px rgb(0 0 0 / 0.08);
+  --shadow-xl: 0 12px 32px -8px rgb(0 0 0 / 0.18);
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --breakpoint-desktop: 90rem; /* 1440: tačne Figma vrednosti */
+}
+
+:root {
+  /* Fluidna vrednost: fl(min, max) = clamp(min, linearno 320->1440, max) u px. */
+  --vw-ratio: calc((100vw - 320px) / 1120);
+
+  /* Tipografija (desktop vrednost = Figma) */
+  --fs-hero: clamp(44px, calc(44px + 52 * var(--vw-ratio)), 96px); /* Inter Black 96/84 -5 */
+  --fs-cta: clamp(
+    44px,
+    calc(44px + 52.351 * var(--vw-ratio)),
+    96.351px
+  ); /* Inter Black 96.35/107 -6.69 */
+  --fs-display: clamp(44px, calc(44px + 28 * var(--vw-ratio)), 72px); /* Inter Black 72/80 -5 */
+  --fs-heading: clamp(26px, calc(26px + 6 * var(--vw-ratio)), 32px); /* Headings Bold 32/34 -2 */
+  --fs-footer-heading: clamp(26px, calc(26px + 8 * var(--vw-ratio)), 34px); /* Inter Bold 34/1.1 */
+  --fs-body-lg: clamp(16px, calc(16px + 2 * var(--vw-ratio)), 18px);
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: clamp(16px, calc(16px + 64 * var(--vw-ratio)), 80px); /* 16 -> 80 */
+  --gutter-footer: clamp(16px, calc(16px + 48 * var(--vw-ratio)), 64px); /* footer px 64 */
+  --header-h: 56px;
+  --tap: 44px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
+  color-scheme: light;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 96px;
+  }
+}
+
+/* Visina promo trake kada je uključena (PromoBar.tsx): header preko hero slike se spušta za nju. */
+:root:has(.promo-bar) {
+  --promo-h: 32px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+  }
+
+  body {
+    min-height: 100svh;
+    background: var(--color-white);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* iOS ne zumira polja kada je font 16px ili veći */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background: rgb(15 15 15 / 0.5);
+  }
+}
+
+@layer components {
+  /* Kontejner 1280px sa fluidnim bočnim paddingom (80px na 1440). */
+  .container-page {
+    width: 100%;
+    max-width: calc(var(--container) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding-inline: max(var(--gutter), var(--safe-left)) max(var(--gutter), var(--safe-right));
+  }
+
+  /* Figma tekst stilovi */
+  .t-hero {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--fs-hero);
+    line-height: 0.875;
+    letter-spacing: -0.0521em;
+  }
+
+  .t-cta {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--fs-cta);
+    line-height: 1.111;
+    letter-spacing: -0.0694em;
+    text-transform: uppercase;
+    text-shadow: 0 1.338px 4.015px rgb(0 0 0 / 0.08);
+  }
+
+  .t-display {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--fs-display);
+    line-height: 1.111;
+    letter-spacing: -0.0694em;
+  }
+
+  /* "Headings Bold": Inter Bold 32/34, -2px, capitalize */
+  .t-heading {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-heading);
+    line-height: 1.0625;
+    letter-spacing: -0.0625em;
+    text-transform: capitalize;
+  }
+
+  .t-body-lg {
+    font-size: var(--fs-body-lg);
+    line-height: 1.556;
+  }
+
+  /* Tekst iz CMS-a (RichText: kolekcije, detalji proizvoda, blog): pasusi, liste sa tačkom u
+     boji brenda i linkovi. Preflight briše oznake lista, pa se ovde crtaju ponovo (D-066). */
+  /* RichText dodaje svoj omotač, pa razmak važi za susedne blokove na bilo kojoj dubini. */
+  .rich :is(p, ul, ol, h2, h3, h4, blockquote) + :is(p, ul, ol, h2, h3, h4, blockquote) {
+    margin-top: 0.75em;
+  }
+
+  .rich strong {
+    font-weight: 600;
+    color: var(--color-black);
+  }
+
+  .rich a {
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .rich a:hover {
+    text-decoration-color: var(--color-primary);
+  }
+
+  .rich ul,
+  .rich ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .rich ul > li {
+    position: relative;
+    padding-left: 1.5em;
+  }
+
+  .rich ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0.2em;
+    top: 0.6em;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 9999px;
+    background: var(--color-yellow);
+    box-shadow: 0 0 0 1.5px var(--color-black);
+  }
+
+  .rich ol {
+    list-style: decimal;
+    padding-left: 1.25em;
+  }
+
+  .rich ol > li::marker {
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  /* Vidljiva veličina ostaje kao u Figmi, a površina za dodir na ekranima osetljivim
+     na dodir je najmanje 44x44px (pravilo za mobilni). */
+  .hit {
+    position: relative;
+  }
+
+  @media (pointer: coarse) {
+    .hit::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: max(100%, var(--tap));
+      height: max(100%, var(--tap));
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  /* Horizontalni slider na CSS scroll-snap-u */
+  .snap-row {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .snap-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .snap-row > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

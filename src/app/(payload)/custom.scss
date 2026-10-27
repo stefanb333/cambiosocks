@@ -1,0 +1,1201 @@
+/*
+ * Cambio admin (D-059). Payload stilovi su u @layer payload-default, pa pravila ovde (bez sloja)
+ * uvek imaju prednost, bez !important. Tema prati sajt: topla "paper/sand" neutralna skala,
+ * plava #0462CD za glavne akcije, žuta #FFDE00 za "Dodaj", tamna bočna traka kao footer sajta,
+ * Inter za naslove i Plus Jakarta Sans za tekst (AdminTheme.tsx). Radi u svetloj i tamnoj temi.
+ */
+
+/* ================= Tokeni ================= */
+:root {
+  /* Topla neutralna skala umesto Payload sive (Payload iz nje izvodi --theme-elevation-*) */
+  --color-base-0: #ffffff;
+  --color-base-50: #f6f4ee;
+  --color-base-100: #efece5;
+  --color-base-150: #e5e1d9;
+  --color-base-200: #d8d4cd;
+  --color-base-250: #c9c5bd;
+  --color-base-300: #b6b2aa;
+  --color-base-350: #a39f98;
+  --color-base-400: #8f8c86;
+  --color-base-450: #7c7974;
+  --color-base-500: #6b6b66;
+  --color-base-550: #5c5b57;
+  --color-base-600: #4e4d4a;
+  --color-base-650: #42413e;
+  --color-base-700: #383735;
+  --color-base-750: #2d2c2a;
+  --color-base-800: #232321;
+  --color-base-850: #1b1b1a;
+  --color-base-900: #151514;
+  --color-base-950: #0f0f0f;
+  --color-base-1000: #000000;
+
+  /* Payload "success" i "blue" palete su plave: zamenjene plavom brenda */
+  --color-success-50: #eef5fd;
+  --color-success-100: #dcebfb;
+  --color-success-150: #c2dbf8;
+  --color-success-200: #a5c9f4;
+  --color-success-250: #86b5ef;
+  --color-success-300: #68a1ea;
+  --color-success-350: #4a8de4;
+  --color-success-400: #2c79dd;
+  --color-success-450: #1569d3;
+  --color-success-500: #0462cd;
+  --color-success-550: #0458ba;
+  --color-success-600: #0051ad;
+  --color-success-650: #044896;
+  --color-success-700: #053e80;
+  --color-success-750: #06356c;
+  --color-success-800: #072c59;
+  --color-success-850: #082447;
+  --color-success-900: #091c36;
+  --color-success-950: #0a1526;
+  --color-blue-500: #0462cd;
+
+  /* Upozorenja (nesačuvane izmene i sl.) u žutoj brenda */
+  --color-warning-50: #fffbe0;
+  --color-warning-100: #fff6bf;
+  --color-warning-150: #fff09a;
+  --color-warning-200: #ffe96f;
+  --color-warning-250: #ffe33f;
+  --color-warning-300: #ffde00;
+  --color-warning-350: #ebcb00;
+  --color-warning-400: #d6b800;
+  --color-warning-450: #c2a500;
+  --color-warning-500: #a89000;
+  --color-warning-550: #917c00;
+  --color-warning-600: #7a6800;
+  --color-warning-650: #665700;
+  --color-warning-700: #544800;
+  --color-warning-750: #443a00;
+  --color-warning-800: #362e00;
+  --color-warning-850: #2a2400;
+  --color-warning-900: #1f1a00;
+  --color-warning-950: #151200;
+
+  --style-radius-s: 8px;
+  --style-radius-m: 12px;
+  --style-radius-l: 22px;
+
+  --theme-bg: #fafaf8;
+  --theme-input-bg: #ffffff;
+  /* Lexical editor koristi serifni font za placeholder; na sajtu nema serifa */
+  --font-serif: var(--font-body);
+  --accessibility-outline: 2px solid var(--cambio-blue);
+
+  --cambio-blue: #0462cd;
+  --cambio-blue-dark: #0051ad;
+  --cambio-accent: #5478ff;
+  --cambio-yellow: #ffde00;
+  --cambio-yellow-dark: #f2d200;
+  --cambio-ink: #0f0f0f;
+  --cambio-link: #0462cd;
+  --cambio-surface: #ffffff;
+  --cambio-nav-bg: #0f0f0f;
+  --cambio-line: var(--theme-elevation-100);
+  --cambio-ring: 0 0 0 1px var(--cambio-blue);
+  --cambio-shadow: 0 1px 2px rgb(15 15 15 / 0.04), 0 10px 30px -14px rgb(15 15 15 / 0.14);
+  --cambio-shadow-hover: 0 1px 2px rgb(15 15 15 / 0.05), 0 12px 32px -16px rgb(15 15 15 / 0.18);
+  --cambio-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-theme='dark'] {
+  --theme-bg: #0f0f0f;
+  --theme-input-bg: #151514;
+  --cambio-link: #8fb4ff;
+  --cambio-surface: #151514;
+  --cambio-nav-bg: #000000;
+  --cambio-line: var(--theme-elevation-100);
+  --cambio-ring: 0 0 0 1px var(--cambio-accent);
+  --cambio-shadow: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 10px 30px -14px rgb(0 0 0 / 0.7);
+  --cambio-shadow-hover: 0 1px 0 rgb(255 255 255 / 0.05) inset, 0 12px 32px -16px rgb(0 0 0 / 0.8);
+}
+
+/* ================= Tipografija ================= */
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+:is(h1, h2, h3, h4) {
+  font-family: var(--font-display, var(--font-body));
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+::selection {
+  background: rgb(255 222 0 / 0.55);
+  color: var(--cambio-ink);
+}
+
+/* ================= Bočna navigacija: tamna traka kao footer sajta ================= */
+.nav {
+  background: var(--cambio-nav-bg);
+  border-inline: 0;
+  color: #fff;
+}
+
+html[data-theme='dark'] .nav {
+  border-inline-end: 1px solid rgb(255 255 255 / 0.06);
+}
+
+/* Dugme za zatvaranje trake stoji iznad tamne pozadine */
+.template-default__nav-toggler.nav-toggler--is-open .hamburger {
+  border-color: rgb(255 255 255 / 0.14);
+  background: rgb(255 255 255 / 0.06);
+  color: #fff;
+
+  .stroke {
+    stroke: currentColor;
+  }
+
+  &:hover {
+    background: rgb(255 255 255 / 0.14);
+  }
+}
+
+.nav .hamburger,
+.nav .nav__mobile-close {
+  color: #fff;
+
+  .stroke {
+    stroke: currentColor;
+  }
+}
+
+.cambio-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 calc(var(--base) * 1.4) 12px;
+  color: #fff;
+  text-decoration: none;
+
+  &__tag {
+    padding: 3px 8px;
+    border-radius: 99px;
+    background: var(--cambio-yellow);
+    color: var(--cambio-ink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+.nav-group {
+  width: 100%;
+  margin-bottom: calc(var(--base) * 0.6);
+}
+
+.nav-group__toggle {
+  padding: 6px 12px;
+  margin-bottom: 2px;
+  color: rgb(255 255 255 / 0.42);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  &:hover {
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  .stroke {
+    stroke: currentColor;
+  }
+}
+
+.nav__link {
+  width: 100%;
+  padding: 7px 12px;
+  border-radius: 10px;
+  color: rgb(255 255 255 / 0.72);
+  font-size: 14.5px;
+  line-height: 22px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  * {
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(255 255 255 / 0.07);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* Aktivna stavka: žuta oznaka i svetlija pozadina */
+  &:has(.nav__link-indicator) {
+    background: rgb(255 255 255 / 0.1);
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.nav__link-indicator {
+  inset-inline-start: 0;
+  width: 3px;
+  height: 18px;
+  border-radius: 0 3px 3px 0;
+  background: var(--cambio-yellow);
+}
+
+/* Odjava i podešavanja pri dnu trake */
+.nav__controls,
+.nav__log-out,
+.nav .settings-menu-button {
+  color: rgb(255 255 255 / 0.72);
+
+  .stroke {
+    stroke: currentColor;
+  }
+
+  .fill {
+    fill: currentColor;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+/* ================= Zaglavlje (breadcrumb) ================= */
+.app-header__bg {
+  background: color-mix(in srgb, var(--theme-bg) 82%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.step-nav {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ================= Dugmad ================= */
+.btn {
+  border-radius: 99px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+
+  &:active:not(:disabled, .btn--disabled) {
+    transform: scale(0.98);
+  }
+}
+
+/* Spojena dugmad (npr. "Objavi" + strelica): unutrašnje ivice ostaju ravne */
+.btn--withPopup {
+  > .btn {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  .popup-button {
+    border-radius: 0 99px 99px 0;
+  }
+}
+
+.btn--style-primary {
+  --bg-color: var(--cambio-blue);
+  --color: #fff;
+  --hover-bg: var(--cambio-blue-dark);
+  --hover-color: #fff;
+
+  &.btn--disabled {
+    --bg-color: var(--theme-elevation-150);
+    --color: var(--theme-elevation-500);
+  }
+}
+
+.btn--style-secondary {
+  --hover-bg: var(--theme-elevation-50);
+  --hover-color: var(--theme-text);
+  --btn-border: 1px solid var(--theme-elevation-200);
+  --hover-btn-border: 1px solid var(--theme-elevation-400);
+}
+
+/* "Dodaj" pored naslova liste: žuta kao oznake na sajtu */
+.btn--style-pill {
+  --bg-color: var(--cambio-yellow);
+  --color: var(--cambio-ink);
+  --hover-bg: var(--cambio-yellow-dark);
+  --hover-color: var(--cambio-ink);
+}
+
+/* ================= Polja ================= */
+.field-type :is(input:not([type='checkbox'], [type='radio']), textarea),
+.rs__control,
+.search-filter__input {
+  border-radius: var(--style-radius-m);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field-type :is(input:not([type='checkbox'], [type='radio']), textarea):focus,
+.rs__control--is-focused {
+  border-color: var(--cambio-blue);
+  box-shadow: var(--cambio-ring);
+}
+
+.field-type label.field-label {
+  font-weight: 600;
+}
+
+/* Pretraga i filteri iznad liste: bela "pilula" kao pretraga na sajtu */
+.list-controls .search-bar {
+  border: 1px solid var(--cambio-line);
+  border-radius: 99px;
+  background: var(--cambio-surface);
+  box-shadow: var(--cambio-shadow);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:focus-within {
+    border-color: var(--cambio-blue);
+    box-shadow: var(--cambio-ring);
+  }
+
+  .search-filter__input {
+    box-shadow: none;
+  }
+
+  .btn {
+    --bg-color: var(--theme-elevation-50);
+    --hover-bg: var(--theme-elevation-100);
+  }
+}
+
+/* ================= Kartice i tabele ================= */
+.card {
+  background: var(--cambio-surface);
+  border: 1px solid var(--cambio-line);
+  border-radius: var(--style-radius-l);
+  box-shadow: var(--cambio-shadow);
+  transition:
+    transform 0.35s var(--cambio-ease),
+    box-shadow 0.35s var(--cambio-ease),
+    border-color 0.2s ease;
+
+  .card__title {
+    font-family: var(--font-display, var(--font-body));
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+.card--has-onclick:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--cambio-blue) 35%, var(--cambio-line));
+  box-shadow: var(--cambio-shadow-hover);
+}
+
+/* "+" na kartici: krug 32px koji na hover postaje plav */
+.card__actions .btn--icon-only {
+  --bg-color: var(--theme-elevation-50);
+  --hover-bg: var(--cambio-blue);
+  --hover-color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  border-radius: 50%;
+  background: var(--bg-color);
+
+  .btn__content,
+  .btn__icon {
+    display: flex;
+    border: 0;
+    background: transparent;
+  }
+
+  &:hover {
+    background: var(--hover-bg);
+  }
+
+  &:hover .stroke {
+    stroke: #fff;
+  }
+}
+
+.table {
+  border: 1px solid var(--cambio-line);
+  border-radius: var(--style-radius-l);
+  background: var(--cambio-surface);
+  box-shadow: var(--cambio-shadow);
+
+  table {
+    background: transparent;
+  }
+
+  thead th {
+    color: var(--theme-elevation-500);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  tbody tr {
+    transition: background-color 0.15s ease;
+  }
+
+  tbody tr:hover td {
+    background: color-mix(in srgb, var(--cambio-blue) 5%, transparent);
+  }
+
+  td a {
+    color: var(--theme-text);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--cambio-link);
+    }
+  }
+}
+
+/* ================= Oznake statusa (StatusCell.tsx, pregled) ================= */
+.cambio-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: var(--theme-elevation-100);
+  color: var(--theme-elevation-700);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  &--nova {
+    background: #fff4b3;
+    color: #5c4d00;
+  }
+
+  &--pending {
+    background: #ffecd9;
+    color: #8a4600;
+  }
+
+  &--potvrdjena,
+  &--active,
+  &--paid {
+    background: #e3eefc;
+    color: #0451a8;
+  }
+
+  &--poslata {
+    background: #e9ecff;
+    color: #3346c9;
+  }
+
+  &--isporucena {
+    background: #e2f4ec;
+    color: #0e6b4b;
+  }
+
+  &--draft {
+    background: var(--theme-elevation-50);
+    color: var(--theme-elevation-600);
+  }
+}
+
+html[data-theme='dark'] .cambio-status {
+  &--nova {
+    background: rgb(255 222 0 / 0.14);
+    color: #ffe766;
+  }
+
+  &--pending {
+    background: rgb(255 140 0 / 0.16);
+    color: #ffc285;
+  }
+
+  &--potvrdjena,
+  &--active,
+  &--paid {
+    background: rgb(4 98 205 / 0.28);
+    color: #a9c8ff;
+  }
+
+  &--poslata {
+    background: rgb(84 120 255 / 0.22);
+    color: #b9c6ff;
+  }
+
+  &--isporucena {
+    background: rgb(18 128 92 / 0.25);
+    color: #7fdcb5;
+  }
+}
+
+/* ================= Prijava ================= */
+.template-minimal {
+  background: linear-gradient(135deg, #0462cd, #0b3f86);
+}
+
+.template-minimal__wrap {
+  padding: calc(var(--base) * 2) calc(var(--base) * 1.8);
+  border-radius: 28px;
+  background: var(--cambio-surface);
+  box-shadow: 0 12px 32px -16px rgb(0 0 0 / 0.4);
+}
+
+/* ================= Pregled prodavnice (Dashboard.tsx) ================= */
+.cambio-dash {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--base) * 1.2);
+  margin-bottom: calc(var(--base) * 2);
+
+  &__hero {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: calc(var(--base) * 1.2);
+    padding: calc(var(--base) * 1.8) calc(var(--base) * 1.8);
+    overflow: hidden;
+    border-radius: 28px;
+    background: linear-gradient(96deg, #0462cd 10%, #5478ff 85%);
+    color: #fff;
+
+    /* Diskretan znak u pozadini, kao veliki "CAMBIO" u footer-u sajta */
+    &::after {
+      content: '';
+      position: absolute;
+      right: -70px;
+      bottom: -100px;
+      width: 380px;
+      height: 180px;
+      background: #fff;
+      opacity: 0.07;
+      mask: url('/figma/logo-dark.svg') center / contain no-repeat;
+      pointer-events: none;
+    }
+  }
+
+  &__hero-text {
+    position: relative;
+    max-width: 620px;
+  }
+
+  &__eyebrow {
+    margin: 0 0 6px;
+    color: rgb(255 255 255 / 0.75);
+    font-size: 13px;
+    font-weight: 600;
+
+    /* "subota, 24. oktobar" -> "Subota, 24. oktobar" (meseci ostaju malim slovom) */
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(30px, 3.2vw, 44px);
+    line-height: 1.05;
+  }
+
+  &__lead {
+    margin: 10px 0 0;
+    color: rgb(255 255 255 / 0.85);
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  &__actions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: calc(var(--base) * 0.8);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: calc(var(--base) * 0.8);
+  }
+}
+
+.cambio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &--yellow {
+    background: var(--cambio-yellow);
+    color: var(--cambio-ink);
+
+    &:hover {
+      background: var(--cambio-yellow-dark);
+    }
+  }
+
+  &--glass {
+    background: rgb(255 255 255 / 0.16);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22);
+
+    &:hover {
+      background: rgb(255 255 255 / 0.26);
+    }
+  }
+
+  &__count {
+    min-width: 22px;
+    padding: 2px 7px;
+    border-radius: 99px;
+    background: var(--cambio-yellow);
+    color: var(--cambio-ink);
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+.cambio-card {
+  padding: calc(var(--base) * 1.1);
+  border: 1px solid var(--cambio-line);
+  border-radius: var(--style-radius-l);
+  background: var(--cambio-surface);
+  box-shadow: var(--cambio-shadow);
+
+  &__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: calc(var(--base) * 0.8);
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    span {
+      color: var(--theme-elevation-500);
+      font-size: 12px;
+    }
+
+    a {
+      color: var(--cambio-link);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+}
+
+.cambio-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &__label {
+    margin: 0;
+    color: var(--theme-elevation-500);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    margin: 0;
+    font-family: var(--font-display, var(--font-body));
+    font-size: clamp(24px, 2.2vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  &__trend {
+    margin: 0;
+    color: var(--theme-elevation-500);
+    font-size: 12px;
+    font-weight: 700;
+
+    span {
+      font-weight: 500;
+    }
+
+    &.is-up {
+      color: #12805c;
+    }
+
+    &.is-down {
+      color: var(--theme-error-500);
+    }
+  }
+}
+
+html[data-theme='dark'] .cambio-stat__trend.is-up {
+  color: #5fd3a3;
+}
+
+.cambio-orders {
+  grid-column: 1 / -1;
+}
+
+.cambio-chart {
+  &__bars {
+    display: grid;
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+    align-items: end;
+    gap: 8px;
+    height: 210px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 8px;
+      height: 100%;
+    }
+  }
+
+  &__track {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    min-height: 0;
+  }
+
+  &__bar {
+    display: block;
+    width: 100%;
+    border-radius: 8px 8px 4px 4px;
+    background: linear-gradient(180deg, #5478ff, #0462cd);
+    transform-origin: bottom;
+    animation: cambio-grow 0.9s var(--cambio-ease) both;
+    animation-delay: calc(var(--i, 0) * 30ms);
+
+    &[data-empty] {
+      background: var(--theme-elevation-100);
+    }
+  }
+
+  &__day {
+    height: 14px;
+    color: var(--theme-elevation-500);
+    font-size: 10.5px;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+@keyframes cambio-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.cambio-stock__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 48px;
+    padding: 8px 10px;
+    margin: 0 -10px;
+    border-radius: 12px;
+    color: var(--theme-text);
+    text-decoration: none;
+
+    &:hover {
+      background: var(--theme-elevation-50);
+    }
+  }
+}
+
+.cambio-stock__name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-weight: 600;
+
+  small {
+    overflow: hidden;
+    color: var(--theme-elevation-500);
+    font-size: 12px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.cambio-stock__qty {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: #fff4b3;
+  color: #5c4d00;
+  font-size: 12px;
+  font-weight: 700;
+
+  &.is-out {
+    background: var(--theme-error-100);
+    color: var(--theme-error-600);
+  }
+}
+
+html[data-theme='dark'] .cambio-stock__qty:not(.is-out) {
+  background: rgb(255 222 0 / 0.14);
+  color: #ffe766;
+}
+
+.cambio-orders__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    padding: 0 10px 10px;
+    color: var(--theme-elevation-500);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 12px 10px;
+    border-top: 1px solid var(--cambio-line);
+    font-size: 14px;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 0;
+  }
+
+  th:last-child,
+  td:last-child {
+    padding-right: 0;
+  }
+
+  .is-num {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  a {
+    color: var(--cambio-link);
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+.cambio-orders__customer {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cambio-orders__time {
+  color: var(--theme-elevation-500);
+}
+
+.cambio-empty {
+  margin: 0;
+  padding: calc(var(--base) * 1.2) 0;
+  color: var(--theme-elevation-500);
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .cambio-dash__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cambio-dash__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cambio-dash__hero {
+    padding: calc(var(--base) * 1.2);
+    border-radius: 22px;
+  }
+
+  .cambio-dash__actions,
+  .cambio-pill {
+    width: 100%;
+  }
+
+  .cambio-pill {
+    justify-content: center;
+  }
+
+  .cambio-chart__bars {
+    gap: 4px;
+  }
+
+  .cambio-orders__table {
+    .cambio-orders__customer,
+    th:nth-child(2),
+    .cambio-orders__time,
+    th:nth-child(5) {
+      display: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cambio-chart__bar {
+    animation: none;
+  }
+
+  .card--has-onclick:hover {
+    transform: none;
+  }
+}
+
+/* ================= Postojeći Cambio dodaci ================= */
+
+/* --- Generator varijanti (Proizvod > Opcije i varijante) --- */
+.cambio-generator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(var(--base) * 0.6);
+  margin: calc(var(--base) * 0.5) 0 calc(var(--base) * 1.5);
+  padding: var(--base);
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: var(--style-radius-m);
+  background: var(--theme-elevation-50);
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 calc(var(--base) * 0.6);
+    align-items: baseline;
+
+    span {
+      color: var(--theme-elevation-600);
+    }
+  }
+
+  &__preview,
+  &__note {
+    margin: 0;
+    color: var(--theme-elevation-700);
+    font-size: 13px;
+  }
+
+  &__note {
+    color: var(--theme-warning-750, var(--theme-elevation-800));
+  }
+
+  &__check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    cursor: pointer;
+  }
+}
+
+/* --- Alati iznad liste proizvoda: masovni status i CSV --- */
+.cambio-tools {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--base) * 0.75);
+  margin-bottom: var(--base);
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--base) * 0.5);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--base) * 0.4);
+    align-items: center;
+
+    &--end {
+      margin-left: auto;
+    }
+  }
+
+  &__count {
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  &__check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base) * 0.5);
+    align-items: flex-start;
+    padding: var(--base);
+    border: 1px solid var(--theme-elevation-150);
+    border-radius: var(--style-radius-m);
+    background: var(--theme-elevation-50);
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__errors,
+  &__warnings {
+    margin: 0;
+    padding-left: 1.2em;
+    font-size: 13px;
+    max-height: 240px;
+    overflow: auto;
+  }
+
+  &__errors {
+    color: var(--theme-error-500);
+  }
+
+  &__warnings {
+    color: var(--theme-elevation-700);
+  }
+
+  &__hint {
+    font-size: 13px;
+    color: var(--theme-elevation-600);
+  }
+}
+
+/* --- Nazivi redova --- */
+.cambio-rowlabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &__swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid var(--theme-elevation-250);
+  }
+}
+
+/* --- Telefon: sažeta lista porudžbina i proizvoda --- */
+@media (max-width: 768px) {
+  /* Na telefonu ostaju broj, iznos i status; datum, email i plaćanje su u detaljima porudžbine. */
+  .collection-list--orders {
+    .cell-createdAt,
+    .cell-email,
+    .cell-paymentStatus,
+    th#heading-createdAt,
+    th#heading-email,
+    th#heading-paymentStatus {
+      display: none;
+    }
+  }
+
+  .collection-list--orders,
+  .collection-list--products {
+    th,
+    td {
+      min-width: 0;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    td:not(.cell-title) {
+      white-space: nowrap;
+    }
+
+    /* Strelice za sortiranje zauzimaju širinu; na telefonu se sortira preko Filteri/Kolone. */
+    .sort-column__buttons {
+      display: none;
+    }
+  }
+
+  .collection-list--products {
+    .cell-productType,
+    .cell-updatedAt,
+    .cell-minPrice,
+    th#heading-productType,
+    th#heading-updatedAt,
+    th#heading-minPrice {
+      display: none;
+    }
+  }
+
+  .cambio-tools__group--end {
+    margin-left: 0;
+  }
+}

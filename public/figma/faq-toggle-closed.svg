@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Toggle">
+<rect x="0.5" y="0.5" width="35" height="35" rx="17.5" fill="white"/>
+<rect x="0.5" y="0.5" width="35" height="35" rx="17.5" stroke="#F5F5F5"/>
+<path id="Symbol" d="M17.0412 22.8011V13.1989H18.9517V22.8011H17.0412ZM13.1989 18.9517V17.0412H22.8011V18.9517H13.1989Z" fill="#0F0F0F"/>
+</g>
+</svg>

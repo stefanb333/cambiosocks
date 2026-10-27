@@ -1,0 +1,19 @@
+# Generisani fajlovi (Payload i Next) se ne formatiraju ručno
+src/payload-types.ts
+src/migrations/
+src/app/(payload)/**/*.ts
+src/app/(payload)/**/*.tsx
+src/app/(payload)/admin/importMap.js
+next-env.d.ts
+
+# Build, zavisnosti, podaci i reference
+.next/
+node_modules/
+media/
+.data/
+docs/
+reference-shopify-theme/
+package-lock.json
+
+# Dokumentacija se piše ručno (tabele i poravnanje)
+*.md
