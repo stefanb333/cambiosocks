@@ -98,6 +98,14 @@ SITE_NOINDEX=1
    `SITE_NOINDEX=1` zatvara demo za Google (zaglavlje `noindex` na svim stranicama i `Disallow: /` u robots.txt). Na pravom sajtu ga nema.
 4. **Ime sajta**: Site configuration > Change site name > `cambio-carape-demo` (ako je zauzeto, izaberi drugo i isto ime upiši u `NEXT_PUBLIC_SERVER_URL`, ovde i u `.env.demo.local`).
 5. **Deploy**: Deploys > Trigger deploy. Build traje nekoliko minuta; posle toga svaki `git push` sam objavljuje novu verziju.
+6. **Javni pristup**: novi Netlify projekat je **Private** (vide ga samo članovi Netlify tima, ostali dobijaju 401). Da bi klijent video sajt: Project overview > **Make public**.
+
+## Trenutni demo (27.10.2026.)
+
+- Sajt: `https://spontaneous-wisp-51b860.netlify.app` (Netlify projekat `spontaneous-wisp-51b860`, tim SB Grafix), povezan sa `stefanb333/cambiosocks`, grana `main`.
+- Supabase projekat `cambioweb` (`qrmlxkersrqmnslbayvi`, eu-west-1, Irska), bucket `cambio-media`.
+- Admin: `/admin`, nalog `admin@cambio.test`, lozinka u `.env.demo.local` (`SEED_ADMIN_PASSWORD`).
+- Promenljive za Netlify su u `.env.netlify.local` (isto kao `.env.demo.local`, ali Transaction pooler, port 6543, i bez SEED_ promenljivih).
 
 ## 5. Provera
 
@@ -114,5 +122,9 @@ Izmene u kodu: `git push`, Netlify sam pravi novu verziju. Izmene sadržaja u ad
 | `self-signed certificate in certificate chain` | Adresi baze nedostaje `?sslmode=require&uselibpqcompat=true` |
 | `password authentication failed` | Pogrešna lozinka baze u adresi; posebne znakove u lozinki (`@`, `#`, `/`) treba kodirati ili izabrati lozinku bez njih |
 | Slike se ne vide | Bucket nije "Public" ili `S3_PUBLIC_URL` ne odgovara imenu bucketa |
+| Neke slike vraćaju 400, a zapis slike postoji u adminu | Fajl nije stigao u bucket (desilo se pri prvom seed-u): `cross-env NODE_ENV=production node --env-file=.env.demo.local node_modules/payload/bin.js run scripts/reupload-missing-media.ts`, pa novi deploy |
+| Build pada sa `missing secret key` | Na Netlify-u nisu unete promenljive okruženja (korak 4.3) |
+| Sajt vraća Netlify "Page not found", u logu `0 new function(s)` | Netlify nije pokrenuo Next.js adapter; u `netlify.toml` mora biti `[[plugins]] package = "@netlify/plugin-nextjs"` (već dodato) |
+| Svi dobijaju 401 / prijavu na Netlify | Projekat je Private: Make public (korak 4.6) |
 | Sajt ne radi posle nekoliko dana | Supabase je pauzirao besplatni projekat: Supabase panel > "Restore project" |
 | Build pada sa `JavaScript heap out of memory` | U `netlify.toml` povećati `--max-old-space-size` (sada 4096; lokalno proveren build sa 4096 prolazi) |
