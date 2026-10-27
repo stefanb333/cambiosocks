@@ -1,11 +1,15 @@
-# Netlify: Next.js se automatski pokreće preko Netlify Next.js adaptera (OpenNext),
-# nije potreban plugin u ovom fajlu. Tajne (DATABASE_URL, PAYLOAD_SECRET, S3_*, RESEND_*)
-# se unose u Netlify: Site configuration > Environment variables, nikad ovde.
+# Netlify: Next.js radi preko Netlify Next.js adaptera (@netlify/plugin-nextjs, u devDependencies).
+# Adapter je naveden izričito: bez njega Netlify ponekad objavi samo statične fajlove, bez
+# serverskih funkcija (stranice, API, admin), D-069. Tajne (DATABASE_URL, PAYLOAD_SECRET, S3_*,
+# RESEND_*) se unose u Netlify: Project configuration > Environment variables, nikad ovde.
 
 [build]
-  # Prvo migracije baze (Neon), pa build. Vidi README > Netlify.
+  # Prvo migracije baze, pa build. Vidi docs/DEMO-NETLIFY.md.
   command = "npm run ci"
   publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [build.environment]
   NODE_VERSION = "22"
