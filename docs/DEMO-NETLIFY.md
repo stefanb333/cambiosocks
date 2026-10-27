@@ -61,14 +61,12 @@ Komanda pravi sve tabele (migracije), admin nalog i demo sadržaj, a slike otpre
 
 Build mora da se radi na Netlify-u (Linux), ne na Windows računaru: Payload pri pokretanju učitava `sharp` (obrada slika), a build sa Windows-a bi poslao Windows verziju i sajt na Netlify-u ne bi radio. Zato kod ide preko privatnog GitHub repozitorijuma.
 
-1. **GitHub**: napravi **privatan** repozitorijum (npr. `cambio-socks-web`), pa u korenu projekta:
+1. **GitHub**: na [github.com/new](https://github.com/new) napravi **privatan** repozitorijum (npr. `cambio-socks-web`) **bez** README-a, .gitignore-a i licence (prazan). Projekat već ima commit na grani `main`, pa u korenu projekta:
+
+   Jednom, ako git javlja "detected dubious ownership" (projekat je na spoljnom disku D:):
 
 ```bash
-git add -A
-```
-
-```bash
-git commit -m "Cambio webshop"
+git config --global --add safe.directory D:/WEB/cambio-socks-web
 ```
 
 ```bash
@@ -76,10 +74,10 @@ git remote add origin https://github.com/<nalog>/cambio-socks-web.git
 ```
 
 ```bash
-git push -u origin master
+git push -u origin main
 ```
 
-   `.env`, `.env.demo.local`, `media/` i `node_modules/` ne idu u git (`.gitignore`). Fascikle `docs/screenshots` i `docs/diff` (oko 180 MB snimaka iz provera) idu; ako repozitorijum treba da bude manji, dodaj ih u `.gitignore` pre prvog commit-a.
+   Pri prvom push-u Windows otvara prijavu na GitHub u pregledaču. `.env`, `.env.demo.local`, `media/`, `node_modules/` i snimci iz provera (`docs/screenshots`, `docs/diff`) ne idu u git (`.gitignore`).
 2. **Netlify**: otvori nalog na [netlify.com](https://www.netlify.com) (može prijava preko GitHub-a) > **Add new project > Import an existing project > GitHub** > izaberi repozitorijum. Build podešavanja se čitaju iz `netlify.toml` (komanda `npm run ci`: migracije pa build), ne menjaj ih.
 3. **Pre prvog build-a**, na istom ekranu (ili Site configuration > Environment variables > **Import from a .env file**) nalepi promenljive:
 
