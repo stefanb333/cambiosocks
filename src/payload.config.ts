@@ -94,6 +94,9 @@ export default buildConfig({
   plugins: [
     s3Storage({
       enabled: useS3,
+      // Kolone za skladište (prefix, _objectKey) postoje i bez S3 (lokalno), pa su šema i
+      // migracije iste u svim okruženjima (D-069).
+      alwaysInsertFields: true,
       collections: {
         media: {
           prefix: 'media',
