@@ -35,7 +35,7 @@ export async function GET() {
     `- Prodavac: ${COMPANY.legalName}, ${COMPANY.street}, ${COMPANY.city}, Srbija (MB ${COMPANY.registrationNumber}, PIB ${COMPANY.taxId})`,
     '- Proizvodnja: sopstvena fabrika u Novom Pazaru, 32 mašine za pletenje, više od 200.000 pari mesečno; godinama proizvodimo i za partnere u 5 zemalja regiona',
     '- Svaki par se pregleda pre pakovanja; čarape se isporučuju u zapečaćenom pakovanju',
-    `- Dostava: ${formatPrice(shop.shippingPrice)} na teritoriji Srbije, isporuka za ${shop.deliveryEstimate || '2 do 4 radna dana'}`,
+    `- Dostava: ${formatPrice(shop.shippingPrice)} na teritoriji Srbije${shop.freeShippingThreshold ? `, besplatna za porudžbine od ${formatPrice(shop.freeShippingThreshold)}` : ''}, isporuka za ${shop.deliveryEstimate || '1 do 3 radna dana'}`,
     '- Plaćanje: pouzećem (gotovina kuriru), fiskalni račun uz pošiljku; cene su u dinarima sa PDV-om',
     '- Vraćanje: odustanak u roku od 14 dana od prijema (osim otvorenog zapečaćenog pakovanja, iz higijenskih razloga); reklamacija za nedostatke 2 godine',
     `- Kontakt: ${COMPANY.email}, ${COMPANY.phone} (${COMPANY.hours})`,

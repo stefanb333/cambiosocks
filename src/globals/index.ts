@@ -351,7 +351,7 @@ export const ShopSettings: GlobalConfig = {
               label: 'Cena dostave (RSD)',
               type: 'number',
               required: true,
-              defaultValue: 499,
+              defaultValue: 300,
               min: 0,
             },
             {
@@ -365,7 +365,7 @@ export const ShopSettings: GlobalConfig = {
               name: 'deliveryEstimate',
               label: 'Rok isporuke',
               type: 'text',
-              defaultValue: '2 do 4 radna dana',
+              defaultValue: '1 do 3 radna dana',
             },
             {
               name: 'countries',

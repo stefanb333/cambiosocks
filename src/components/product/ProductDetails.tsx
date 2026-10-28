@@ -11,6 +11,7 @@ type Props = {
   care: string | null
   shippingInfo: string
   shippingPrice: number
+  freeShippingThreshold: number | null
   deliveryEstimate: string
   sizes: string[]
 }
@@ -66,8 +67,11 @@ export function ProductDetails(props: Props) {
         <>
           <p>
             Dostava na adresu širom Srbije košta {formatPrice(props.shippingPrice)}
-            {props.deliveryEstimate ? `, a pošiljka stiže za ${props.deliveryEstimate}` : ''}.
-            Plaćate pouzećem, gotovinom kuriru, a fiskalni račun stiže uz pošiljku.
+            {props.freeShippingThreshold
+              ? `, a za porudžbine od ${formatPrice(props.freeShippingThreshold)} je besplatna`
+              : ''}
+            {props.deliveryEstimate ? `. Pošiljka stiže za ${props.deliveryEstimate}` : ''}. Plaćate
+            pouzećem, gotovinom kuriru, a fiskalni račun stiže uz pošiljku.
           </p>
           {props.shippingInfo ? <p>{props.shippingInfo}</p> : null}
           <p>

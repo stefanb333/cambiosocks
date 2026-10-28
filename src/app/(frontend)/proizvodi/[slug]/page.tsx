@@ -130,6 +130,7 @@ export default async function ProductPage({ params }: Props) {
           care={product.care || shop.defaultCare || null}
           shippingInfo={shop.shippingInfo}
           shippingPrice={shop.shippingPrice}
+          freeShippingThreshold={shop.freeShippingThreshold}
           deliveryEstimate={shop.deliveryEstimate}
           sizes={sizes}
         />

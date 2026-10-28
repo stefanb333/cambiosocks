@@ -40,7 +40,7 @@ function itemsTable(order: Order) {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}
 ${line('Ukupno proizvodi', formatPrice(order.subtotal ?? 0))}
 ${order.discountTotal ? line(`Popust${order.discountCode ? ` (${esc(order.discountCode)})` : ''}`, `-${formatPrice(order.discountTotal)}`) : ''}
-${line('Troškovi dostave', formatPrice(order.shippingTotal ?? 0))}
+${line('Troškovi dostave', shippingLabel(order))}
 ${line('Ukupno', formatPrice(order.total ?? 0), true)}</table>`
 }
 
@@ -59,6 +59,10 @@ function addressBlock(order: Order) {
     .map((x) => esc(String(x)))
     .join('<br>')}</p>`
 }
+
+/** Dostava u emailu: "Besplatna" kada je porudžbina preko praga za besplatnu dostavu. */
+const shippingLabel = (order: Order) =>
+  order.shippingTotal ? formatPrice(order.shippingTotal) : 'Besplatna'
 
 export function orderConfirmationEmail(order: Order, deliveryEstimate: string) {
   const link = `${site()}/porucivanje/potvrda/${order.accessToken}`
@@ -80,7 +84,7 @@ ${legalNote()}`,
     )
     .join(
       '\n',
-    )}\nDostava: ${formatPrice(order.shippingTotal ?? 0)}\nUkupno: ${formatPrice(order.total ?? 0)} (pouzećem)\n\nPorudžbina: ${link}\n\nPravo na odustanak u roku od 14 dana od prijema i obrazac: ${site()}/reklamacije\nUslovi kupovine: ${site()}/uslovi-koriscenja`
+    )}\nDostava: ${shippingLabel(order)}\nUkupno: ${formatPrice(order.total ?? 0)} (pouzećem)\n\nPorudžbina: ${link}\n\nPravo na odustanak u roku od 14 dana od prijema i obrazac: ${site()}/reklamacije\nUslovi kupovine: ${site()}/uslovi-koriscenja`
   return { subject: `Porudžbina ${order.name} je primljena`, html, text }
 }
 

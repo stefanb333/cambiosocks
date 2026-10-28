@@ -32,7 +32,7 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 const description =
-  'Pamučne muške, ženske i sportske čarape iz naše fabrike u Novom Pazaru, od 1995. Poručite online: dostava za 2 do 4 radna dana, plaćanje pouzećem.'
+  'Pamučne muške, ženske i sportske čarape iz naše fabrike u Novom Pazaru, od 1995. Poručite online: dostava za 1 do 3 radna dana, plaćanje pouzećem.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

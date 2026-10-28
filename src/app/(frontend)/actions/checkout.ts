@@ -278,7 +278,7 @@ export async function placeOrder(_prev: CheckoutState, formData: FormData): Prom
   })
   const confirmation = orderConfirmationEmail(
     order,
-    settings.deliveryEstimate || '2 do 4 radna dana',
+    settings.deliveryEstimate || '1 do 3 radna dana',
   )
   const notification = orderNotificationEmail(order)
   const to = await notifyRecipients(settings.notifyEmails)

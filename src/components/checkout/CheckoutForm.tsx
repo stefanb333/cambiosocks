@@ -166,7 +166,9 @@ export function CheckoutForm({
           </>
         ) : null}
         <dt>Troškovi Dostave</dt>
-        <dd className="text-right">{formatPrice(data?.shipping ?? 0)}</dd>
+        <dd className="text-right">
+          {data?.subtotal && !data.shipping ? 'Besplatna' : formatPrice(data?.shipping ?? 0)}
+        </dd>
       </dl>
       <div className="h-px w-full bg-neutral-400" />
       <div className="flex items-center justify-between text-[15px] leading-5 font-semibold text-black">

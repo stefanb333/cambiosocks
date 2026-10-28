@@ -116,7 +116,7 @@ export const collections = [
     seo: {
       title: 'Čarape online: muške, ženske i sportske',
       description:
-        'Kupite pamučne čarape online direktno od proizvođača iz Novog Pazara. Muške, ženske i sportske čarape, dostava za 2 do 4 dana, plaćanje pouzećem.',
+        'Kupite pamučne čarape online direktno od proizvođača iz Novog Pazara. Muške, ženske i sportske čarape, dostava za 1 do 3 dana, plaćanje pouzećem.',
     },
     description: `## Čarape direktno od proizvođača iz Novog Pazara
 Cambio čarape pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine. Kada kupujete ovde, kupujete direktno od proizvođača: bez posrednika, sa istim pamukom i istom kontrolom kvaliteta koju godinama koristimo za partnere širom regiona.
@@ -127,7 +127,7 @@ Cambio čarape pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine. Kada
 ## Kako da izaberem veličinu?
 Veličina čarapa je označena brojem obuće, na primer 41-46. Izaberite raspon u koji upada broj vaših cipela; detalje i savete za granične brojeve naći ćete u vodiču [Tabela veličina čarapa](/blog/tabela-velicina-carapa).
 ## Dostava i plaćanje
-Porudžbine šaljemo u roku od 1 do 2 radna dana, a kurir ih isporučuje za 2 do 4 radna dana na celoj teritoriji Srbije. Plaćate pouzećem, a fiskalni račun stiže uz pošiljku. Sve uslove pogledajte na stranici [Dostava i plaćanje](/dostava).`,
+Porudžbine isporučuje kurirska služba AKS za 1 do 3 radna dana na celoj teritoriji Srbije; dostava je 300 RSD, a za porudžbine od 2.000 RSD besplatna. Plaćate pouzećem, a fiskalni račun stiže uz pošiljku. Sve uslove pogledajte na stranici [Dostava i plaćanje](/dostava).`,
   },
   {
     key: 'muske',
@@ -408,43 +408,44 @@ Isti pamuk, pojačana peta i prsti i manžetna bez stezanja kao kod pojedinačno
 
 /**
  * Paketi od 12 pari (D-071): jedan model i boja po paketu, fotografije klijenta "12X".
- * Cena 5.990 RSD umesto 12 x 599 RSD (7.188 RSD), ušteda 1.198 RSD.
+ * Cene po vrsti paketa (klijent, 28.10.2026.), iste za muške i ženske: nazuvice 1.200 RSD,
+ * sport 3/4 1.400 RSD, sport i elegant 1.600 RSD. Bez precrtane cene (nema stvarnog popusta).
  */
 function bundles(): SeedProduct[] {
-  const PRICE = 5990
-  const COMPARE = 12 * 599
-  const shared = (name: string, model: string, use: string) =>
-    `Paket od **12 pari** ${model}, iste veličine i boje, po ceni 10 pojedinačnih pari: uštedite ${COMPARE - PRICE} RSD.
+  const PRICE = { nazuvice: 1200, sport34: 1400, sport: 1600, elegant: 1600 }
+  const perPair = (price: number) => Math.round(price / 12)
+  const shared = (name: string, model: string, use: string, price: number) =>
+    `Paket od **12 pari** ${model}, iste veličine i boje, za ${price} RSD: oko ${perPair(price)} RSD po paru.
 - **Za ceo mesec i duže:** dovoljno parova da uvek imate čist par pri ruci.
 - **${use}**
 - **Pamuk koji diše** i pojačana peta i prsti, kao kod pojedinačnih [Cambio čarapa](/kolekcije/sve).
 - **Isplativo za porodicu ili firmu:** jedan paket, jedna veličina, bez traženja para.
 ${name} pravimo u sopstvenoj fabrici u Novom Pazaru; veličinu izaberite prema [tabeli veličina](/blog/tabela-velicina-carapa).`
-  const seo = (title: string, what: string) => ({
+  const seo = (title: string, what: string, price: number) => ({
     title: `${title}: paket 12 pari`,
-    description: `${what} u paketu od 12 pari za ${PRICE} RSD umesto ${COMPARE} RSD. Pamuk, pojačana peta i prsti, veličine 38 do 46. Proizvođač iz Novog Pazara, pouzećem.`,
+    description: `${what} u paketu od 12 pari za ${price} RSD, oko ${perPair(price)} RSD po paru. Pamuk, pojačana peta i prsti. Proizvođač iz Novog Pazara, plaćanje pouzećem.`,
   })
   return [
     {
       title: 'Paket 12 pari: crne karo čarape',
       slug: 'paket-12-pari-crne-karo-carape',
       shortDescription:
-        '12 pari crnih pamučnih čarapa sa sivim karo dezenom. Klasika koja ide uz odelo i farmerke, po ceni 10 pojedinačnih pari.',
+        '12 pari crnih pamučnih čarapa sa sivim karo dezenom. Klasika koja ide uz odelo i farmerke.',
       description: shared(
         'Karo čarape',
         'crnih pamučnih čarapa sa sivim karo (argyle) dezenom',
         'Karo dezen:** elegantan detalj uz odelo, chino pantalone i farmerke.',
+        PRICE.elegant,
       ),
-      seo: seo('Crne karo čarape', 'Crne muške karo čarape od pamuka'),
+      seo: seo('Crne karo čarape', 'Crne muške karo čarape od pamuka', PRICE.elegant),
       productType: 'muske',
-      tags: ['muske', 'klasik', 'paket', 'karo'],
+      tags: ['muske', 'klasik', 'paket', 'elegant', 'karo'],
       category: ['odrasli', 'paketi'],
       pattern: ['graficki'],
       images: ['bundleArgyle'],
       sizes: SIZES_ADULT,
       colors: [{ value: 'Crna karo', swatch: '#0F0F0F', image: 'bundleArgyle' }],
-      price: PRICE,
-      compareAtPrice: COMPARE,
+      price: PRICE.elegant,
       skuCode: 'P12K',
     },
     {
@@ -456,17 +457,17 @@ ${name} pravimo u sopstvenoj fabrici u Novom Pazaru; veličinu izaberite prema [
         'Crne čarape',
         'klasičnih crnih pamučnih čarapa',
         'Crna bez dezena:** uz cipele, patike i odelo, bez razmišljanja šta uz šta ide.',
+        PRICE.elegant,
       ),
-      seo: seo('Crne pamučne čarape', 'Klasične crne pamučne čarape'),
+      seo: seo('Crne pamučne čarape', 'Klasične crne pamučne čarape', PRICE.elegant),
       productType: 'muske',
-      tags: ['muske', 'klasik', 'paket', 'svakodnevne'],
+      tags: ['muske', 'klasik', 'paket', 'elegant', 'svakodnevne'],
       category: ['odrasli', 'paketi'],
       pattern: ['jednobojni'],
       images: ['bundleBlack'],
       sizes: SIZES_ADULT,
       colors: [{ value: 'Crna', swatch: '#0F0F0F', image: 'bundleBlack' }],
-      price: PRICE,
-      compareAtPrice: COMPARE,
+      price: PRICE.elegant,
       skuCode: 'P12C',
     },
     {
@@ -478,61 +479,65 @@ ${name} pravimo u sopstvenoj fabrici u Novom Pazaru; veličinu izaberite prema [
         'Čarape sa rombom',
         'crnih pamučnih čarapa sa sitnim rombom sa strane',
         'Diskretan romb:** detalj koji se primeti tek izbliza, za poslovni izgled.',
+        PRICE.elegant,
       ),
-      seo: seo('Crne čarape sa rombom', 'Crne pamučne čarape sa sitnim rombom'),
+      seo: seo('Crne čarape sa rombom', 'Crne pamučne čarape sa sitnim rombom', PRICE.elegant),
       productType: 'muske',
-      tags: ['muske', 'klasik', 'paket'],
+      tags: ['muske', 'klasik', 'paket', 'elegant'],
       category: ['odrasli', 'paketi'],
       pattern: ['graficki'],
       images: ['bundleDiamond'],
       sizes: SIZES_ADULT,
       colors: [{ value: 'Crna romb', swatch: '#1A1A1A', image: 'bundleDiamond' }],
-      price: PRICE,
-      compareAtPrice: COMPARE,
+      price: PRICE.elegant,
       skuCode: 'P12R',
     },
     {
-      title: 'Paket 12 pari: bele niske čarape',
+      title: 'Paket 12 pari: bele sportske 3/4 čarape',
       slug: 'paket-12-pari-bele-niske-carape',
       shortDescription:
-        '12 pari belih niskih pamučnih čarapa za patike, trening i leto. Ne vire iz patike i ne klize sa pete.',
+        '12 pari belih sportskih 3/4 pamučnih čarapa za patike, trening i leto. Ne vire iz patike i ne klize sa pete.',
       description: shared(
-        'Niske čarape',
-        'belih niskih pamučnih čarapa',
-        'Niski kroj:** ne viri iz patike, za trening, šetnju i leto.',
+        'Sportske 3/4 čarape',
+        'belih sportskih 3/4 pamučnih čarapa',
+        'Kroj 3/4:** ne viri iz patike, za trening, šetnju i leto.',
+        PRICE.sport34,
       ),
-      seo: seo('Bele niske čarape', 'Bele niske pamučne čarape za patike'),
+      seo: seo(
+        'Bele sportske 3/4 čarape',
+        'Bele sportske 3/4 pamučne čarape za patike',
+        PRICE.sport34,
+      ),
       productType: 'sport',
-      tags: ['sport', 'paket', 'niske', 'leto'],
+      tags: ['sport', 'paket', '3-4', 'leto'],
       category: ['odrasli', 'paketi'],
       pattern: ['jednobojni'],
       images: ['bundleWhiteAnkle'],
       sizes: SIZES_SPORT,
       colors: [{ value: 'Bela', swatch: '#FFFFFF', image: 'bundleWhiteAnkle' }],
-      price: PRICE,
-      compareAtPrice: COMPARE,
+      price: PRICE.sport34,
       skuCode: 'P12N',
     },
     {
-      title: 'Paket 12 pari: bele pamučne čarape',
+      title: 'Paket 12 pari: bele sportske čarape',
       slug: 'paket-12-pari-bele-carape',
       shortDescription:
-        '12 pari belih pamučnih čarapa klasične visine. Uz patike, za sport i svaki dan.',
+        '12 pari belih sportskih pamučnih čarapa klasične visine. Uz patike, za trening i svaki dan.',
       description: shared(
         'Bele čarape',
         'belih pamučnih čarapa klasične visine',
         'Klasična visina:** uz patike i za sport, najprodavaniji model u beloj boji.',
+        PRICE.sport,
       ),
-      seo: seo('Bele pamučne čarape', 'Bele pamučne čarape klasične visine'),
-      productType: 'muske',
-      tags: ['muske', 'sport', 'paket', 'svakodnevne'],
+      seo: seo('Bele sportske čarape', 'Bele sportske pamučne čarape klasične visine', PRICE.sport),
+      productType: 'sport',
+      tags: ['sport', 'paket', 'svakodnevne'],
       category: ['odrasli', 'paketi'],
       pattern: ['jednobojni'],
       images: ['bundleWhite'],
-      sizes: SIZES_ADULT,
+      sizes: SIZES_SPORT,
       colors: [{ value: 'Bela', swatch: '#FFFFFF', image: 'bundleWhite' }],
-      price: PRICE,
-      compareAtPrice: COMPARE,
+      price: PRICE.sport,
       skuCode: 'P12B',
     },
   ]
@@ -680,7 +685,7 @@ export const faq = {
     {
       question: 'Koliko košta dostava i koliko traje?',
       answer:
-        'Dostava košta 499 RSD po porudžbini, a pošiljka stiže za 2 do 4 radna dana. Porudžbine šaljemo u roku od 1 do 2 radna dana, na celoj teritoriji Srbije.',
+        'Dostava košta 300 RSD po porudžbini, a za porudžbine od 2.000 RSD je besplatna. Šaljemo kurirskom službom AKS i pošiljka stiže za 1 do 3 radna dana, na celoj teritoriji Srbije.',
     },
     {
       question: 'Kako se plaća porudžbina?',
@@ -783,7 +788,7 @@ export const pageSeo: Record<string, { title: string; description: string }> = {
   dostava: {
     title: 'Dostava i plaćanje',
     description:
-      'Dostava čarapa širom Srbije za 499 RSD, isporuka za 2 do 4 radna dana. Plaćanje pouzećem, fiskalni račun uz pošiljku, praćenje pošiljke emailom.',
+      'Dostava čarapa širom Srbije kurirskom službom AKS za 300 RSD, besplatno od 2.000 RSD. Isporuka za 1 do 3 radna dana, plaćanje pouzećem, fiskalni račun uz pošiljku.',
   },
   'uslovi-koriscenja': {
     title: 'Uslovi korišćenja i kupovine',

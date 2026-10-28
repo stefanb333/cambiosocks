@@ -67,7 +67,7 @@ export default async function ConfirmationPage({ params }: Props) {
               Porudžbina <strong className="text-black">{order.name}</strong> je primljena. Potvrda
               je poslata na <strong className="text-black">{order.email}</strong>. Javljamo se kada
               pošiljka krene; očekivani rok isporuke je{' '}
-              {shop.deliveryEstimate || '2 do 4 radna dana'}.
+              {shop.deliveryEstimate || '1 do 3 radna dana'}.
             </p>
           </div>
 

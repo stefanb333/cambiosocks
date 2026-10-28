@@ -255,7 +255,10 @@ export function CartContents({
               <dt>Ukupno Proizvodi</dt>
               <dd className="text-right">{rsd(data?.subtotal ?? 0)}</dd>
               <dt>Troškovi Dostave</dt>
-              <dd className="text-right">{rsd(data?.shipping ?? 0)}</dd>
+              <dd className="text-right">
+                {/* Besplatna dostava od praga iz Podešavanja prodavnice (D-073) */}
+                {data?.subtotal && !data.shipping ? 'Besplatna' : rsd(data?.shipping ?? 0)}
+              </dd>
               {data?.discount ? (
                 <>
                   <dt>
