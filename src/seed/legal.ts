@@ -212,13 +212,15 @@ export const legalPages = [
   { title: 'Politika privatnosti', slug: 'privatnost', body: privacy },
 ]
 
-/** Linkovi u dnu footer-a; poslednji ističe obavezu učešća u vansudskom rešavanju sporova (čl. 173). */
+/**
+ * Linkovi u dnu footer-a. Obaveza učešća u vansudskom rešavanju sporova (čl. 173) je navedena na
+ * stranici Reklamacije i odustanak, na koju vodi poslednji link (D-078).
+ */
 export const footerLegalLinks = [
   { label: 'Uslovi', url: '/uslovi-koriscenja' },
   { label: 'Privatnost', url: '/privatnost' },
   { label: 'Dostava', url: '/dostava' },
   { label: 'Reklamacije i odustanak', url: '/reklamacije' },
-  { label: 'Učestvujemo u vansudskom rešavanju potrošačkih sporova', url: '/reklamacije' },
 ]
 
 export const footerCopyright = `© 2026 ${companyLine}`

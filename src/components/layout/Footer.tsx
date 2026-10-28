@@ -140,6 +140,15 @@ export async function Footer() {
               />
             ))}
             {footer.location ? <span>{footer.location}</span> : null}
+            {/* Potpis autora sajta (D-078): u kodu, ne u adminu */}
+            <a
+              href="https://sbgrafix.com/"
+              target="_blank"
+              rel="noopener"
+              className="hit hover:text-white"
+            >
+              Dizajn i razvoj SB Grafix
+            </a>
           </div>
         </div>
       </div>
