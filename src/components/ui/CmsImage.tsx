@@ -12,7 +12,7 @@ type Props = Omit<ImageProps, 'src' | 'alt' | 'width' | 'height' | 'preload'> & 
  * Alt tekst dolazi iz biblioteke (obavezno polje), osim ako je slika dekorativna (alt="").
  * Fokus tačka iz admina se poštuje kroz object-position.
  */
-export function CmsImage({ media, alt, style, fill, priority, ...rest }: Props) {
+export function CmsImage({ media, alt, style, fill, priority, quality = 85, ...rest }: Props) {
   if (!media || typeof media === 'number' || !media.url) return null
   const src = mediaSrc(media.url)!
   const position =
@@ -21,6 +21,8 @@ export function CmsImage({ media, alt, style, fill, priority, ...rest }: Props) 
       : undefined
   const common = {
     src,
+    // 85 umesto podrazumevanih 75: fotografije su vidno oštrije uz malo veći fajl (D-072).
+    quality,
     alt: alt ?? media.alt ?? '',
     style: { objectPosition: position, ...style },
     // Next 16: `priority` je zastareo i ne postavlja fetchpriority; glavna slika dobija preload visokog prioriteta.

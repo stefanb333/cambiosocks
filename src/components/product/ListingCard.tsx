@@ -42,6 +42,7 @@ export function ListingCard({
                 src={src}
                 alt={img?.alt ?? product.title}
                 fill
+                quality={85}
                 preload={priority}
                 fetchPriority={priority ? 'high' : undefined}
                 sizes="(min-width: 1440px) 287px, (min-width: 1024px) 22vw, (min-width: 768px) 30vw, 45vw"

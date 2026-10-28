@@ -3,7 +3,7 @@ import { preload } from 'react-dom'
 import { Parallax } from '@/components/motion/Parallax'
 import { WordReveal } from '@/components/motion/WordReveal'
 import { PrimaryPillButton, SoftPillButton } from '@/components/ui/Buttons'
-import { mediaSrc } from '@/lib/media'
+import { coverSizes, mediaSrc } from '@/lib/media'
 import type { HomePage, Media } from '@/payload-types'
 
 type Props = { hero: HomePage['hero'] }
@@ -42,15 +42,24 @@ export function Hero({ hero }: Props) {
       ? `${m.focalX}% ${m.focalY}%`
       : '50% 50%'
 
-  const common = { alt: image.alt ?? '', sizes: '100vw', priority: true as const, quality: 80 }
+  // sizes prema okviru (D-072): telefon do 820px visine, desktop 995px; paralaksa 0.05
+  const phoneSizes = coverSizes(
+    mobile,
+    [{ width: '100vw', height: 'min(820px, max(560px, 100vh))' }],
+    1.12,
+  )
+  const desktopSizes = coverSizes(image, [{ width: '100vw', height: '995px' }], 1.12)
+  const common = { alt: image.alt ?? '', priority: true as const, quality: 85 }
   const desktop = getImageProps({
     ...common,
+    sizes: desktopSizes,
     src: mediaSrc(image.url)!,
     width: image.width ?? 2880,
     height: image.height ?? 1464,
   })
   const phone = getImageProps({
     ...common,
+    sizes: phoneSizes,
     src: mediaSrc(mobile!.url)!,
     width: mobile!.width ?? 1600,
     height: mobile!.height ?? 1600,
@@ -61,21 +70,21 @@ export function Hero({ hero }: Props) {
     preload(desktop.props.src, {
       as: 'image',
       imageSrcSet: desktop.props.srcSet,
-      imageSizes: '100vw',
+      imageSizes: desktopSizes,
       fetchPriority: 'high',
     })
   } else {
     preload(phone.props.src, {
       as: 'image',
       imageSrcSet: phone.props.srcSet,
-      imageSizes: '100vw',
+      imageSizes: phoneSizes,
       fetchPriority: 'high',
       media: '(max-width: 1023px)',
     })
     preload(desktop.props.src, {
       as: 'image',
       imageSrcSet: desktop.props.srcSet,
-      imageSizes: '100vw',
+      imageSizes: desktopSizes,
       fetchPriority: 'high',
       media: '(min-width: 1024px)',
     })
@@ -91,7 +100,11 @@ export function Hero({ hero }: Props) {
       <div className="relative h-[max(560px,calc(100svh-16px))] max-h-[820px] overflow-hidden rounded-[20px] lg:h-[995px] lg:max-h-none lg:rounded-frame">
         <Parallax speed={0.05}>
           <picture>
-            <source media="(min-width: 1024px)" srcSet={desktop.props.srcSet} sizes="100vw" />
+            <source
+              media="(min-width: 1024px)"
+              srcSet={desktop.props.srcSet}
+              sizes={desktopSizes}
+            />
             <img
               {...phone.props}
               alt={image.alt ?? ''}

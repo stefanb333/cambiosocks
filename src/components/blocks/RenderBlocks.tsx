@@ -5,6 +5,7 @@ import { Parallax } from '@/components/motion/Parallax'
 import { WordReveal } from '@/components/motion/WordReveal'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { CmsImage } from '@/components/ui/CmsImage'
+import { coverSizes } from '@/lib/media'
 import { faqSchema, jsonLdGraph } from '@/lib/seo'
 import type { Media, Page } from '@/payload-types'
 import { ContactForm } from './ContactForm'
@@ -63,7 +64,18 @@ function PageHero({ block, pageTitle }: { block: Of<'pageHero'>; pageTitle: stri
     // (van zatamnjenja) i prekriva tekst sledeće sekcije pri skrolu.
     <section className="relative isolate flex h-[min(82svh,620px)] flex-col items-center justify-center overflow-hidden px-[var(--gutter)] pt-14 md:h-[680px] lg:h-[867px] lg:justify-start lg:px-0 lg:pt-[420px]">
       <Parallax speed={0.08} className="-z-10">
-        <CmsImage media={block.image} alt="" fill priority sizes="100vw" className="object-cover" />
+        <CmsImage
+          media={block.image}
+          alt=""
+          fill
+          priority
+          sizes={coverSizes(block.image, [
+            { media: '(min-width: 1024px)', width: '100vw', height: '867px' },
+            { media: '(min-width: 768px)', width: '100vw', height: '680px' },
+            { width: '100vw', height: 'min(82vh, 620px)' },
+          ])}
+          className="object-cover"
+        />
       </Parallax>
       <div
         className="absolute inset-0 -z-10 bg-black"
@@ -168,11 +180,15 @@ function Story({ block }: { block: Of<'story'> }) {
                   <CmsImage
                     media={image}
                     fill
-                    sizes={
-                      images.length >= 4
-                        ? '(min-width: 1024px) 25vw, 72vw'
-                        : '(min-width: 768px) 50vw, 86vw'
-                    }
+                    sizes={coverSizes(image, [
+                      {
+                        media: '(min-width: 1024px)',
+                        width: images.length >= 4 ? '25vw' : '50vw',
+                        height: '430px',
+                      },
+                      { media: '(min-width: 768px)', width: '50vw', height: '360px' },
+                      { width: images.length >= 4 ? '72vw' : '86vw', height: '360px' },
+                    ])}
                     className="object-cover"
                   />
                 </Parallax>
@@ -225,7 +241,11 @@ function Stats({ block }: { block: Of<'stats'> }) {
                   media={item.image}
                   alt=""
                   fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
+                  sizes={coverSizes(item.image, [
+                    { media: '(min-width: 1024px)', width: '50vw', height: '420px' },
+                    { media: '(min-width: 768px)', width: '50vw', height: '360px' },
+                    { width: '100vw', height: '280px' },
+                  ])}
                   className="object-cover"
                 />
               </Parallax>

@@ -1,6 +1,7 @@
 import { Parallax } from '@/components/motion/Parallax'
 import { ViewButton } from '@/components/ui/Buttons'
 import { CmsImage } from '@/components/ui/CmsImage'
+import { coverSizes } from '@/lib/media'
 import type { Media } from '@/payload-types'
 
 type Props = {
@@ -45,7 +46,10 @@ export function CtaBanner({
           media={image}
           alt=""
           fill
-          sizes="100vw"
+          sizes={coverSizes(image, [
+            { media: '(min-width: 1024px)', width: '100vw', height: '570px' },
+            { width: '100vw', height: '560px' },
+          ])}
           className="object-cover"
           style={imagePosition ? { objectPosition: imagePosition } : undefined}
         />

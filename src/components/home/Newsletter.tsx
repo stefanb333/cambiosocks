@@ -1,6 +1,7 @@
 import { Parallax } from '@/components/motion/Parallax'
 import { WordReveal } from '@/components/motion/WordReveal'
 import { CmsImage } from '@/components/ui/CmsImage'
+import { coverSizes } from '@/lib/media'
 import type { HomePage } from '@/payload-types'
 import { NewsletterForm } from './NewsletterForm'
 
@@ -32,7 +33,16 @@ export function Newsletter({ data }: Props) {
       aria-labelledby="newsletter-naslov"
     >
       <Parallax speed={0.1} className="-z-10">
-        <CmsImage media={data.image} alt="" fill sizes="100vw" className="object-cover" />
+        <CmsImage
+          media={data.image}
+          alt=""
+          fill
+          sizes={coverSizes(data.image, [
+            { media: '(min-width: 1024px)', width: '100vw', height: '623px' },
+            { width: '100vw', height: '560px' },
+          ])}
+          className="object-cover"
+        />
       </Parallax>
       {/* Telefon: tekst je preko svetlog dela fotografije, pa je zatamnjenje jače radi čitljivosti (D-055). */}
       <div
