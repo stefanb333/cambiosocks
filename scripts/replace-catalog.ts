@@ -1,6 +1,6 @@
 /**
- * Jednokratno (D-075): katalog klijenta u postojećoj bazi. Pravi proizvode iz
- * src/seed/content.ts (paketi od 12 pari), premešta recenzije sa starih demo proizvoda na nove,
+ * Katalog klijenta u postojećoj bazi (D-075, D-077): pravi nove proizvode iz src/seed/content.ts,
+ * a postojeće (isti slug) ažurira (tekst, slike, status, nove varijante), premešta recenzije sa starih demo proizvoda na nove,
  * briše stare proizvode i njihove varijante, postavlja izdvojene proizvode na početnoj i menja
  * fotografije na mestima koja nisu proizvodi (newsletter, CTA kolekcije, O nama, blog).
  * Tekstovi kolekcija, FAQ i bloga idu posle kroz update-seo-content.ts.
@@ -11,7 +11,7 @@ import path from 'path'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { demoReviews, images, products, type ImageKey } from '../src/seed/content'
-import { createSeedProduct } from '../src/seed/create-product'
+import { createSeedProduct, updateSeedProduct } from '../src/seed/create-product'
 
 const payload = await getPayload({ config })
 const file = (key: ImageKey) => path.resolve('src/seed/images', images[key].file)
@@ -31,12 +31,12 @@ const swaps: [ImageKey, string][] = [
 for (const [key, oldAlt] of swaps) {
   const { docs } = await payload.find({
     collection: 'media',
-    where: { or: [{ alt: { equals: oldAlt } }, { alt: { equals: images[key].alt } }] },
+    where: { alt: { equals: oldAlt } },
     limit: 1,
     depth: 0,
   })
   if (!docs[0]) {
-    console.log(`Slika ${key}: nije pronađena, preskačem`)
+    console.log(`Slika ${key}: već zamenjena`)
     continue
   }
   const doc = await payload.update({
@@ -78,18 +78,22 @@ for (const p of products) {
     limit: 1,
     depth: 0,
   })
-  ids[p.slug] = existing.docs[0]?.id ?? (await createSeedProduct(payload, p, media, {}))
-  console.log(`${existing.docs[0] ? 'Postoji' : 'Dodat'}: ${p.title} (${p.status ?? 'active'})`)
+  if (existing.docs[0]) {
+    ids[p.slug] = existing.docs[0].id
+    await updateSeedProduct(payload, existing.docs[0].id, p, media, {})
+  } else ids[p.slug] = await createSeedProduct(payload, p, media, {})
+  console.log(`${existing.docs[0] ? 'Ažuriran' : 'Dodat'}: ${p.title} (${p.status ?? 'active'})`)
 }
 
-// --- 4. Recenzije sa starih proizvoda na nove (po imenu iz demo recenzija)
+// --- 4. Recenzije: demo recenzije na proizvod iz seed-a (po imenu), ostale sa starih na prvi
 const keep = new Set(Object.values(ids))
 const fallback = ids[products[0].slug]
 const reviews = await payload.find({ collection: 'reviews', pagination: false, depth: 0 })
 for (const r of reviews.docs) {
   const productId = typeof r.product === 'object' ? r.product.id : r.product
-  if (keep.has(productId)) continue
-  const target = ids[demoReviews.find((d) => d.name === r.name)?.product ?? ''] ?? fallback
+  const demo = ids[demoReviews.find((d) => d.name === r.name)?.product ?? '']
+  const target = demo ?? (keep.has(productId) ? productId : fallback)
+  if (target === productId) continue
   await payload.update({ collection: 'reviews', id: r.id, data: { product: target } })
   console.log(`Recenzija ${r.name} -> proizvod ${target}`)
 }

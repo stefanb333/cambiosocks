@@ -135,9 +135,9 @@ export const collections = [
 Cambio čarape pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine. Kada kupujete ovde, kupujete direktno od proizvođača: bez posrednika, sa istim pamukom i istom kontrolom kvaliteta koju godinama koristimo za partnere širom regiona.
 ## Koje čarape da izaberete?
 - **[Muške elegantne čarape](/proizvodi/muske-elegantne-carape)** uz odelo i za posao: crne, karo ili sa rombom.
-- **Sportske čarape** klasične visine za trening i patike, [muške](/proizvodi/muske-sportske-carape) i [ženske](/proizvodi/zenske-sportske-carape).
-- **3/4 čarape** do članka, koje ne vire iz patike: [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4).
-- **Nazuvice**, nevidljive u niskoj obući, za leto i mokasine.
+- **3/4 čarape** klasične visine, do sredine lista, za patike i svaki dan: [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4).
+- **Nazuvice**, niske do članka, koje ne vire iz patike: [muške](/proizvodi/muske-nazuvice) i [ženske](/proizvodi/zenske-nazuvice).
+- **Sportske čarape** za trening, muške i ženske, uskoro u ponudi.
 ## Par ili paket od 12 pari?
 Svaki model možete da kupite kao pojedinačan par ili u paketu od 12 pari iste boje i veličine. Paket je najisplativiji: cena po paru je niža (od oko 100 RSD), imate čist par za svaki dan u mesecu, a kada se jedan pocepa, ostali se i dalje slažu.
 ## Kako da izaberem veličinu?
@@ -165,9 +165,9 @@ Porudžbine isporučuje kurirska služba AKS za 1 do 3 radna dana na celoj terit
 Dobra muška čarapa se ne primećuje tokom dana: ne klizi u cipeli, ne steže oko članka i ne tanji se posle nekoliko pranja. Zato naše muške čarape imaju pojačanu petu i prste, pamuk koji diše i manžetnu koja drži bez otiska na koži.
 ## Za posao, trening i svaki dan
 - **[Muške elegantne čarape](/proizvodi/muske-elegantne-carape)** idu uz odelo, košulju i cipele: jednobojne crne, sa karo dezenom ili sa diskretnim rombom.
-- **[Muške sportske čarape](/proizvodi/muske-sportske-carape)** klasične visine su za teretanu, trčanje i ceo dan u patikama.
-- **[Muške 3/4 čarape](/proizvodi/muske-carape-3-4)** do članka ne vire iz niskih patika, a štite petu od žuljanja.
-- **Muške nazuvice** su nevidljive u mokasinama i niskim patikama, za leto.
+- **[Muške 3/4 čarape](/proizvodi/muske-carape-3-4)** klasične visine, do sredine lista, za patike, teretanu i svaki dan.
+- **[Muške nazuvice](/proizvodi/muske-nazuvice)** su niske do članka: ne vire iz niskih patika, a štite petu od žuljanja.
+- **Muške sportske čarape** za trening su uskoro u ponudi.
 Svaki model je dostupan kao pojedinačan par i u paketu od 12 pari iste boje i veličine, za ceo mesec.
 ## Koja veličina muških čarapa?
 Muške čarape su u rasponima 38-42, 42-44 i 44-46, prema broju obuće. Ako nosite 42 ili 44, pogledajte [tabelu veličina čarapa](/blog/tabela-velicina-carapa) i savet za granične brojeve.
@@ -193,9 +193,9 @@ Perite ih naopačke na 30 do 40°C, bez izbeljivača i sušilice. Više saveta j
     description: `## Ženske čarape koje se ne osećaju
 Ženska čarapa treba da prati oblik stopala, a ne da ga steže. Naše ženske čarape imaju uži kroj, ravan šav na prstima koji ne žulja i meku manžetnu koja ne ostavlja trag ni posle celog dana.
 ## Sportske, 3/4 ili nazuvice?
-- **[Ženske sportske čarape](/proizvodi/zenske-sportske-carape)** klasične visine za teretanu, pilates i ceo dan u patikama.
-- **[Ženske 3/4 čarape](/proizvodi/zenske-carape-3-4)** do članka, koje ne vire iz patike, za trening, šetnju i leto.
-- **Ženske nazuvice** su nevidljive u baletankama, mokasinama i niskim patikama.
+- **[Ženske 3/4 čarape](/proizvodi/zenske-carape-3-4)** klasične visine, do sredine lista, uz helanke, trenerku i patike.
+- **[Ženske nazuvice](/proizvodi/zenske-nazuvice)** su niske do članka: ne vire iz patike, za trening, šetnju i leto.
+- **Ženske sportske čarape** za trening su uskoro u ponudi.
 Svaki model je dostupan kao pojedinačan par i u paketu od 12 pari iste boje i veličine.
 ## Koja veličina ženskih čarapa?
 Ženske čarape su u rasponima 34-36, 36-38 i 38-42, prema broju obuće. Ako ste između dve veličine, za uži kroj izaberite manju, a za opušteniji veću; više u vodiču [Tabela veličina čarapa](/blog/tabela-velicina-carapa).
@@ -221,8 +221,8 @@ Pamuk upija vlagu i diše, pa je stopalo suvo i kada ste ceo dan u zatvorenoj ob
     description: `## Kakve čarape za trčanje i trening?
 Dobra sportska čarapa ima tri stvari: ojačan đon koji ublažava udarce, zonu koja diše na gornjem delu stopala i elastičnu traku oko svoda koja je drži na mestu. Tako stopalo ostaje suvo, a čarapa ne klizi i ne pravi nabore u patici.
 ## Sportske čarape u ovoj kolekciji
-- **Sportske čarape klasične visine**, [muške](/proizvodi/muske-sportske-carape) i [ženske](/proizvodi/zenske-sportske-carape), za teretanu, trčanje i ceo dan u patikama.
-- **3/4 čarape do članka**, [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4), koje ne vire iz patike i ne klize sa pete.
+- **Nazuvice do članka**, [muške](/proizvodi/muske-nazuvice) i [ženske](/proizvodi/zenske-nazuvice), koje ne vire iz patike i ne klize sa pete.
+- **Sportske čarape** za trening, muške i ženske, su uskoro u ponudi.
 Svi modeli su dostupni kao par i u paketu od 12 pari, sa kojim za svaki trening imate svež par.
 ## Koliko pari sportskih čarapa vam treba?
 Ako trenirate tri do četiri puta nedeljno, najbolje je imati bar četiri do pet pari u rotaciji, da svaki par posle pranja potpuno odmori i zadrži elastičnost. Kako da izaberete pravi model, pročitajte u članku [Kako da izaberete čarape za trening](/blog/kako-da-izaberete-carape-za-trening-koje-nece-ometati-tokom-aktivnosti).
@@ -231,7 +231,7 @@ Sportske čarape su u rasponima 36-40, 41-46 i 47-51. Sportska čarapa treba da 
   },
 ] as const
 
-// --- Proizvodi (katalog, D-075) ---
+// --- Proizvodi (katalog, D-075, D-077) ---
 // Katalog klijenta: svaki model kao pojedinačan par i kao paket od 12 pari istog modela, boje i
 // veličine. Muške: elegant, sport, 3/4 i nazuvice; ženske: sport, 3/4 i nazuvice. Cene paketa
 // (D-073): nazuvice 1.200 RSD, 3/4 1.400 RSD, sport i elegant 1.600 RSD. Cene pojedinačnog para
@@ -265,403 +265,242 @@ export type SeedProduct = {
 const SIZES_MEN = ['38-42', '42-44', '44-46']
 const SIZES_WOMEN = ['34-36', '36-38', '38-42']
 
-const PRICE = { nazuvice: 1200, sport34: 1400, sport: 1600, elegant: 1600 }
-const perPair = (price: number) => Math.round(price / 12)
+/** Cena paketa od 12 pari po vrsti (klijent, D-073). */
+const PRICE = { nazuvice: 1200, tri4: 1400, sport: 1600, elegant: 1600 }
 /** Cena jednog para (privremena, D-076). */
-const SINGLE = { nazuvice: 129, sport34: 169, sport: 199, elegant: 199 }
+const SINGLE = { nazuvice: 129, tri4: 169, sport: 199, elegant: 199 }
+const perPair = (price: number) => Math.round(price / 12)
 
-/** Rečenica o paketu na kraju opisa para: isti model, niža cena po paru. */
-const packHint = (packUrl: string, packPrice: number) =>
-  `Isti model postoji i u [paketu od 12 pari](${packUrl}) za ${packPrice} RSD, oko ${perPair(packPrice)} RSD po paru: najisplativije za ceo mesec.`
+type Color = SeedProduct['colors'][number]
+type Variant = { images: ImageKey[]; colors: Color[]; status?: 'active' | 'draft' }
 
-const WHITE_SPORT = { value: 'Bela', swatch: '#FFFFFF', image: 'bundleWhite' as ImageKey }
-const WHITE_34 = { value: 'Bela', swatch: '#FFFFFF', image: 'bundleWhiteAnkle' as ImageKey }
+/**
+ * Model čarape (D-077): iz jednog opisa nastaju dva proizvoda, pojedinačan par i paket od
+ * 12 pari. Vrste prema klijentu: nazuvice su niske do članka, 3/4 su klasične visine do sredine
+ * lista, sportske su za trening, elegantne uz odelo.
+ */
+type Model = {
+  /** Slug paketa; par dobija sufiks "-par". */
+  slug: string
+  who: 'Muške' | 'Ženske'
+  type: 'muske' | 'zenske'
+  /** Naziv vrste u nazivu proizvoda, npr. "3/4 čarape", "nazuvice". */
+  name: string
+  kind: keyof typeof PRICE
+  /** Prvi pasus opisa sa glavnom ključnom reči (bez rečenice o paketu). */
+  intro: string
+  bullets: string[]
+  /** Za kratki opis: za šta je model. */
+  use: string
+  seoTitle: string
+  seoWhat: string
+  tags: string[]
+  pattern: string[]
+  sizes: string[]
+  sku: string
+  collection: [label: string, url: string]
+  pack: Variant
+  single: Variant
+}
 
 /** Završni pasus opisa: poreklo, veličina i interni linkovi (isti ton na svim proizvodima). */
-const closing = (what: string, collection: string, collectionUrl: string) =>
-  `${what} pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine i svaki par pregledamo pre pakovanja. Veličinu birate prema broju obuće; savete za granične brojeve naći ćete u [tabeli veličina čarapa](/blog/tabela-velicina-carapa). Ostale modele pogledajte u kolekciji [${collection}](${collectionUrl}).`
+const closing = (what: string, [label, url]: Model['collection']) =>
+  `${what} pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine i svaki par pregledamo pre pakovanja. Veličinu birate prema broju obuće; savete za granične brojeve naći ćete u [tabeli veličina čarapa](/blog/tabela-velicina-carapa). Ostale modele pogledajte u kolekciji [${label}](${url}).`
 
-export const products: SeedProduct[] = [
-  {
-    title: 'Muške elegantne čarape (12 pari)',
-    slug: 'muske-elegantne-carape',
-    shortDescription: `Paket od 12 pari muških elegantnih čarapa od pamuka za odelo, posao i svečane prilike. Jednobojne crne, sa karo dezenom ili sa diskretnim rombom; oko ${perPair(PRICE.elegant)} RSD po paru.`,
-    description: `**Muške elegantne čarape** su klasika uz odelo, cipele i poslovnu garderobu: čarapa do sredine lista koja se ne vidi dok sedite i ne klizi u cipeli ceo dan. U paketu je **12 pari istog modela, boje i veličine**, dovoljno da ceo mesec imate čist par spreman uz košulju.
-- **Tri modela:** jednobojne crne, crne sa sivim karo (argyle) dezenom i crne sa sitnim rombom sa strane.
-- **Pojačana peta i prsti:** delovi koji se najbrže troše su ojačani, pa par duže traje i posle mnogo pranja.
-- **Pamuk koji diše:** stopalo ostaje suvo i u kožnoj obući, od jutra do večeri.
-- **Manžetna koja drži bez stezanja:** čarapa ostaje podignuta i ne ostavlja otisak na koži.
-- **Za posao, svadbe i proslave:** uz odelo, chino pantalone ili tamne farmerke sa cipelama.
-${closing('Elegantne čarape', 'Muške čarape', '/kolekcije/muske-carape')}`,
+const lower = (who: Model['who']) => (who === 'Muške' ? 'muških' : 'ženskih')
+
+function pack(m: Model): SeedProduct {
+  const price = PRICE[m.kind]
+  return {
+    title: `${m.who} ${m.name} (12 pari)`,
+    slug: m.slug,
+    status: m.pack.status,
+    shortDescription: `Paket od 12 pari ${lower(m.who)} ${m.name.replace('čarape', 'čarapa').replace('nazuvice', 'nazuvica')} od pamuka, ${m.use}. Oko ${perPair(price)} RSD po paru.`,
+    description: `${m.intro} U paketu je **12 pari istog modela, boje i veličine**, dovoljno da ceo mesec imate čist par.
+${m.bullets.map((b) => `- ${b}`).join('\n')}
+- **Isplativo:** oko ${perPair(price)} RSD po paru, umesto kupovine jednog po jednog para.
+${closing(`${m.who} ${m.name}`, m.collection)}`,
     seo: {
-      title: 'Muške elegantne čarape za odelo, paket 12 pari',
-      description: `Elegantne muške čarape od pamuka za odelo i posao: crne, karo ili sa rombom. Paket 12 pari za ${PRICE.elegant} RSD, pojačana peta i prsti. Proizvođač iz Novog Pazara.`,
+      title: `${m.seoTitle}, paket 12 pari`,
+      description: `${m.seoWhat} Paket 12 pari za ${price} RSD, oko ${perPair(price)} RSD po paru. Proizvođač iz Novog Pazara, pouzećem.`,
     },
-    productType: 'muske',
-    tags: ['muske', 'elegant', 'klasik', 'paket', '12-pari'],
+    productType: m.type,
+    tags: [...m.tags, 'paket', '12-pari'],
     category: ['odrasli', 'paketi'],
-    pattern: ['jednobojni', 'graficki'],
+    pattern: m.pattern,
+    images: m.pack.images,
+    sizes: m.sizes,
+    colors: m.pack.colors,
+    price,
+    skuCode: m.sku,
+  }
+}
+
+function single(m: Model): SeedProduct {
+  const price = SINGLE[m.kind]
+  return {
+    title: `${m.who} ${m.name}`,
+    slug: `${m.slug}-par`,
+    status: m.single.status,
+    shortDescription: `Par ${lower(m.who)} ${m.name.replace('čarape', 'čarapa').replace('nazuvice', 'nazuvica')} od pamuka, ${m.use}. Isti model postoji i u paketu od 12 pari.`,
+    description: `${m.intro}
+${m.bullets.map((b) => `- ${b}`).join('\n')}
+Isti model postoji i u [paketu od 12 pari](/proizvodi/${m.slug}) za ${PRICE[m.kind]} RSD, oko ${perPair(PRICE[m.kind])} RSD po paru: najisplativije za ceo mesec.
+${closing(`${m.who} ${m.name}`, m.collection)}`,
+    seo: {
+      title: m.seoTitle,
+      description: `${m.seoWhat} Par za ${price} RSD. Proizvođač iz Novog Pazara, dostava za 1 do 3 radna dana.`,
+    },
+    productType: m.type,
+    tags: [...m.tags, 'par'],
+    category: ['odrasli'],
+    pattern: m.pattern,
+    images: m.single.images,
+    sizes: m.sizes,
+    colors: m.single.colors,
+    price,
+    skuCode: `${m.sku}1`,
+  }
+}
+
+const WHITE = { value: 'Bela', swatch: '#FFFFFF' }
+const BLACK = { value: 'Crna', swatch: '#0F0F0F' }
+const MEN: Model['collection'] = ['Muške čarape', '/kolekcije/muske-carape']
+const WOMEN: Model['collection'] = ['Ženske čarape', '/kolekcije/zenske-carape']
+const SPORT: Model['collection'] = ['Sportske čarape', '/kolekcije/sport-i-aktivne']
+
+const tri4 = (who: Model['who']): Model => {
+  const men = who === 'Muške'
+  return {
+    slug: men ? 'muske-carape-3-4' : 'zenske-carape-3-4',
+    who,
+    type: men ? 'muske' : 'zenske',
+    name: '3/4 čarape',
+    kind: 'tri4',
+    intro: `**${who} 3/4 čarape** su čarape klasične visine, do sredine lista: pokrivaju članak, ne spadaju u patici i lepo stoje uz farmerke, ${men ? 'trenerku i šorts' : 'helanke i trenerku'}. To je model za svaki dan, šetnju i teretanu.`,
+    bullets: [
+      '**Klasična visina, do sredine lista:** čarapa ostaje na mestu i ne skuplja se oko članka.',
+      `**${men ? 'Pojačana peta i prsti' : 'Uži ženski kroj'}:** ${men ? 'duži vek uz patike i česta pranja.' : 'prati oblik stopala, bez nabora na prstima i peti.'}`,
+      '**Pamuk koji diše:** stopalo ostaje suvo i posle celog dana u patikama.',
+      '**Bela boja:** ide uz sve patike, a pere se na 30 do 40°C.',
+    ],
+    use: 'klasične visine do sredine lista, za patike i svaki dan',
+    seoTitle: `${who} 3/4 čarape klasične visine`,
+    seoWhat: `Bele ${men ? 'muške' : 'ženske'} 3/4 čarape od pamuka, klasične visine do sredine lista, za patike, šetnju i teretanu.`,
+    tags: [men ? 'muske' : 'zenske', '3-4', 'svakodnevne'],
+    pattern: ['jednobojni'],
+    sizes: men ? SIZES_MEN : SIZES_WOMEN,
+    sku: men ? 'M34' : 'Z34',
+    collection: men ? MEN : WOMEN,
+    pack: { images: ['bundleWhite'], colors: [{ ...WHITE, image: 'bundleWhite' }] },
+    single: { images: ['socksWhite'], colors: [{ ...WHITE, image: 'socksWhite' }] },
+  }
+}
+
+const nazuvice = (who: Model['who']): Model => {
+  const men = who === 'Muške'
+  return {
+    slug: men ? 'muske-nazuvice' : 'zenske-nazuvice',
+    who,
+    type: men ? 'muske' : 'zenske',
+    name: 'nazuvice',
+    kind: 'nazuvice',
+    intro: `**${who} nazuvice** su niske čarape do članka, za patike: ne vire iz niske obuće, a pokrivaju petu i štite je od žuljanja. Prave su za leto, trening i patike uz ${men ? 'šorts ili farmerke' : 'farmerke, suknju ili haljinu'}.`,
+    bullets: [
+      '**Niske, do članka:** ne vide se iz niskih patika, a peta je pokrivena.',
+      '**Ne klize sa pete:** elastična manžetna drži nazuvicu na mestu i u pokretu.',
+      '**Pojačana peta i prsti:** za dug hod i česte treninge.',
+      '**Pamuk koji diše:** prijatne i u najtoplijim danima.',
+    ],
+    use: 'niske do članka, za patike, trening i leto',
+    seoTitle: `${who} nazuvice za patike, do članka`,
+    seoWhat: `Bele ${men ? 'muške' : 'ženske'} nazuvice od pamuka, niske do članka: ne vire iz patike i ne klize sa pete.`,
+    tags: [men ? 'muske' : 'zenske', 'nazuvice', 'sport', 'leto'],
+    pattern: ['jednobojni'],
+    sizes: men ? SIZES_MEN : SIZES_WOMEN,
+    sku: men ? 'MNZ' : 'ZNZ',
+    collection: men ? SPORT : WOMEN,
+    pack: { images: ['bundleWhiteAnkle'], colors: [{ ...WHITE, image: 'bundleWhiteAnkle' }] },
+    // Nema fotografije pojedinačnog para nazuvica
+    single: { images: [], colors: [WHITE], status: 'draft' },
+  }
+}
+
+const sport = (who: Model['who']): Model => {
+  const men = who === 'Muške'
+  return {
+    slug: men ? 'muske-sportske-carape' : 'zenske-sportske-carape',
+    who,
+    type: men ? 'muske' : 'zenske',
+    name: 'sportske čarape',
+    kind: 'sport',
+    intro: `**${who} sportske čarape** za trening, trčanje i dug dan na nogama: pamuk upija znoj, a pojačani delovi podnose česte treninge i pranja.`,
+    bullets: [
+      '**Za trening:** teretana, trčanje, mali fudbal i šetnja.',
+      '**Pojačana peta i prsti:** duži vek uz patike i sportsku obuću.',
+      '**Pamuk koji diše:** stopalo ostaje suvlje tokom treninga i posle njega.',
+    ],
+    use: 'za trening, trčanje i patike',
+    seoTitle: `${who} sportske čarape od pamuka`,
+    seoWhat: `${men ? 'Muške' : 'Ženske'} sportske čarape od pamuka za trening i trčanje, pojačana peta i prsti.`,
+    tags: [men ? 'muske' : 'zenske', 'sport', 'trening'],
+    pattern: ['jednobojni'],
+    sizes: men ? SIZES_MEN : SIZES_WOMEN,
+    sku: men ? 'MSP' : 'ZSP',
+    collection: SPORT,
+    // Nema fotografije sportskih čarapa (ni para ni paketa): nacrt dok ne stigne
+    pack: { images: [], colors: [WHITE, BLACK], status: 'draft' },
+    single: { images: [], colors: [WHITE, BLACK], status: 'draft' },
+  }
+}
+
+const elegant: Model = {
+  slug: 'muske-elegantne-carape',
+  who: 'Muške',
+  type: 'muske',
+  name: 'elegantne čarape',
+  kind: 'elegant',
+  intro:
+    '**Muške elegantne čarape** su klasika uz odelo, cipele i poslovnu garderobu: čarapa do sredine lista koja se ne vidi dok sedite i ne klizi u cipeli ceo dan.',
+  bullets: [
+    '**Modeli:** jednobojne crne, crne sa sivim karo (argyle) dezenom i crne sa sitnim rombom sa strane.',
+    '**Pojačana peta i prsti:** delovi koji se najbrže troše su ojačani, pa par duže traje i posle mnogo pranja.',
+    '**Pamuk koji diše:** stopalo ostaje suvo i u kožnoj obući, od jutra do večeri.',
+    '**Manžetna koja drži bez stezanja:** čarapa ostaje podignuta i ne ostavlja otisak na koži.',
+    '**Za posao, svadbe i proslave:** uz odelo, chino pantalone ili tamne farmerke sa cipelama.',
+  ],
+  use: 'za odelo, posao i svečane prilike',
+  seoTitle: 'Muške elegantne čarape za odelo',
+  seoWhat:
+    'Elegantne muške čarape od pamuka za odelo i posao: crne, karo ili sa rombom, pojačana peta i prsti.',
+  tags: ['muske', 'elegant', 'klasik'],
+  pattern: ['jednobojni', 'graficki'],
+  sizes: SIZES_MEN,
+  sku: 'MEL',
+  collection: MEN,
+  pack: {
     images: ['bundleBlack', 'bundleArgyle', 'bundleDiamond'],
-    sizes: SIZES_MEN,
     colors: [
-      { value: 'Crna', swatch: '#0F0F0F', image: 'bundleBlack' },
+      { ...BLACK, image: 'bundleBlack' },
       { value: 'Crna karo', swatch: '#3A3A3A', image: 'bundleArgyle' },
       { value: 'Crna sa rombom', swatch: '#1A1A1A', image: 'bundleDiamond' },
     ],
-    price: PRICE.elegant,
-    skuCode: 'MEL',
   },
-  {
-    title: 'Muške sportske čarape (12 pari)',
-    slug: 'muske-sportske-carape',
-    shortDescription: `12 pari muških sportskih čarapa od pamuka klasične visine, za trening, patike i ceo dan na nogama. Pojačana peta i prsti; oko ${perPair(PRICE.sport)} RSD po paru.`,
-    description: `**Muške sportske čarape** klasične visine za teretanu, trčanje, mali fudbal i ceo dan u patikama. Pamuk upija znoj, a pojačana peta i prsti podnose dug hod i česta pranja. Paket sadrži **12 pari istog modela i veličine**, pa za svaki trening imate svež par, bez traženja para po fioci.
-- **Klasična visina:** pokriva članak i ne spada pri trčanju i skakanju.
-- **Pojačana peta i prsti:** duži vek uz patike i sportsku obuću.
-- **Pamuk koji diše:** stopalo ostaje suvlje tokom treninga i posle njega.
-- **Bela boja:** ide uz sve patike, a pere se na 30 do 40°C.
-- **Isplativo:** oko ${perPair(PRICE.sport)} RSD po paru, za trening i za svaki dan.
-Koliko pari je dovoljno i šta da gledate pri izboru, objašnjavamo u vodiču [Kako da izaberete čarape za trening](/blog/kako-da-izaberete-carape-za-trening-koje-nece-ometati-tokom-aktivnosti).
-${closing('Sportske čarape', 'Sportske čarape', '/kolekcije/sport-i-aktivne')}`,
-    seo: {
-      title: 'Muške sportske čarape od pamuka, paket 12 pari',
-      description: `Bele muške sportske čarape klasične visine za trening i patike. Paket 12 pari za ${PRICE.sport} RSD, pojačana peta i prsti. Dostava za 1 do 3 radna dana, pouzećem.`,
-    },
-    productType: 'muske',
-    tags: ['muske', 'sport', 'paket', '12-pari', 'trening'],
-    category: ['odrasli', 'paketi'],
-    pattern: ['jednobojni'],
-    images: ['bundleWhite'],
-    sizes: SIZES_MEN,
-    colors: [WHITE_SPORT],
-    price: PRICE.sport,
-    skuCode: 'MSP',
-  },
-  {
-    title: 'Ženske sportske čarape (12 pari)',
-    slug: 'zenske-sportske-carape',
-    shortDescription: `12 pari ženskih sportskih čarapa od pamuka klasične visine, za teretanu, šetnju i patike. Uži kroj koji prati stopalo; oko ${perPair(PRICE.sport)} RSD po paru.`,
-    description: `**Ženske sportske čarape** klasične visine za teretanu, pilates, šetnju i ceo dan u patikama. Uži kroj prati stopalo i ne pravi nabore u patici, a pamuk upija znoj i pušta stopalo da diše. U paketu je **12 pari istog modela i veličine**, za ceo mesec treninga i svakodnevnog nošenja.
-- **Uži ženski kroj:** prati oblik stopala, bez viška materijala na prstima i peti.
-- **Klasična visina:** pokriva članak, lepo stoji uz helanke i trenerku.
-- **Pojačana peta i prsti:** par duže traje uz patike i česta pranja.
-- **Bela boja:** uz bele patike i sportsku opremu, pere se na 30 do 40°C.
-- **Isplativo:** oko ${perPair(PRICE.sport)} RSD po paru.
-${closing('Ženske sportske čarape', 'Ženske čarape', '/kolekcije/zenske-carape')}`,
-    seo: {
-      title: 'Ženske sportske čarape od pamuka, paket 12 pari',
-      description: `Bele ženske sportske čarape užeg kroja za teretanu, šetnju i patike. Paket 12 pari za ${PRICE.sport} RSD, pojačana peta i prsti. Proizvođač iz Novog Pazara.`,
-    },
-    productType: 'zenske',
-    tags: ['zenske', 'sport', 'paket', '12-pari', 'trening'],
-    category: ['odrasli', 'paketi'],
-    pattern: ['jednobojni'],
-    images: ['bundleWhite'],
-    sizes: SIZES_WOMEN,
-    colors: [WHITE_SPORT],
-    price: PRICE.sport,
-    skuCode: 'ZSP',
-  },
-  {
-    title: 'Ženske 3/4 čarape (12 pari)',
-    slug: 'zenske-carape-3-4',
-    shortDescription: `12 pari ženskih 3/4 čarapa do članka, za patike, trening i leto. Ne vire iz patike i ne klize sa pete; oko ${perPair(PRICE.sport34)} RSD po paru.`,
-    description: `**Ženske 3/4 čarape** su niže sportske čarape koje se završavaju iznad članka: dovoljno visoke da štite petu od žuljanja, a dovoljno niske da se ne vide iz patike. Idealne su za trening, šetnju, leto i patike uz farmerke ili haljinu. U paketu je **12 pari istog modela i veličine**.
-- **Visina 3/4, do članka:** ne vire iz patike, a peta je zaštićena.
-- **Ne klize sa pete:** elastična manžetna drži čarapu na mestu i u pokretu.
-- **Pojačana peta i prsti:** za dug hod i česte treninge.
-- **Pamuk koji diše:** prijatne i leti, kada je stopalo najviše u patikama.
-- **Isplativo:** oko ${perPair(PRICE.sport34)} RSD po paru.
-${closing('Ženske 3/4 čarape', 'Ženske čarape', '/kolekcije/zenske-carape')}`,
-    seo: {
-      title: 'Ženske 3/4 čarape do članka, paket 12 pari',
-      description: `Ženske 3/4 čarape do članka za patike, trening i leto: ne vire iz patike i ne klize. Paket 12 pari za ${PRICE.sport34} RSD. Dostava za 1 do 3 radna dana, pouzećem.`,
-    },
-    productType: 'zenske',
-    tags: ['zenske', 'sport', '3-4', 'paket', '12-pari', 'leto'],
-    category: ['odrasli', 'paketi'],
-    pattern: ['jednobojni'],
-    images: ['bundleWhiteAnkle'],
-    sizes: SIZES_WOMEN,
-    colors: [WHITE_34],
-    price: PRICE.sport34,
-    skuCode: 'Z34',
-  },
-  {
-    title: 'Muške 3/4 čarape (12 pari)',
-    slug: 'muske-carape-3-4',
-    shortDescription: `12 pari muških 3/4 čarapa do članka, za patike, teretanu i leto. Ne vire iz patike i ne klize sa pete; oko ${perPair(PRICE.sport34)} RSD po paru.`,
-    description: `**Muške 3/4 čarape** su niže sportske čarape do članka: ne vire iz patike, a štite petu od žuljanja, za razliku od nazuvica. Prave su za teretanu, trčanje, leto i patike uz šorts ili farmerke. U paketu je **12 pari istog modela i veličine**.
-- **Visina 3/4, do članka:** ne vide se iz niskih patika, a peta je pokrivena.
-- **Ne klize sa pete:** elastična manžetna drži čarapu na mestu i pri trčanju.
-- **Pojačana peta i prsti:** za trening i dug dan na nogama.
-- **Pamuk koji diše:** prijatne i u najtoplijim danima.
-- **Isplativo:** oko ${perPair(PRICE.sport34)} RSD po paru.
-${closing('Muške 3/4 čarape', 'Sportske čarape', '/kolekcije/sport-i-aktivne')}`,
-    seo: {
-      title: 'Muške 3/4 čarape do članka, paket 12 pari',
-      description: `Muške 3/4 čarape do članka za patike, teretanu i leto: ne vire iz patike i ne klize. Paket 12 pari za ${PRICE.sport34} RSD. Proizvođač iz Novog Pazara, pouzećem.`,
-    },
-    productType: 'muske',
-    tags: ['muske', 'sport', '3-4', 'paket', '12-pari', 'leto'],
-    category: ['odrasli', 'paketi'],
-    pattern: ['jednobojni'],
-    images: ['bundleWhiteAnkle'],
-    sizes: SIZES_MEN,
-    colors: [WHITE_34],
-    price: PRICE.sport34,
-    skuCode: 'M34',
-  },
-  {
-    title: 'Muške nazuvice (12 pari)',
-    slug: 'muske-nazuvice',
-    status: 'draft',
-    shortDescription: `12 pari muških nazuvica: nevidljive čarape za patike, mokasine i letnju obuću, koje se ne vide iznad patike; oko ${perPair(PRICE.nazuvice)} RSD po paru.`,
-    description: `**Muške nazuvice** su najniže čarape: pokrivaju samo stopalo i ostaju skrivene u niskim patikama, mokasinama i espadrilama, pa izgleda kao da ste bosi, a stopalo je zaštićeno od žuljanja i znoja. U paketu je **12 pari istog modela i veličine**, za ceo letnji ritam.
-- **Nevidljive u obući:** ne vire iznad niskih patika i mokasina.
-- **Štite stopalo i obuću:** upijaju znoj, pa patike i mokasine duže ostaju sveže.
-- **Pamuk koji diše:** prijatne i u najtoplijim danima.
-- **Isplativo:** oko ${perPair(PRICE.nazuvice)} RSD po paru.
-${closing('Nazuvice', 'Muške čarape', '/kolekcije/muske-carape')}`,
-    seo: {
-      title: 'Muške nazuvice, nevidljive čarape, 12 pari',
-      description: `Muške nazuvice za patike i mokasine: nevidljive u obući, štite stopalo od žuljanja. Paket 12 pari za ${PRICE.nazuvice} RSD. Proizvođač iz Novog Pazara, pouzećem.`,
-    },
-    productType: 'muske',
-    tags: ['muske', 'nazuvice', 'paket', '12-pari', 'leto'],
-    category: ['odrasli', 'paketi'],
-    pattern: ['jednobojni'],
-    images: [],
-    sizes: SIZES_MEN,
-    colors: [
-      { value: 'Bela', swatch: '#FFFFFF' },
-      { value: 'Crna', swatch: '#0F0F0F' },
-    ],
-    price: PRICE.nazuvice,
-    skuCode: 'MNZ',
-  },
-  {
-    title: 'Ženske nazuvice (12 pari)',
-    slug: 'zenske-nazuvice',
-    status: 'draft',
-    shortDescription: `12 pari ženskih nazuvica: nevidljive čarape za patike, baletanke i mokasine, skrivene u obući; oko ${perPair(PRICE.nazuvice)} RSD po paru.`,
-    description: `**Ženske nazuvice** pokrivaju samo stopalo i ostaju skrivene u patikama, baletankama i mokasinama: noga izgleda kao bosa, a stopalo je zaštićeno od žuljanja i znoja. U paketu je **12 pari istog modela i veličine**.
-- **Nevidljive u obući:** ne vire iz niskih patika, baletanki i mokasina.
-- **Uži ženski kroj:** prate stopalo i ne prave nabore.
-- **Pamuk koji diše:** prijatne i leti, uz suknje, haljine i letnje pantalone.
-- **Isplativo:** oko ${perPair(PRICE.nazuvice)} RSD po paru.
-${closing('Ženske nazuvice', 'Ženske čarape', '/kolekcije/zenske-carape')}`,
-    seo: {
-      title: 'Ženske nazuvice, nevidljive čarape, 12 pari',
-      description: `Ženske nazuvice za patike, baletanke i mokasine: nevidljive u obući, ne žuljaju. Paket 12 pari za ${PRICE.nazuvice} RSD. Proizvođač iz Novog Pazara, pouzećem.`,
-    },
-    productType: 'zenske',
-    tags: ['zenske', 'nazuvice', 'paket', '12-pari', 'leto'],
-    category: ['odrasli', 'paketi'],
-    pattern: ['jednobojni'],
-    images: [],
-    sizes: SIZES_WOMEN,
-    colors: [
-      { value: 'Bela', swatch: '#FFFFFF' },
-      { value: 'Crna', swatch: '#0F0F0F' },
-    ],
-    price: PRICE.nazuvice,
-    skuCode: 'ZNZ',
-  },
-  // --- Pojedinačni parovi (D-076) ---
-  {
-    title: 'Muške elegantne čarape',
-    slug: 'muske-elegantne-carape-par',
-    shortDescription:
-      'Par muških elegantnih čarapa od pamuka za odelo, posao i svečane prilike. Klasična crna, pojačana peta i prsti, manžetna koja drži bez stezanja.',
-    description: `**Muške elegantne čarape** su klasika uz odelo, cipele i poslovnu garderobu: crna čarapa do sredine lista koja se ne vidi dok sedite i ne klizi u cipeli ceo dan.
-- **Pojačana peta i prsti:** delovi koji se najbrže troše su ojačani, pa par duže traje.
-- **Pamuk koji diše:** stopalo ostaje suvo i u kožnoj obući, od jutra do večeri.
-- **Manžetna koja drži bez stezanja:** čarapa ostaje podignuta i ne ostavlja otisak na koži.
-- **Za posao, svadbe i proslave:** uz odelo, chino pantalone ili tamne farmerke sa cipelama.
-${packHint('/proizvodi/muske-elegantne-carape', PRICE.elegant)}
-${closing('Elegantne čarape', 'Muške čarape', '/kolekcije/muske-carape')}`,
-    seo: {
-      title: 'Muške elegantne čarape za odelo, crne, pamuk',
-      description: `Crne muške elegantne čarape od pamuka za odelo i posao: ne klize u cipeli, pojačana peta i prsti. Par za ${SINGLE.elegant} RSD. Proizvođač iz Novog Pazara.`,
-    },
-    productType: 'muske',
-    tags: ['muske', 'elegant', 'klasik', 'par'],
-    category: ['odrasli'],
-    pattern: ['jednobojni'],
-    images: ['socksBlack'],
-    sizes: SIZES_MEN,
-    colors: [{ value: 'Crna', swatch: '#0F0F0F', image: 'socksBlack' }],
-    price: SINGLE.elegant,
-    skuCode: 'MEL1',
-  },
-  {
-    title: 'Muške sportske čarape',
-    slug: 'muske-sportske-carape-par',
-    shortDescription:
-      'Par muških sportskih čarapa od pamuka klasične visine, za trening, patike i ceo dan na nogama. Pojačana peta i prsti, ne klize u patici.',
-    description: `**Muške sportske čarape** klasične visine za teretanu, trčanje, mali fudbal i ceo dan u patikama. Pamuk upija znoj, a pojačana peta i prsti podnose dug hod i česta pranja.
-- **Klasična visina:** pokriva članak i ne spada pri trčanju i skakanju.
-- **Pojačana peta i prsti:** duži vek uz patike i sportsku obuću.
-- **Pamuk koji diše:** stopalo ostaje suvlje tokom treninga i posle njega.
-- **Bela boja:** ide uz sve patike, a pere se na 30 do 40°C.
-${packHint('/proizvodi/muske-sportske-carape', PRICE.sport)}
-${closing('Sportske čarape', 'Sportske čarape', '/kolekcije/sport-i-aktivne')}`,
-    seo: {
-      title: 'Muške sportske čarape od pamuka, bele',
-      description: `Bele muške sportske čarape klasične visine za trening i patike, pojačana peta i prsti. Par za ${SINGLE.sport} RSD. Dostava za 1 do 3 radna dana, pouzećem.`,
-    },
-    productType: 'muske',
-    tags: ['muske', 'sport', 'par', 'trening'],
-    category: ['odrasli'],
-    pattern: ['jednobojni'],
-    images: ['socksWhite'],
-    sizes: SIZES_MEN,
-    colors: [{ value: 'Bela', swatch: '#FFFFFF', image: 'socksWhite' }],
-    price: SINGLE.sport,
-    skuCode: 'MSP1',
-  },
-  {
-    title: 'Ženske sportske čarape',
-    slug: 'zenske-sportske-carape-par',
-    shortDescription:
-      'Par ženskih sportskih čarapa od pamuka klasične visine, za teretanu, šetnju i patike. Uži kroj koji prati stopalo i ne pravi nabore.',
-    description: `**Ženske sportske čarape** klasične visine za teretanu, pilates, šetnju i ceo dan u patikama. Uži kroj prati stopalo i ne pravi nabore u patici, a pamuk upija znoj i pušta stopalo da diše.
-- **Uži ženski kroj:** prati oblik stopala, bez viška materijala na prstima i peti.
-- **Klasična visina:** pokriva članak, lepo stoji uz helanke i trenerku.
-- **Pojačana peta i prsti:** par duže traje uz patike i česta pranja.
-- **Bela boja:** uz bele patike i sportsku opremu, pere se na 30 do 40°C.
-${packHint('/proizvodi/zenske-sportske-carape', PRICE.sport)}
-${closing('Ženske sportske čarape', 'Ženske čarape', '/kolekcije/zenske-carape')}`,
-    seo: {
-      title: 'Ženske sportske čarape od pamuka, bele',
-      description: `Bele ženske sportske čarape užeg kroja za teretanu, šetnju i patike, pojačana peta i prsti. Par za ${SINGLE.sport} RSD. Proizvođač iz Novog Pazara.`,
-    },
-    productType: 'zenske',
-    tags: ['zenske', 'sport', 'par', 'trening'],
-    category: ['odrasli'],
-    pattern: ['jednobojni'],
-    images: ['socksWhite'],
-    sizes: SIZES_WOMEN,
-    colors: [{ value: 'Bela', swatch: '#FFFFFF', image: 'socksWhite' }],
-    price: SINGLE.sport,
-    skuCode: 'ZSP1',
-  },
-  single34(
-    'Muške',
-    'muske',
-    SIZES_MEN,
-    'muske-carape-3-4',
-    'M341',
-    'Sportske čarape',
-    '/kolekcije/sport-i-aktivne',
-  ),
-  single34(
-    'Ženske',
-    'zenske',
-    SIZES_WOMEN,
-    'zenske-carape-3-4',
-    'Z341',
-    'Ženske čarape',
-    '/kolekcije/zenske-carape',
-  ),
-  singleNazuvice(
-    'Muške',
-    'muske',
-    SIZES_MEN,
-    'muske-nazuvice',
-    'MNZ1',
-    'Muške čarape',
-    '/kolekcije/muske-carape',
-  ),
-  singleNazuvice(
-    'Ženske',
-    'zenske',
-    SIZES_WOMEN,
-    'zenske-nazuvice',
-    'ZNZ1',
-    'Ženske čarape',
-    '/kolekcije/zenske-carape',
-  ),
+  single: { images: ['socksBlack'], colors: [{ ...BLACK, image: 'socksBlack' }] },
+}
+
+// Redosled: prvo paketi (prva četiri aktivna su izdvojena na početnoj), pa pojedinačni parovi.
+const MODELS: Model[] = [
+  elegant,
+  tri4('Muške'),
+  tri4('Ženske'),
+  nazuvice('Muške'),
+  nazuvice('Ženske'),
+  sport('Muške'),
+  sport('Ženske'),
 ]
 
-/** Par 3/4 čarapa (nacrt dok ne stigne fotografija para, D-076). */
-function single34(
-  who: 'Muške' | 'Ženske',
-  type: 'muske' | 'zenske',
-  sizes: string[],
-  packSlug: string,
-  skuCode: string,
-  collection: string,
-  collectionUrl: string,
-): SeedProduct {
-  return {
-    title: `${who} 3/4 čarape`,
-    slug: `${packSlug}-par`,
-    status: 'draft',
-    shortDescription: `Par ${who.toLowerCase().replace('ske', 'skih')} 3/4 čarapa do članka, za patike, trening i leto. Ne vire iz patike i ne klize sa pete.`,
-    description: `**${who} 3/4 čarape** su niže sportske čarape do članka: ne vire iz patike, a štite petu od žuljanja. Prave su za trening, šetnju, leto i niske patike.
-- **Visina 3/4, do članka:** ne vide se iz niskih patika, a peta je pokrivena.
-- **Ne klize sa pete:** elastična manžetna drži čarapu na mestu i u pokretu.
-- **Pojačana peta i prsti:** za trening i dug dan na nogama.
-- **Pamuk koji diše:** prijatne i u najtoplijim danima.
-${packHint(`/proizvodi/${packSlug}`, PRICE.sport34)}
-${closing(`${who} 3/4 čarape`, collection, collectionUrl)}`,
-    seo: {
-      title: `${who} 3/4 čarape do članka, pamuk`,
-      description: `${who} 3/4 čarape do članka za patike, trening i leto: ne vire iz patike i ne klize. Par za ${SINGLE.sport34} RSD. Proizvođač iz Novog Pazara.`,
-    },
-    productType: type,
-    tags: [type, 'sport', '3-4', 'par', 'leto'],
-    category: ['odrasli'],
-    pattern: ['jednobojni'],
-    images: [],
-    sizes,
-    colors: [{ value: 'Bela', swatch: '#FFFFFF' }],
-    price: SINGLE.sport34,
-    skuCode,
-  }
-}
-
-/** Par nazuvica (nacrt dok ne stigne fotografija, D-076). */
-function singleNazuvice(
-  who: 'Muške' | 'Ženske',
-  type: 'muske' | 'zenske',
-  sizes: string[],
-  packSlug: string,
-  skuCode: string,
-  collection: string,
-  collectionUrl: string,
-): SeedProduct {
-  return {
-    title: `${who} nazuvice`,
-    slug: `${packSlug}-par`,
-    status: 'draft',
-    shortDescription: `Par ${who.toLowerCase().replace('ske', 'skih')} nazuvica: nevidljive čarape za niske patike i mokasine, skrivene u obući.`,
-    description: `**${who} nazuvice** pokrivaju samo stopalo i ostaju skrivene u niskim patikama i mokasinama, a štite stopalo od žuljanja i znoja.
-- **Nevidljive u obući:** ne vire iznad niskih patika i mokasina.
-- **Štite stopalo i obuću:** upijaju znoj, pa obuća duže ostaje sveža.
-- **Pamuk koji diše:** prijatne i u najtoplijim danima.
-${packHint(`/proizvodi/${packSlug}`, PRICE.nazuvice)}
-${closing('Nazuvice', collection, collectionUrl)}`,
-    seo: {
-      title: `${who} nazuvice, nevidljive čarape`,
-      description: `${who} nazuvice za niske patike i mokasine: nevidljive u obući, štite od žuljanja. Par za ${SINGLE.nazuvice} RSD. Proizvođač iz Novog Pazara.`,
-    },
-    productType: type,
-    tags: [type, 'nazuvice', 'par', 'leto'],
-    category: ['odrasli'],
-    pattern: ['jednobojni'],
-    images: [],
-    sizes,
-    colors: [
-      { value: 'Bela', swatch: '#FFFFFF' },
-      { value: 'Crna', swatch: '#0F0F0F' },
-    ],
-    price: SINGLE.nazuvice,
-    skuCode,
-  }
-}
+export const products: SeedProduct[] = [...MODELS.map(pack), ...MODELS.map(single)]
 
 // --- Početna: tekstovi 1:1 iz Figme (frame "pocetna", 50:640) ---
 // Naslovi su u Figmi upisani malim slovima i dobijaju velika početna slova preko
@@ -958,7 +797,7 @@ Ne. Izbeljivač slabi vlakna i pravi tanke tačke na peti i prstima, a omekšiva
 ## 4. Da li čarape smeju u sušilicu?
 Bolje je da ne. Toplota u sušilici skraćuje život elastičnih niti i skuplja pamuk. Čarape se na vazduhu, na štipaljkama ili na sušilici za veš, osuše za nekoliko sati.
 ## 5. Koliko pari čarapa treba imati?
-Dovoljno da svaki par posle pranja "odmori" bar dan ili dva. Kada imate sedam do deset pari u rotaciji, svaki se manje troši i duže zadržava oblik. Zato su naše čarape u paketu od 12 pari, na primer [muške elegantne](/proizvodi/muske-elegantne-carape) ili [ženske sportske](/proizvodi/zenske-sportske-carape).
+Dovoljno da svaki par posle pranja "odmori" bar dan ili dva. Kada imate sedam do deset pari u rotaciji, svaki se manje troši i duže zadržava oblik. Zato su naše čarape u paketu od 12 pari, na primer [muške elegantne](/proizvodi/muske-elegantne-carape) ili [ženske 3/4 čarape](/proizvodi/zenske-carape-3-4).
 ## Kada je vreme za nove čarape?
 Kada se peta istanji toliko da se kroz nju vidi koža, ili kada manžetna više ne drži čarapu na mestu. Tada je vreme za novi par: pogledajte [muške](/kolekcije/muske-carape), [ženske](/kolekcije/zenske-carape) ili [sportske čarape](/kolekcije/sport-i-aktivne).`,
   },
@@ -975,7 +814,7 @@ Kada se peta istanji toliko da se kroz nju vidi koža, ili kada manžetna više 
     publishedAt: '2026-03-05T09:00:00.000Z',
     body: `Čarape najlakše kombinujete po jednom pravilu: ili se slažu sa obućom, ili su namerno upadljiv detalj. Ovo su tri kombinacije koje uvek rade.
 ## Koje čarape uz bele patike?
-Bele čarape uz bele patike su najsigurnija kombinacija za leto i ležeran stil: noga izgleda duže, a izgled je čist. Birajte srednju visinu, koja proviri iznad patike, ili niske čarape uz kratke pantalone. Pogledajte bele [ženske sportske čarape](/proizvodi/zenske-sportske-carape) i [muške sportske čarape](/proizvodi/muske-sportske-carape), ili niže [3/4 čarape](/proizvodi/zenske-carape-3-4) uz kratke pantalone.
+Bele čarape uz bele patike su najsigurnija kombinacija za leto i ležeran stil: noga izgleda duže, a izgled je čist. Birajte srednju visinu, koja proviri iznad patike, ili niske čarape uz kratke pantalone. Pogledajte bele 3/4 čarape klasične visine, [ženske](/proizvodi/zenske-carape-3-4) i [muške](/proizvodi/muske-carape-3-4), ili niske [nazuvice](/proizvodi/zenske-nazuvice) uz kratke pantalone.
 ## Koje čarape uz odelo i cipele?
 Uz odelo i cipele nosite tamne čarape, crne, sive ili teget, u tonu pantalona ili cipela. Čarapa treba da bude dovoljno visoka da se pri sedenju ne vidi koža između pantalona i čarape. Crne [muške elegantne čarape](/proizvodi/muske-elegantne-carape) idu uz skoro svako odelo.
 ## Kako nositi čarape u boji?
@@ -1036,7 +875,7 @@ Materijal koji brzo odvodi vlagu i ima mrežastu zonu na gornjem delu stopala. S
 ## Koliko pari sportskih čarapa vam treba?
 Ako trenirate tri do četiri puta nedeljno, bar četiri do pet pari, da svaki par posle pranja odmori i zadrži elastičnost.
 ## Naše sportske čarape
-U kolekciji [Sportske čarape](/kolekcije/sport-i-aktivne) su [Muške sportske čarape](/proizvodi/muske-sportske-carape) i [Ženske sportske čarape](/proizvodi/zenske-sportske-carape) klasične visine, i niže 3/4 čarape do članka, [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4), sve u paketu od 12 pari.`,
+Za trening su tu nazuvice do članka, [muške](/proizvodi/muske-nazuvice) i [ženske](/proizvodi/zenske-nazuvice), i 3/4 čarape klasične visine, [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4), kao par ili u paketu od 12 pari. Sportske čarape za trening su uskoro u ponudi u kolekciji [Sportske čarape](/kolekcije/sport-i-aktivne).`,
   },
   {
     title: 'Tabela veličina čarapa: kako da izaberete pravu veličinu',
@@ -1086,7 +925,7 @@ export const demoReviews = [
     text: 'Najudobnije čarape koje sam ikad nosio. Nisu previše tanke, nisu previše debele - baš ono što treba za svakodnevno nošenje.',
   },
   {
-    product: 'muske-sportske-carape',
+    product: 'muske-carape-3-4',
     name: 'Nikola Jovanović',
     text: 'Cambio sport čarape su savršene za trening i trčanje. Ne klize, ne stežu i osećaju se kao deo noge.',
   },
@@ -1096,7 +935,7 @@ export const demoReviews = [
     text: 'Suptilne boje, udoban kroj i pamuk koji se oseća prirodno. Baš ono što sam tražila za svakodnevnu garderobu.',
   },
   {
-    product: 'zenske-sportske-carape',
+    product: 'zenske-nazuvice',
     name: 'Jovana Stojanović',
     text: 'Ove čarape su prve koje nisu bile previše tesne za stopalo, a istovremeno su zadržale oblik čak i posle nekoliko pranja.',
   },
@@ -1106,7 +945,7 @@ export const demoReviews = [
     text: 'Kupila sam ih za muža i sina, a sada ih kupujem i za sebe. Kvalitet je isti u svakoj kolekciji.',
   },
   {
-    product: 'muske-sportske-carape',
+    product: 'muske-nazuvice',
     name: 'Stefan Ilić',
     text: 'Najbolje su mi bile za dugotrajne treninge. Nisu se stezale, nisu klizile i nisu bile previše vrele.',
   },
