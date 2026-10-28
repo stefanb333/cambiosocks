@@ -41,6 +41,32 @@ export const images = {
   },
   socksWhite: { file: 'product-socks-white.png', alt: 'Par belih Cambio čarapa' },
   socksBlack: { file: 'product-socks-black.png', alt: 'Par crnih Cambio čarapa' },
+  // Paketi od 12 pari (D-071): fotografije klijenta na žutoj pozadini sa oznakom "12X"
+  bundleArgyle: {
+    file: 'bundle-crne-karo.jpg',
+    alt: 'Paket 12 pari crnih Cambio čarapa sa sivim karo dezenom',
+    focal: [65, 50],
+  },
+  bundleBlack: {
+    file: 'bundle-crne.jpg',
+    alt: 'Paket 12 pari crnih Cambio čarapa',
+    focal: [65, 50],
+  },
+  bundleDiamond: {
+    file: 'bundle-crne-romb.jpg',
+    alt: 'Paket 12 pari crnih Cambio čarapa sa sitnim rombom',
+    focal: [65, 50],
+  },
+  bundleWhiteAnkle: {
+    file: 'bundle-bele-niske.jpg',
+    alt: 'Paket 12 pari belih niskih Cambio čarapa',
+    focal: [65, 50],
+  },
+  bundleWhite: {
+    file: 'bundle-bele.jpg',
+    alt: 'Paket 12 pari belih Cambio čarapa',
+    focal: [65, 50],
+  },
   aboutHero: {
     file: 'about-hero.jpg',
     alt: 'Proizvodna hala Cambio fabrike sa mašinama za pletenje čarapa',
@@ -191,7 +217,7 @@ Sportske čarape su u rasponima 36-40, 41-46 i 47-51. Sportska čarapa treba da 
 // (markdown, ProductDetails), "seo" naslov i opis za Google. Sastav se ne izmišlja: upisuje se
 // u polje "Materijal i sastav" kada je poznat (D-044).
 
-type SeedProduct = {
+export type SeedProduct = {
   title: string
   slug: string
   shortDescription: string
@@ -377,7 +403,140 @@ Isti pamuk, pojačana peta i prsti i manžetna bez stezanja kao kod pojedinačno
     compareAtPrice: 1797,
     skuCode: 'M3',
   },
+  ...bundles(),
 ]
+
+/**
+ * Paketi od 12 pari (D-071): jedan model i boja po paketu, fotografije klijenta "12X".
+ * Cena 5.990 RSD umesto 12 x 599 RSD (7.188 RSD), ušteda 1.198 RSD.
+ */
+function bundles(): SeedProduct[] {
+  const PRICE = 5990
+  const COMPARE = 12 * 599
+  const shared = (name: string, model: string, use: string) =>
+    `Paket od **12 pari** ${model}, iste veličine i boje, po ceni 10 pojedinačnih pari: uštedite ${COMPARE - PRICE} RSD.
+- **Za ceo mesec i duže:** dovoljno parova da uvek imate čist par pri ruci.
+- **${use}**
+- **Pamuk koji diše** i pojačana peta i prsti, kao kod pojedinačnih [Cambio čarapa](/kolekcije/sve).
+- **Isplativo za porodicu ili firmu:** jedan paket, jedna veličina, bez traženja para.
+${name} pravimo u sopstvenoj fabrici u Novom Pazaru; veličinu izaberite prema [tabeli veličina](/blog/tabela-velicina-carapa).`
+  const seo = (title: string, what: string) => ({
+    title: `${title}: paket 12 pari`,
+    description: `${what} u paketu od 12 pari za ${PRICE} RSD umesto ${COMPARE} RSD. Pamuk, pojačana peta i prsti, veličine 38 do 46. Proizvođač iz Novog Pazara, pouzećem.`,
+  })
+  return [
+    {
+      title: 'Paket 12 pari: crne karo čarape',
+      slug: 'paket-12-pari-crne-karo-carape',
+      shortDescription:
+        '12 pari crnih pamučnih čarapa sa sivim karo dezenom. Klasika koja ide uz odelo i farmerke, po ceni 10 pojedinačnih pari.',
+      description: shared(
+        'Karo čarape',
+        'crnih pamučnih čarapa sa sivim karo (argyle) dezenom',
+        'Karo dezen:** elegantan detalj uz odelo, chino pantalone i farmerke.',
+      ),
+      seo: seo('Crne karo čarape', 'Crne muške karo čarape od pamuka'),
+      productType: 'muske',
+      tags: ['muske', 'klasik', 'paket', 'karo'],
+      category: ['odrasli', 'paketi'],
+      pattern: ['graficki'],
+      images: ['bundleArgyle'],
+      sizes: SIZES_ADULT,
+      colors: [{ value: 'Crna karo', swatch: '#0F0F0F', image: 'bundleArgyle' }],
+      price: PRICE,
+      compareAtPrice: COMPARE,
+      skuCode: 'P12K',
+    },
+    {
+      title: 'Paket 12 pari: crne pamučne čarape',
+      slug: 'paket-12-pari-crne-carape',
+      shortDescription:
+        '12 pari klasičnih crnih pamučnih čarapa za posao i svaki dan. Jedna boja, jedna veličina, ceo mesec pokriven.',
+      description: shared(
+        'Crne čarape',
+        'klasičnih crnih pamučnih čarapa',
+        'Crna bez dezena:** uz cipele, patike i odelo, bez razmišljanja šta uz šta ide.',
+      ),
+      seo: seo('Crne pamučne čarape', 'Klasične crne pamučne čarape'),
+      productType: 'muske',
+      tags: ['muske', 'klasik', 'paket', 'svakodnevne'],
+      category: ['odrasli', 'paketi'],
+      pattern: ['jednobojni'],
+      images: ['bundleBlack'],
+      sizes: SIZES_ADULT,
+      colors: [{ value: 'Crna', swatch: '#0F0F0F', image: 'bundleBlack' }],
+      price: PRICE,
+      compareAtPrice: COMPARE,
+      skuCode: 'P12C',
+    },
+    {
+      title: 'Paket 12 pari: crne čarape sa rombom',
+      slug: 'paket-12-pari-crne-carape-romb',
+      shortDescription:
+        '12 pari crnih pamučnih čarapa sa diskretnim sitnim rombom sa strane. Poslovni izgled sa malim detaljem.',
+      description: shared(
+        'Čarape sa rombom',
+        'crnih pamučnih čarapa sa sitnim rombom sa strane',
+        'Diskretan romb:** detalj koji se primeti tek izbliza, za poslovni izgled.',
+      ),
+      seo: seo('Crne čarape sa rombom', 'Crne pamučne čarape sa sitnim rombom'),
+      productType: 'muske',
+      tags: ['muske', 'klasik', 'paket'],
+      category: ['odrasli', 'paketi'],
+      pattern: ['graficki'],
+      images: ['bundleDiamond'],
+      sizes: SIZES_ADULT,
+      colors: [{ value: 'Crna romb', swatch: '#1A1A1A', image: 'bundleDiamond' }],
+      price: PRICE,
+      compareAtPrice: COMPARE,
+      skuCode: 'P12R',
+    },
+    {
+      title: 'Paket 12 pari: bele niske čarape',
+      slug: 'paket-12-pari-bele-niske-carape',
+      shortDescription:
+        '12 pari belih niskih pamučnih čarapa za patike, trening i leto. Ne vire iz patike i ne klize sa pete.',
+      description: shared(
+        'Niske čarape',
+        'belih niskih pamučnih čarapa',
+        'Niski kroj:** ne viri iz patike, za trening, šetnju i leto.',
+      ),
+      seo: seo('Bele niske čarape', 'Bele niske pamučne čarape za patike'),
+      productType: 'sport',
+      tags: ['sport', 'paket', 'niske', 'leto'],
+      category: ['odrasli', 'paketi'],
+      pattern: ['jednobojni'],
+      images: ['bundleWhiteAnkle'],
+      sizes: SIZES_SPORT,
+      colors: [{ value: 'Bela', swatch: '#FFFFFF', image: 'bundleWhiteAnkle' }],
+      price: PRICE,
+      compareAtPrice: COMPARE,
+      skuCode: 'P12N',
+    },
+    {
+      title: 'Paket 12 pari: bele pamučne čarape',
+      slug: 'paket-12-pari-bele-carape',
+      shortDescription:
+        '12 pari belih pamučnih čarapa klasične visine. Uz patike, za sport i svaki dan.',
+      description: shared(
+        'Bele čarape',
+        'belih pamučnih čarapa klasične visine',
+        'Klasična visina:** uz patike i za sport, najprodavaniji model u beloj boji.',
+      ),
+      seo: seo('Bele pamučne čarape', 'Bele pamučne čarape klasične visine'),
+      productType: 'muske',
+      tags: ['muske', 'sport', 'paket', 'svakodnevne'],
+      category: ['odrasli', 'paketi'],
+      pattern: ['jednobojni'],
+      images: ['bundleWhite'],
+      sizes: SIZES_ADULT,
+      colors: [{ value: 'Bela', swatch: '#FFFFFF', image: 'bundleWhite' }],
+      price: PRICE,
+      compareAtPrice: COMPARE,
+      skuCode: 'P12B',
+    },
+  ]
+}
 
 // --- Početna: tekstovi 1:1 iz Figme (frame "pocetna", 50:640) ---
 // Naslovi su u Figmi upisani malim slovima i dobijaju velika početna slova preko

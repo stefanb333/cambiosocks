@@ -46,6 +46,11 @@ export function ListingCard({
                 fetchPriority={priority ? 'high' : undefined}
                 sizes="(min-width: 1440px) 287px, (min-width: 1024px) 22vw, (min-width: 768px) 30vw, 45vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                style={
+                  typeof img?.focalX === 'number' && typeof img?.focalY === 'number'
+                    ? { objectPosition: `${img.focalX}% ${img.focalY}%` }
+                    : undefined
+                }
               />
             </ProductMorph>
           ) : null}
