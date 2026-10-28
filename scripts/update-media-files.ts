@@ -12,17 +12,17 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { images, type ImageKey } from '../src/seed/content'
 
-// Slike zamenjene boljim verzijama 28.10.2026. (izvor: Figma/Shopify eksport klijenta)
+// Poslednja zamena (28.10.2026., D-074): fotografije veće rezolucije iz D:/WEB/cambio/new.
+// Ranija zamena (D-070): hero, catMen, catWomen, ctaBg, aboutBrand4, ctaCollection, plpCampaign,
+// aboutHero, aboutBrand3.
 const KEYS: ImageKey[] = [
   'hero',
-  'catMen',
-  'catWomen',
-  'ctaBg',
-  'aboutBrand4',
-  'ctaCollection',
   'plpCampaign',
-  'aboutHero',
-  'aboutBrand3',
+  'catSport',
+  'aboutBrand1',
+  'aboutBrand2',
+  'blogFeatured',
+  'blogCotton',
 ]
 
 const payload = await getPayload({ config })
