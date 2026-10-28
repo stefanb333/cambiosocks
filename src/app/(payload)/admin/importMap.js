@@ -28,6 +28,7 @@ import { VariantGenerator as VariantGenerator_483da82ba2617beac13ec0cda7abe23f }
 import { StatusCell as StatusCell_ff32efc137541c6552ed42594a323755 } from '@/components/admin/StatusCell'
 import { ProductListTools as ProductListTools_772368f9586b5109cc63b259c279e843 } from '@/components/admin/ProductListTools'
 import { LineItemRowLabel as LineItemRowLabel_602181e9d445b98d48bce238807017cb } from '@/components/admin/RowLabels'
+import { CourierPanel as CourierPanel_366f8d561a5d0b027df0b5b0da54725a } from '@/components/admin/CourierPanel'
 import { StatusHistoryRowLabel as StatusHistoryRowLabel_602181e9d445b98d48bce238807017cb } from '@/components/admin/RowLabels'
 import { ExportCsvButton as ExportCsvButton_5834e0f6932bee4967ac4d159558d270 } from '@/components/admin/ExportCsvButton'
 import { Icon as Icon_8dacfc192c590b985f87490817bab56e } from '@/components/admin/Branding'
@@ -70,6 +71,7 @@ export const importMap = {
   "@/components/admin/StatusCell#StatusCell": StatusCell_ff32efc137541c6552ed42594a323755,
   "@/components/admin/ProductListTools#ProductListTools": ProductListTools_772368f9586b5109cc63b259c279e843,
   "@/components/admin/RowLabels#LineItemRowLabel": LineItemRowLabel_602181e9d445b98d48bce238807017cb,
+  "@/components/admin/CourierPanel#CourierPanel": CourierPanel_366f8d561a5d0b027df0b5b0da54725a,
   "@/components/admin/RowLabels#StatusHistoryRowLabel": StatusHistoryRowLabel_602181e9d445b98d48bce238807017cb,
   "@/components/admin/ExportCsvButton#ExportCsvButton": ExportCsvButton_5834e0f6932bee4967ac4d159558d270,
   "@/components/admin/Branding#Icon": Icon_8dacfc192c590b985f87490817bab56e,

@@ -1199,3 +1199,53 @@ html[data-theme='dark'] .cambio-stock__qty:not(.is-out) {
     margin-left: 0;
   }
 }
+
+/* Podaci za kurira na porudžbini (D-079) */
+.cambio-courier {
+  margin-bottom: 24px;
+  padding: 20px;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+
+    h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+
+  &__cod {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--cambio-yellow, #ffde00);
+    color: #0f0f0f;
+    font-size: 13px;
+    font-weight: 600;
+
+    &.is-paid {
+      background: var(--theme-elevation-100);
+      color: var(--theme-text);
+    }
+  }
+
+  &__text {
+    margin: 0 0 14px;
+    padding: 14px;
+    border-radius: 10px;
+    background: var(--theme-elevation-50);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

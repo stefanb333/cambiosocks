@@ -5,6 +5,7 @@ import { sendEmail } from '@/lib/email/send'
 import { orderShippedEmail } from '@/lib/email/templates'
 import { adjustStock } from '@/lib/orders/stock'
 import { csvExportEndpoint, exportOrdersCsv } from '@/lib/shopify-export'
+import { orderEndpoints } from './endpoints/orders'
 import type { CollectionConfig, Field, PayloadRequest } from 'payload'
 
 export const ORDER_STATUSES = [
@@ -63,13 +64,17 @@ async function nextOrderNumber(req: PayloadRequest) {
 export const Orders: CollectionConfig = {
   slug: 'orders',
   labels: { singular: 'Porudžbina', plural: 'Porudžbine' },
-  endpoints: [csvExportEndpoint('porudzbine', exportOrdersCsv)],
+  endpoints: [csvExportEndpoint('porudzbine', exportOrdersCsv), ...orderEndpoints],
   admin: {
     components: {
       beforeListTable: [
         {
           path: '@/components/admin/ExportCsvButton#ExportCsvButton',
-          clientProps: { collection: 'orders' },
+          clientProps: {
+            collection: 'orders',
+            // Porudžbine koje čekaju slanje, za uvoz pošiljki u AKS (D-079)
+            extra: [{ label: 'Izvoz za kurira (CSV)', url: '/api/orders/courier-csv' }],
+          },
         },
       ],
     },
@@ -228,6 +233,11 @@ export const Orders: CollectionConfig = {
         {
           label: 'Kupac i dostava',
           fields: [
+            {
+              name: 'courierPanel',
+              type: 'ui',
+              admin: { components: { Field: '@/components/admin/CourierPanel#CourierPanel' } },
+            },
             { name: 'customer', label: 'Kupac', type: 'relationship', relationTo: 'customers' },
             {
               type: 'row',
