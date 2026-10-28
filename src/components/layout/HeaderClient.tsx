@@ -55,8 +55,12 @@ export function HeaderClient({ variant, items, searchPlaceholder }: Props) {
     <>
       {/* ---------- Mobilni i tablet ---------- */}
       <div
-        className={`sticky top-0 z-40 lg:hidden ${overlay ? '-mb-[calc(56px+var(--safe-top))]' : ''} transition-colors duration-200 ${
-          light ? 'bg-transparent' : 'bg-neutral-100 shadow-[0_1px_0_rgba(0,0,0,0.06)]'
+        // Preko hero slike header je spušten 12px (da ne leži na ivici okvira); posle skrola je
+        // traka uz vrh. translate ne menja raspored, pa nema skoka sadržaja pri prelazu.
+        className={`sticky top-0 z-40 lg:hidden ${overlay ? '-mb-[calc(56px+var(--safe-top))]' : ''} transition-[background-color,box-shadow,translate] duration-200 ${
+          light
+            ? 'translate-y-3 bg-transparent'
+            : 'bg-neutral-100 shadow-[0_1px_0_rgba(0,0,0,0.06)]'
         }`}
         style={{ paddingTop: 'var(--safe-top)' }}
       >
