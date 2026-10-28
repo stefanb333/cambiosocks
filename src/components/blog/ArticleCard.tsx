@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { CmsImage } from '@/components/ui/CmsImage'
+import { coverSizes } from '@/lib/media'
 import type { Post } from '@/payload-types'
 
 /** Figma "Article card" (86:1001): bela kartica 420px, slika 240px, teme, naslov, opis, vreme čitanja. */
@@ -12,7 +13,20 @@ export function ArticleCard({ post }: { post: Post }) {
         tabIndex={-1}
         aria-hidden
       >
-        <CmsImage media={post.coverImage} alt="" fill sizes="420px" className="object-cover" />
+        <CmsImage
+          media={post.coverImage}
+          alt=""
+          fill
+          sizes={coverSizes(
+            post.coverImage,
+            [
+              { media: '(min-width: 1024px)', width: '420px', height: '240px' },
+              { width: '86vw', height: '200px' },
+            ],
+            1.05,
+          )}
+          className="object-cover"
+        />
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-6">
         {post.tags?.length ? (

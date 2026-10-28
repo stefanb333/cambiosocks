@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ProductMorph } from '@/components/motion/ProductMorph'
 import { sizeRangeLabel, type ListingProduct } from '@/lib/catalog/listing-shared'
-import { mediaSrc } from '@/lib/media'
+import { coverSizes, mediaSrc } from '@/lib/media'
 import { formatPrice } from '@/lib/money'
 import { Swatches } from './Swatches'
 
@@ -45,7 +45,17 @@ export function ListingCard({
                 quality={85}
                 preload={priority}
                 fetchPriority={priority ? 'high' : undefined}
-                sizes="(min-width: 1440px) 287px, (min-width: 1024px) 22vw, (min-width: 768px) 30vw, 45vw"
+                // Okvir slike je viši od širine (287x367), pa kvadratna fotografija treba više piksela (D-072)
+                sizes={coverSizes(
+                  img,
+                  [
+                    { media: '(min-width: 1440px)', width: '287px', height: '367px' },
+                    { media: '(min-width: 1024px)', width: '22vw', height: 'calc(22vw * 1.279)' },
+                    { media: '(min-width: 768px)', width: '30vw', height: 'calc(30vw * 1.279)' },
+                    { width: '45vw', height: 'calc(45vw * 1.279)' },
+                  ],
+                  1.03,
+                )}
                 className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                 style={
                   typeof img?.focalX === 'number' && typeof img?.focalY === 'number'

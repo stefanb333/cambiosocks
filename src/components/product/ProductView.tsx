@@ -481,6 +481,7 @@ function Gallery({
                     fill
                     preload
                     fetchPriority="high"
+                    quality={85}
                     sizes="100vw"
                     className="object-contain"
                   />
@@ -490,6 +491,7 @@ function Gallery({
                   src={img.src}
                   alt={img.alt || title}
                   fill
+                  quality={85}
                   sizes="100vw"
                   className="object-contain"
                 />
@@ -529,6 +531,7 @@ function Gallery({
             fill
             loading="eager"
             fetchPriority="high"
+            quality={85}
             sizes="(min-width: 1440px) 642px, 45vw"
             className={`object-contain transition-transform duration-500 group-hover:scale-[1.03] ${swapped ? 'image-swap' : ''}`}
           />
@@ -567,7 +570,14 @@ function Gallery({
                     : 'opacity-80 hover:opacity-100'
                 }`}
               >
-                <Image src={img.src} alt="" fill sizes="144px" className="object-cover" />
+                <Image
+                  src={img.src}
+                  alt=""
+                  fill
+                  quality={85}
+                  sizes="188px"
+                  className="object-cover"
+                />
               </button>
             ))}
           </div>
@@ -612,6 +622,7 @@ function Gallery({
                   src={img.src}
                   alt={img.alt || title}
                   fill
+                  quality={85}
                   sizes="100vw"
                   className="object-contain"
                 />
