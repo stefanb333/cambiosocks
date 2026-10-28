@@ -20,7 +20,7 @@ export async function createSeedProduct(
     data: {
       title: p.title,
       slug: p.slug,
-      status: 'active',
+      status: p.status ?? 'active',
       shortDescription: p.shortDescription,
       description: markdownToLexical(p.description),
       productType: p.productType,

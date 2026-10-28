@@ -42,6 +42,9 @@ npm run dev                 # http://localhost:3000, admin na /admin
 | `npm run payload -- run scripts/smoke-roles.ts` | Provera dozvola za uloge administrator i urednik |
 | `npm run payload -- run scripts/update-seo-content.ts` | SEO tekstovi (početna, kolekcije, proizvodi, FAQ, blog) u postojeću bazu, D-063 |
 | `npm run payload -- run scripts/update-legal-pages.ts` | Pravne stranice i footer u postojeću bazu, D-061 |
+| `npm run payload -- run scripts/replace-catalog.ts` | Katalog klijenta (paketi od 12 pari), recenzije i slike u postojeću bazu, D-075 |
+| `npm run payload -- run scripts/update-shipping.ts` | Dostava AKS u Podešavanja prodavnice, D-073 |
+| `npm run payload -- run scripts/update-media-files.ts` | Novi fajlovi za postojeće slike, D-070/D-074 |
 | `node scripts/screens.mjs <putanja> <naziv>` | Snimci na 9 širina u `docs/screenshots/` i provera horizontalnog skrola |
 | `node scripts/visual-diff.mjs <url> <figma.png> <naziv>` | Poređenje sa Figma eksportom na 1440px |
 | `node scripts/ux-audit.mjs [putanje]` | UX provera na telefonu: mete za dodir, veličina teksta i polja, horizontalni skrol |
