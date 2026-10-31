@@ -46,7 +46,7 @@ export const getShopInfo = unstable_cache(
       address: s.address ?? '',
       hours: s.hours ?? '',
       instagram: s.instagram ?? '',
-      tiktok: s.tiktok ?? '',
+      facebook: s.facebook ?? '',
       defaultCare: s.defaultCare ?? '',
       shippingInfo: s.shippingInfo ?? '',
     }

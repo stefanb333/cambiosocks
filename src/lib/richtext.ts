@@ -86,25 +86,29 @@ type LinkNode = {
  * Jedan red teksta: "**podebljano**" postaje tekst sa format 1 (bold), a "[tekst](/putanja)"
  * link (interni linkovi u člancima i opisima kolekcija, D-063).
  */
-function inline(line: string): (TextNode | LinkNode)[] {
+function inline(line: string, format = 0): (TextNode | LinkNode)[] {
   return line
-    .split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]+\))/)
+    .split(/(\*\*.+?\*\*|\[[^\]]+\]\([^)\s]+\))/)
     .filter(Boolean)
-    .map((part) => {
-      if (part.startsWith('**') && part.endsWith('**')) return textNode(part.slice(2, -2), 1)
+    .flatMap((part): (TextNode | LinkNode)[] => {
+      // Podebljan deo može da sadrži link ("**[tekst](/putanja)**"): link dobija podebljan tekst.
+      if (part.length > 4 && part.startsWith('**') && part.endsWith('**'))
+        return inline(part.slice(2, -2), format | 1)
       const link = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/)
       if (link) {
-        return {
-          type: 'link',
-          version: 3,
-          direction: 'ltr',
-          format: '',
-          indent: 0,
-          fields: { linkType: 'custom', url: link[2], newTab: false },
-          children: [textNode(link[1])],
-        }
+        return [
+          {
+            type: 'link',
+            version: 3,
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            fields: { linkType: 'custom', url: link[2], newTab: false },
+            children: [textNode(link[1], format)],
+          },
+        ]
       }
-      return textNode(part)
+      return [textNode(part, format)]
     })
 }
 

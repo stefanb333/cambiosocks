@@ -37,11 +37,28 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(dirname),
   },
-  // Demo ili probni sajt (SITE_NOINDEX=1, D-069): nijedna stranica ne ulazi u Google, čak ni
-  // ako neko negde objavi link.
+  // Bez "X-Powered-By: Next.js" (ne otkrivamo tehnologiju sajta).
+  poweredByHeader: false,
   async headers() {
-    if (process.env.SITE_NOINDEX !== '1') return []
-    return [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }]
+    // Bezbednosna zaglavlja na svim odgovorima, i na stranicama koje pravi server (D-080).
+    // netlify.toml ih dodaje samo statičnim fajlovima, pa checkout i admin bez ovoga nisu
+    // zaštićeni od ugrađivanja u tuđi okvir (clickjacking).
+    const security = [
+      { key: 'X-Content-Type-Options', value: 'nosniff' },
+      { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+      { key: 'Content-Security-Policy', value: "frame-ancestors 'self'" },
+      { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+      { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+    ]
+    // Demo ili probni sajt (SITE_NOINDEX=1, D-069): nijedna stranica ne ulazi u Google, čak ni
+    // ako neko negde objavi link.
+    if (process.env.SITE_NOINDEX === '1')
+      security.push({ key: 'X-Robots-Tag', value: 'noindex, nofollow' })
+    return [
+      { source: '/:path*', headers: security },
+      // Admin nikad ne ulazi u Google, ni na pravom domenu.
+      { source: '/admin/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
+    ]
   },
 }
 

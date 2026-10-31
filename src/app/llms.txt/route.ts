@@ -52,7 +52,7 @@ export async function GET() {
       const colors = p.colors.map((c) => c.name).join(', ')
       const facts = [
         `od ${formatPrice(p.minPrice)}`,
-        // sizeRangeLabel vraća "Veličine od 38-46"; ovde je usred rečenice, malim slovom
+        // sizeRangeLabel vraća "Veličine 38-46"; ovde je usred rečenice, malim slovom
         sizes ? sizes.charAt(0).toLowerCase() + sizes.slice(1) : '',
         colors ? `boje: ${colors}` : '',
         p.available ? 'na stanju' : 'trenutno rasprodato',

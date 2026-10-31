@@ -302,6 +302,8 @@ export interface Media {
    * Popunjava CSV uvoz, da se ista slika ne uveze dva puta.
    */
   sourceUrl?: string | null;
+  prefix?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -1483,6 +1485,8 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
   sourceUrl?: T;
+  prefix?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1818,7 +1822,7 @@ export interface ShopSetting {
   address?: string | null;
   hours?: string | null;
   instagram?: string | null;
-  tiktok?: string | null;
+  facebook?: string | null;
   defaultCare?: string | null;
   shippingInfo?: string | null;
   lowStockThreshold?: number | null;
@@ -2021,7 +2025,7 @@ export interface ShopSettingsSelect<T extends boolean = true> {
   address?: T;
   hours?: T;
   instagram?: T;
-  tiktok?: T;
+  facebook?: T;
   defaultCare?: T;
   shippingInfo?: T;
   lowStockThreshold?: T;

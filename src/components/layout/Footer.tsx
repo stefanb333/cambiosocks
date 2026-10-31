@@ -9,11 +9,11 @@ type FooterLink = { label: string; url?: string | null; newTab?: boolean | null 
 export async function Footer() {
   const [footer, shop] = await Promise.all([getFooter(), getShopInfo()])
 
-  // Instagram i TikTok URL-ovi se uzimaju iz Podešavanja prodavnice ako u footer-u nisu uneti.
+  // Instagram i Facebook URL-ovi se uzimaju iz Podešavanja prodavnice ako u footer-u nisu uneti.
   const resolveUrl = (link: FooterLink) => {
     if (link.url) return link.url
     if (/instagram/i.test(link.label)) return shop.instagram || null
-    if (/tiktok/i.test(link.label)) return shop.tiktok || null
+    if (/facebook/i.test(link.label)) return shop.facebook || null
     return null
   }
 

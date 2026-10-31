@@ -408,7 +408,7 @@ export const ShopSettings: GlobalConfig = {
             { name: 'address', label: 'Adresa', type: 'text' },
             { name: 'hours', label: 'Radno vreme', type: 'text' },
             { name: 'instagram', label: 'Instagram URL', type: 'text' },
-            { name: 'tiktok', label: 'TikTok URL', type: 'text' },
+            { name: 'facebook', label: 'Facebook URL', type: 'text' },
           ],
         },
         {

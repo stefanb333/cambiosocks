@@ -121,7 +121,7 @@ export const collections = [
     slug: 'sve',
     heroHeading: 'Čarape za svaki dan, iz naše fabrike.',
     heroText:
-      'Muške i ženske čarape od pamuka, pojedinačno i u paketima od 12 pari: elegantne, sportske, 3/4 i nazuvice. Pravimo ih u Novom Pazaru od 1995. i šaljemo širom Srbije.',
+      'Muške i ženske čarape od pamuka, kao par ili u paketu od 12 pari: elegantne, 3/4 i nazuvice. Pravimo ih u Novom Pazaru od 1995. i šaljemo širom Srbije.',
     image: 'plpCampaign' as ImageKey,
     rules: [{ field: 'brand', value: 'Cambio' }],
     menuOrder: 0,
@@ -129,7 +129,7 @@ export const collections = [
     seo: {
       title: 'Čarape online: muške, ženske i sportske',
       description:
-        'Pamučne čarape online od proizvođača iz Novog Pazara: muške i ženske, elegantne, sportske, 3/4 i nazuvice u paketu od 12 pari. Dostava 1 do 3 dana.',
+        'Pamučne čarape online od proizvođača iz Novog Pazara: muške i ženske, elegantne, 3/4 i nazuvice, kao par ili paket od 12 pari. Dostava 1 do 3 dana.',
     },
     description: `## Čarape direktno od proizvođača iz Novog Pazara
 Cambio čarape pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine. Kada kupujete ovde, kupujete direktno od proizvođača: bez posrednika, sa istim pamukom i istom kontrolom kvaliteta koju godinama koristimo za partnere širom regiona.
@@ -151,7 +151,7 @@ Porudžbine isporučuje kurirska služba AKS za 1 do 3 radna dana na celoj terit
     slug: 'muske-carape',
     heroHeading: 'Muške čarape za svaki dan.',
     heroText:
-      'Muške čarape od pamuka, par ili paket od 12 pari: elegantne za odelo, sportske, 3/4 i nazuvice. Pojačana peta i prsti, pamuk koji diše i manžetna bez stezanja.',
+      'Muške čarape od pamuka, par ili paket od 12 pari: elegantne za odelo, 3/4 i nazuvice. Pojačana peta i prsti, pamuk koji diše i manžetna bez stezanja.',
     image: 'catMen' as ImageKey,
     rules: [{ field: 'productType', value: 'muske' }],
     menuOrder: 1,
@@ -159,7 +159,7 @@ Porudžbine isporučuje kurirska služba AKS za 1 do 3 radna dana na celoj terit
     seo: {
       title: 'Muške čarape od pamuka',
       description:
-        'Muške čarape od pamuka u paketu od 12 pari: elegantne, sportske, 3/4 i nazuvice, veličine 38 do 46. Proizvođač iz Novog Pazara, dostava 1 do 3 dana.',
+        'Muške čarape od pamuka, par ili paket od 12 pari: elegantne za odelo, 3/4 i nazuvice, veličine 38 do 46. Proizvođač iz Novog Pazara, dostava 1 do 3 dana.',
     },
     description: `## Pamučne muške čarape koje traju
 Dobra muška čarapa se ne primećuje tokom dana: ne klizi u cipeli, ne steže oko članka i ne tanji se posle nekoliko pranja. Zato naše muške čarape imaju pojačanu petu i prste, pamuk koji diše i manžetnu koja drži bez otiska na koži.
@@ -180,7 +180,7 @@ Perite ih naopačke na 30 do 40°C, bez izbeljivača i sušilice. Više saveta j
     slug: 'zenske-carape',
     heroHeading: 'Ženske čarape koje prate korak.',
     heroText:
-      'Ženske čarape od pamuka, par ili paket od 12 pari: sportske, 3/4 i nazuvice. Uži kroj koji prati stopalo, bez stezanja i bez traga na koži.',
+      'Ženske čarape od pamuka, par ili paket od 12 pari: 3/4 i nazuvice. Uži kroj koji prati stopalo, bez stezanja i bez traga na koži.',
     image: 'catWomen' as ImageKey,
     rules: [{ field: 'productType', value: 'zenske' }],
     menuOrder: 2,
@@ -188,7 +188,7 @@ Perite ih naopačke na 30 do 40°C, bez izbeljivača i sušilice. Više saveta j
     seo: {
       title: 'Ženske čarape od pamuka',
       description:
-        'Ženske čarape od pamuka u paketu od 12 pari: sportske, 3/4 i nazuvice, užeg kroja, veličine 34 do 42. Proizvođač iz Novog Pazara, dostava 1 do 3 dana.',
+        'Ženske čarape od pamuka, par ili paket od 12 pari: 3/4 i nazuvice užeg kroja, veličine 34 do 42. Proizvođač iz Novog Pazara, dostava 1 do 3 dana.',
     },
     description: `## Ženske čarape koje se ne osećaju
 Ženska čarapa treba da prati oblik stopala, a ne da ga steže. Naše ženske čarape imaju uži kroj, ravan šav na prstima koji ne žulja i meku manžetnu koja ne ostavlja trag ni posle celog dana.
@@ -216,7 +216,7 @@ Pamuk upija vlagu i diše, pa je stopalo suvo i kada ste ceo dan u zatvorenoj ob
     seo: {
       title: 'Sportske čarape za trčanje i trening',
       description:
-        'Sportske čarape za trčanje, teretanu i trening: ojačan đon, zona koja diše, ne klize u patici. Muški i ženski modeli. Dostava širom Srbije, pouzećem.',
+        'Čarape za trening i trčanje: muške i ženske nazuvice do članka koje ne klize u patici, par ili paket od 12 pari. Uskoro i sportske čarape. Pouzećem.',
     },
     description: `## Kakve čarape za trčanje i trening?
 Dobra sportska čarapa ima tri stvari: ojačan đon koji ublažava udarce, zonu koja diše na gornjem delu stopala i elastičnu traku oko svoda koja je drži na mestu. Tako stopalo ostaje suvo, a čarapa ne klizi i ne pravi nabore u patici.
@@ -270,6 +270,8 @@ const PRICE = { nazuvice: 1200, tri4: 1400, sport: 1600, elegant: 1600 }
 /** Cena jednog para (privremena, D-076). */
 const SINGLE = { nazuvice: 129, tri4: 169, sport: 199, elegant: 199 }
 const perPair = (price: number) => Math.round(price / 12)
+// Cena u tekstu sa tačkom za hiljade, kao na sajtu ("1.600 RSD"), D-080.
+const rsd = (price: number) => String(price).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
 type Color = SeedProduct['colors'][number]
 type Variant = { images: ImageKey[]; colors: Color[]; status?: 'active' | 'draft' }
@@ -309,20 +311,28 @@ const closing = (what: string, [label, url]: Model['collection']) =>
 
 const lower = (who: Model['who']) => (who === 'Muške' ? 'muških' : 'ženskih')
 
+/** Naziv modela u genitivu množine: "elegantne čarape" > "elegantnih čarapa". */
+const ofName = (name: string) =>
+  name
+    .replace('elegantne', 'elegantnih')
+    .replace('sportske', 'sportskih')
+    .replace('čarape', 'čarapa')
+    .replace('nazuvice', 'nazuvica')
+
 function pack(m: Model): SeedProduct {
   const price = PRICE[m.kind]
   return {
     title: `${m.who} ${m.name} (12 pari)`,
     slug: m.slug,
     status: m.pack.status,
-    shortDescription: `Paket od 12 pari ${lower(m.who)} ${m.name.replace('čarape', 'čarapa').replace('nazuvice', 'nazuvica')} od pamuka, ${m.use}. Oko ${perPair(price)} RSD po paru.`,
+    shortDescription: `Paket od 12 pari ${lower(m.who)} ${ofName(m.name)} od pamuka, ${m.use}. Oko ${perPair(price)} RSD po paru.`,
     description: `${m.intro} U paketu je **12 pari istog modela, boje i veličine**, dovoljno da ceo mesec imate čist par.
 ${m.bullets.map((b) => `- ${b}`).join('\n')}
 - **Isplativo:** oko ${perPair(price)} RSD po paru, umesto kupovine jednog po jednog para.
 ${closing(`${m.who} ${m.name}`, m.collection)}`,
     seo: {
-      title: `${m.seoTitle}, paket 12 pari`,
-      description: `${m.seoWhat} Paket 12 pari za ${price} RSD, oko ${perPair(price)} RSD po paru. Proizvođač iz Novog Pazara, pouzećem.`,
+      title: `${m.seoTitle}, 12 pari`,
+      description: `${m.seoWhat} Paket 12 pari: ${rsd(price)} RSD, oko ${perPair(price)} RSD po paru.`,
     },
     productType: m.type,
     tags: [...m.tags, 'paket', '12-pari'],
@@ -342,14 +352,14 @@ function single(m: Model): SeedProduct {
     title: `${m.who} ${m.name}`,
     slug: `${m.slug}-par`,
     status: m.single.status,
-    shortDescription: `Par ${lower(m.who)} ${m.name.replace('čarape', 'čarapa').replace('nazuvice', 'nazuvica')} od pamuka, ${m.use}. Isti model postoji i u paketu od 12 pari.`,
+    shortDescription: `Par ${lower(m.who)} ${ofName(m.name)} od pamuka, ${m.use}. Isti model postoji i u paketu od 12 pari.`,
     description: `${m.intro}
 ${m.bullets.map((b) => `- ${b}`).join('\n')}
-Isti model postoji i u [paketu od 12 pari](/proizvodi/${m.slug}) za ${PRICE[m.kind]} RSD, oko ${perPair(PRICE[m.kind])} RSD po paru: najisplativije za ceo mesec.
+Isti model postoji i u [paketu od 12 pari](/proizvodi/${m.slug}) za ${rsd(PRICE[m.kind])} RSD, oko ${perPair(PRICE[m.kind])} RSD po paru: najisplativije za ceo mesec.
 ${closing(`${m.who} ${m.name}`, m.collection)}`,
     seo: {
       title: m.seoTitle,
-      description: `${m.seoWhat} Par za ${price} RSD. Proizvođač iz Novog Pazara, dostava za 1 do 3 radna dana.`,
+      description: `${m.seoWhat} Par za ${rsd(price)} RSD, dostava za 1 do 3 radna dana.`,
     },
     productType: m.type,
     tags: [...m.tags, 'par'],
@@ -518,10 +528,10 @@ export const home = {
   categories: {
     heading: 'Čarape za svakog, u svakoj fazi života',
     subheading:
-      'Od prvih koraka do jutarnjeg trčanja: četiri kolekcije, jedna ista opsesija kvalitetom',
+      'Od kancelarije do jutarnjeg trčanja: tri kolekcije, jedna ista opsesija kvalitetom',
     cards: [
       {
-        tag1: '18-65 Godina',
+        tag1: 'Veličine 38-46',
         tag2: 'Za Njega',
         theme: 'light' as const,
         tagTheme: 'blue' as const,
@@ -531,7 +541,7 @@ export const home = {
         cta: { label: 'Pogledaj Kolekciju', url: '/kolekcije/muske-carape' },
       },
       {
-        tag1: '15-65 Godina',
+        tag1: 'Veličine 34-42',
         tag2: 'Za Nju',
         theme: 'light' as const,
         tagTheme: 'yellow' as const,
@@ -541,7 +551,7 @@ export const home = {
         cta: { label: 'Pogledaj Kolekciju', url: '/kolekcije/zenske-carape' },
       },
       {
-        tag1: 'Svi uzrasti',
+        tag1: 'Trening',
         tag2: 'Aktivan život',
         theme: 'blue' as const,
         tagTheme: 'dark-blue' as const,
@@ -575,7 +585,7 @@ export const home = {
     subheading: 'Tvoj Sledeći Par Te Čeka',
     placeholder: 'Prijavi se na Newsletter',
     // **...** se prikazuje žutom bojom, kao u Figmi.
-    note: 'Prijavi se i **uzmi 10% popusta** na prvu porudžbinu, plus rani pristup svakom novom dropu',
+    note: 'Prijavi se i **uzmi 10% popusta** na prvu porudžbinu, a o novim modelima saznaj prvi',
   },
 }
 
@@ -621,6 +631,9 @@ export const contact = {
   phone: '+381 63 785 9390',
   address: 'Ulica Pante Gajića 22, 36300 Novi Pazar',
   availability: 'Ponedeljak-petak · 09:00-17:00',
+  // Profili na mrežama (D-080): stalne adrese, bez parametara za praćenje iz deljenih linkova.
+  instagram: 'https://www.instagram.com/cambiosocks/',
+  facebook: 'https://www.facebook.com/profile.php?id=100066785253816',
   formHeading: 'Pošaljite nam poruku',
   formDescription: 'Popunite formu i javićemo vam se u roku od jednog radnog dana.',
   topics: 'Porudžbina\nProizvod\nIsporuka i reklamacije\nRecenzija\nSaradnja\nOstalo',

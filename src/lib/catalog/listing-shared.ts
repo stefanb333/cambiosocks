@@ -134,13 +134,13 @@ export function facetOptions(products: ListingProduct[]) {
   }
 }
 
-/** "Veličine od 34-46": najmanji i najveći broj iz vrednosti veličina (npr. "34-36", "44-46"). */
+/** "Veličine 34-46": najmanji i najveći broj iz vrednosti veličina (npr. "34-36", "44-46"). */
 export function sizeRangeLabel(sizes: string[]): string | null {
   const nums = sizes.flatMap((s) => (s.match(/\d+/g) ?? []).map(Number))
   if (!nums.length) return null
   const min = Math.min(...nums)
   const max = Math.max(...nums)
-  return min === max ? `Veličina ${min}` : `Veličine od ${min}-${max}`
+  return min === max ? `Veličina ${min}` : `Veličine ${min}-${max}`
 }
 
 /** Lagani podaci za klijentski panel filtera (brojanje rezultata uživo). */

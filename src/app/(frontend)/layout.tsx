@@ -73,7 +73,7 @@ export const viewport: Viewport = {
 export default async function FrontendLayout({ children }: { children: ReactNode }) {
   const shop = await getShopInfo()
   // Profili na mrežama (Podešavanja prodavnice) povezuju sajt sa brendom u Google Knowledge Graph-u.
-  const sameAs = [shop.instagram, shop.tiktok].filter((u) => u.startsWith('http'))
+  const sameAs = [shop.instagram, shop.facebook].filter((u) => u.startsWith('http'))
   return (
     // suppressHydrationWarning: skripta u <head> dodaje klasu "motion" pre hidratacije.
     <html

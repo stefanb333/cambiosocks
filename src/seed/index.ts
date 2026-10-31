@@ -238,9 +238,9 @@ async function seed() {
         {
           heading: 'Kontakt',
           links: [
-            // URL-ovi profila nisu poznati (D-021): dok se ne unesu, prikazuje se samo tekst.
+            // Prazan URL: uzima se iz Podešavanja prodavnice (Instagram, Facebook), D-080.
             { label: 'Instagram ↗', url: '', newTab: true },
-            { label: 'TikTok ↗', url: '', newTab: true },
+            { label: 'Facebook ↗', url: '', newTab: true },
             { label: 'Kontakt', url: '/kontakt' },
             { label: 'E-mail', url: 'mailto:cambio.carape@gmail.com' },
           ],
@@ -276,6 +276,8 @@ async function seed() {
       phone: content.contact.phone,
       address: content.contact.address,
       hours: content.contact.availability,
+      instagram: content.contact.instagram,
+      facebook: content.contact.facebook,
       defaultCare:
         'Pranje na 30 do 40°C sa sličnim bojama, naopačke. Bez izbeljivača i bez sušenja u mašini.',
       shippingInfo:

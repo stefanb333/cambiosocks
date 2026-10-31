@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { WordReveal } from '@/components/motion/WordReveal'
 import { Sheet } from '@/components/ui/Sheet'
+import { formatPrice } from '@/lib/money'
 
 export type Pill = { label: string; href: string; active: boolean }
 type Option = { value: string; label: string }
@@ -440,8 +441,8 @@ function PriceRange({
         />
       </div>
       <div className="flex justify-between text-[11px] leading-[normal] text-ink">
-        <span>{value[0]} RSD</span>
-        <span>{value[1]} RSD</span>
+        <span>{formatPrice(value[0])}</span>
+        <span>{formatPrice(value[1])}</span>
       </div>
     </div>
   )
