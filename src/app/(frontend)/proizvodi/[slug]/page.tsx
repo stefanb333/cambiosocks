@@ -123,6 +123,7 @@ export default async function ProductPage({ params }: Props) {
           gallery={gallery}
           options={options}
           variants={variants}
+          breadcrumb={parent}
         />
         <ProductDetails
           description={product.description}

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { useCart } from '@/components/cart/CartProvider'
@@ -20,6 +21,8 @@ type Props = {
   gallery: GalleryImage[]
   options: PdpOption[]
   variants: PdpVariant[]
+  /** Kolekcija kojoj proizvod pripada (putanja iznad naziva na telefonu). */
+  breadcrumb: { name: string; path: string }
 }
 
 // ?varijanta=ID se čita tek u pregledaču, pa stranica ostaje statična (ISR) za sve varijante.
@@ -31,7 +34,8 @@ const readUrlVariant = () =>
  * Figma "single product" (52:1603): galerija 642px (glavna slika + 3 sličice 144x188 sa
  * strelicama 57px) i informacije 560px (naslov 72px verzal, opis, ocena, materijal, cena,
  * veličine, boje, "Poruči Odmah" i "Dodaj u Korpu").
- * Telefon: galerija sa prevlačenjem i indikatorom, velike mete za izbor varijante i
+ * Telefon (D-083): slika preko cele širine na beloj podlozi sa tačkicama preko slike, ispod siva
+ * traka sa putanjom, nazivom (obična slova), cenom i stanjem zalihe, pa izbor varijante, dugmad i
  * sticky traka "Dodaj u korpu" pri dnu ekrana.
  */
 export function ProductView(props: Props) {
@@ -128,6 +132,7 @@ export function ProductView(props: Props) {
 
   const price = variant?.price ?? Math.min(...variants.map((v) => v.price))
   const compareAt = variant?.compareAtPrice ?? null
+  const inStock = variant ? variant.available : variants.some((v) => v.available)
   const primaryLabel = canBuy || !variant ? 'Poruči Odmah' : 'Rasprodato'
 
   return (
@@ -142,12 +147,37 @@ export function ProductView(props: Props) {
         />
 
         <div className="flex w-full flex-col gap-7 px-[var(--gutter)] lg:min-h-[828px] lg:w-[clamp(420px,calc(420px+140*(100vw-1024px)/416),560px)] lg:shrink-0 lg:gap-9 lg:px-0">
-          <WordReveal
-            as="h1"
-            trigger="load"
-            text={props.title}
-            className="t-display w-full max-w-[544px] pr-[0.0694em] text-black uppercase"
-          />
+          {/* Telefon: siva traka preko cele širine (putanja, naziv, cena, zaliha); desktop: samo naslov. */}
+          <div className="-mx-[var(--gutter)] -mt-6 flex flex-col gap-2 bg-neutral-100 px-[var(--gutter)] pt-5 pb-6 lg:m-0 lg:gap-0 lg:bg-transparent lg:p-0">
+            <nav aria-label="Putanja" className="text-[14px] leading-5 text-neutral-500 lg:hidden">
+              <Link href="/" className="hover:text-black hover:underline">
+                Početna
+              </Link>
+              <span aria-hidden> / </span>
+              <Link href={props.breadcrumb.path} className="hover:text-black hover:underline">
+                {props.breadcrumb.name}
+              </Link>
+            </nav>
+            <WordReveal
+              as="h1"
+              trigger="load"
+              text={props.title}
+              className="t-display w-full max-w-[544px] pr-[0.0694em] text-black uppercase max-lg:pr-0 max-lg:text-[26px] max-lg:leading-[1.25] max-lg:font-medium max-lg:tracking-[-0.01em] max-lg:normal-case"
+            />
+            <p className="flex items-baseline gap-3 lg:hidden">
+              <span className="font-display text-[26px] leading-[1.25] font-medium text-black">
+                {formatPrice(price)}
+              </span>
+              {compareAt ? (
+                <s className="text-[16px] text-neutral-400">{formatPrice(compareAt)}</s>
+              ) : null}
+            </p>
+            <p
+              className={`text-[14px] leading-5 font-semibold tracking-[0.04em] uppercase lg:hidden ${inStock ? 'text-green-700' : 'text-red-700'}`}
+            >
+              {inStock ? 'Na stanju' : 'Nema na stanju'}
+            </p>
+          </div>
           {props.description ? (
             <p {...reveal(1)} className="max-w-[486px] text-[16px] leading-6 text-black">
               {props.description}
@@ -184,7 +214,7 @@ export function ProductView(props: Props) {
             </div>
           ) : null}
 
-          <div {...reveal(3)} className="flex flex-col gap-[9px]">
+          <div {...reveal(3)} className="hidden flex-col gap-[9px] lg:flex">
             <p className="text-[14px] leading-5 text-black">Cena</p>
             <p className="flex items-baseline gap-3">
               <span className="t-heading text-primary">{formatPrice(price)}</span>
@@ -461,7 +491,7 @@ function Gallery({
       <div className="relative lg:hidden">
         <div
           ref={rowRef}
-          className="snap-row aspect-square w-full bg-[#d9d9d9]"
+          className="snap-row aspect-[4/5] w-full bg-white sm:aspect-square"
           aria-label={`Slike: ${title}`}
         >
           {images.map((img, i) => (
@@ -500,18 +530,17 @@ function Gallery({
           ))}
         </div>
         {images.length > 1 ? (
-          <div className="mt-3 flex items-center justify-center gap-3" aria-hidden>
-            <div className="flex gap-1.5">
-              {images.map((img, i) => (
-                <span
-                  key={img.id}
-                  className={`h-1.5 rounded-full transition-all ${i === active ? 'w-5 bg-primary' : 'w-1.5 bg-neutral-400'}`}
-                />
-              ))}
-            </div>
-            <span className="text-[12px] leading-4 text-neutral-700">
-              {active + 1} / {images.length}
-            </span>
+          // Tačkice preko donjeg dela slike, kao indikator galerije
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center gap-2"
+            aria-hidden
+          >
+            {images.map((img, i) => (
+              <span
+                key={img.id}
+                className={`size-2 rounded-full transition-colors ${i === active ? 'bg-black' : 'bg-neutral-300'}`}
+              />
+            ))}
           </div>
         ) : null}
       </div>
