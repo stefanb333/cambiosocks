@@ -1,17 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ProductMorph } from '@/components/motion/ProductMorph'
-import { sizeRangeLabel, type ListingProduct } from '@/lib/catalog/listing-shared'
+import type { ListingProduct } from '@/lib/catalog/listing-shared'
 import { coverSizes, mediaSrc } from '@/lib/media'
 import { formatPrice } from '@/lib/money'
-import { Swatches } from './Swatches'
 
 /**
- * Figma "product listing" (52:1165), 325x551: bež okvir, bela podloga slike 287x367,
- * oznaka "Dostupne", naslov Inter Bold 32 plavo, raspon veličina, boje, cena Inter Medium 20.
- * Sve mere su u cqw (širina kartice = 100cqw), pa je kartica na 325px tačno kao u Figmi,
- * a u uskim kolonama se srazmerno smanjuje. Sitni tekstovi imaju čitljiv minimum: 11px ispod
- * 1024px, a od 1024px najmanje 8px (vrednost iz Figme na 1440px), D-055.
+ * Kartica proizvoda (D-082). Osnova je Figma "product listing" (52:1165): bež okvir, bela podloga
+ * slike 287x367, oznaka "Dostupne", plavi naslov. Ispod slike je tekst u toku (ne fiksne pozicije):
+ * naslov, kratak opis u dva reda, veličine kao oznake, boje kao krugovi sa nazivom i cena na dnu,
+ * a kod paketa i cena po paru. Mere su u cqw (širina kartice = 100cqw) sa čitljivim minimumom u px,
+ * pa je kartica ista na 325px kao u Figmi, a u uskoj koloni na telefonu tekst ostaje čitljiv.
  */
 export function ListingCard({
   product,
@@ -24,18 +23,18 @@ export function ListingCard({
   rounded?: boolean
 }) {
   const href = `/proizvodi/${product.slug}`
-  const sizeLabel = sizeRangeLabel(product.sizes)
   const img = product.image
   const src = mediaSrc(img?.url)
+  const colors = product.colors.slice(0, 4)
+  const isPack = product.tags.includes('12-pari')
 
   return (
-    <article className="@container">
+    <article className="@container h-full">
       <Link
         href={href}
-        className={`group relative block aspect-[325/585] overflow-hidden bg-beige lg:aspect-[325/551] ${rounded ? 'rounded-[7.385cqw]' : ''}`}
+        className={`group flex h-full flex-col bg-beige px-[6.154cqw] pt-[4.923cqw] pb-[6.154cqw] ${rounded ? 'rounded-[7.385cqw]' : ''}`}
       >
-        {/* Slika je u cqw (isto što i 2.904% / 66.606% visine Figma kartice), pa viša kartica ispod 1024px dobija prostor za tekst. */}
-        <div className="absolute top-[4.923cqw] left-[6.154%] h-[112.92cqw] w-[88.308%] overflow-hidden bg-white">
+        <div className="relative aspect-[287/367] w-full overflow-hidden bg-white">
           {src ? (
             <ProductMorph slug={product.slug}>
               <Image
@@ -66,7 +65,7 @@ export function ListingCard({
             </ProductMorph>
           ) : null}
           <span
-            className={`absolute top-[5.846cqw] right-[4.308cqw] flex h-[max(20px,8cqw)] min-w-[20.923cqw] items-center justify-center rounded-full px-[max(8px,2cqw)] text-[max(11px,2.462cqw)] leading-none font-bold tracking-[-0.2px] text-white shadow-[0_1px_1.5px_rgba(0,0,0,0.08)] lg:h-[8cqw] lg:px-[2cqw] lg:text-[max(8px,2.462cqw)] lg:tracking-[-0.6px] ${
+            className={`absolute top-[5.846cqw] right-[4.308cqw] flex h-[max(20px,8cqw)] min-w-[20.923cqw] items-center justify-center rounded-full px-[max(8px,2cqw)] text-[max(11px,2.8cqw)] leading-none font-bold tracking-[-0.2px] text-white shadow-[0_1px_1.5px_rgba(0,0,0,0.08)] ${
               product.available ? 'bg-primary' : 'bg-neutral-700'
             }`}
           >
@@ -74,34 +73,71 @@ export function ListingCard({
           </span>
         </div>
 
-        {/* Tekst je vezan za vrh: jednoredni naziv je tačno na mestu iz Figme (dno 16.923cqw =
-            vrh 126.65cqw), a dvoredni naziv raste naniže umesto preko slike. */}
-        <div className="absolute top-[126.65cqw] left-[6.769cqw] flex max-w-[86cqw] flex-col gap-[1.231cqw]">
-          <h3 className="line-clamp-2 font-display text-[9.846cqw] leading-[10.462cqw] font-bold tracking-[-0.0625em] text-primary capitalize">
+        <div className="flex flex-1 flex-col gap-[max(8px,2.769cqw)] pt-[max(12px,4.615cqw)]">
+          <h3 className="line-clamp-2 font-display text-[max(18px,8cqw)] leading-[1.08] font-bold tracking-[-0.04em] text-primary">
             {product.title}
           </h3>
-          {sizeLabel || product.colors.length ? (
-            <div className="flex w-[31.385cqw] min-w-max items-center justify-between gap-[max(6px,2cqw)] lg:gap-[2cqw]">
-              {sizeLabel ? (
-                <span className="text-[max(11px,2.462cqw)] leading-[1.25] tracking-[-0.2px] whitespace-nowrap text-neutral-700 lg:text-[max(8px,2.462cqw)] lg:tracking-[-0.6px] lg:text-neutral-400">
-                  {sizeLabel}
-                </span>
-              ) : null}
-              <Swatches
-                colors={product.colors}
-                variant="listing"
-                className="h-[max(12px,4.424cqw)] w-auto lg:h-[4.424cqw]"
-              />
+          {product.shortDescription ? (
+            <p className="line-clamp-2 text-[max(12px,4cqw)] leading-[1.4] text-neutral-600">
+              {product.shortDescription}
+            </p>
+          ) : null}
+
+          {product.sizes.length ? (
+            <div className="flex flex-col gap-[max(4px,1.231cqw)]">
+              <span className="text-[max(10px,3.077cqw)] leading-none font-semibold tracking-[0.06em] text-neutral-500 uppercase">
+                Veličine
+              </span>
+              <ul className="flex flex-wrap gap-[max(4px,1.538cqw)]" aria-label="Veličine">
+                {product.sizes.map((size) => (
+                  <li
+                    key={size}
+                    className="flex h-[max(24px,7.385cqw)] items-center rounded-full border border-neutral-300 bg-white px-[max(8px,2.769cqw)] text-[max(11px,3.692cqw)] leading-none font-medium text-neutral-800"
+                  >
+                    {size}
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : null}
-          <p className="font-display text-[max(15px,6.154cqw)] leading-[1.4] font-medium text-neutral-700 lg:text-[6.154cqw]">
-            {formatPrice(product.minPrice)}
-            {product.compareAtPrice ? (
-              <s className="ml-2 text-[max(11px,0.7em)] text-neutral-400 lg:text-[0.7em]">
-                {formatPrice(product.compareAtPrice)}
-              </s>
+
+          {colors.length ? (
+            <div className="flex items-center gap-[max(6px,2.154cqw)]">
+              <span className="flex" aria-hidden>
+                {colors.map((c, i) => (
+                  <span
+                    key={c.name}
+                    className="block size-[max(16px,5.538cqw)] rounded-full border-2 border-beige ring-1 ring-black/20 first:ml-0"
+                    style={{ backgroundColor: c.hex, marginLeft: i ? '-0.35em' : 0 }}
+                  />
+                ))}
+              </span>
+              <span className="text-[max(11px,3.692cqw)] leading-tight text-neutral-700">
+                {colors.length === 1
+                  ? colors[0].name
+                  : `${product.colors.length} ${product.colors.length < 5 ? 'boje' : 'boja'}`}
+              </span>
+              {product.colors.length > 1 ? (
+                <span className="sr-only">: {product.colors.map((c) => c.name).join(', ')}</span>
+              ) : null}
+            </div>
+          ) : null}
+
+          <div className="mt-auto flex flex-wrap items-baseline gap-x-2 pt-[max(4px,1.538cqw)]">
+            <p className="font-display text-[max(16px,6.154cqw)] leading-[1.3] font-semibold text-neutral-900">
+              {formatPrice(product.minPrice)}
+              {product.compareAtPrice ? (
+                <s className="ml-2 text-[0.7em] font-medium text-neutral-400">
+                  {formatPrice(product.compareAtPrice)}
+                </s>
+              ) : null}
+            </p>
+            {isPack ? (
+              <span className="text-[max(11px,3.385cqw)] text-neutral-500">
+                oko {formatPrice(Math.round(product.minPrice / 12))} po paru
+              </span>
             ) : null}
-          </p>
+          </div>
         </div>
       </Link>
     </article>

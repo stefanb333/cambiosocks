@@ -29,7 +29,9 @@ export function Newsletter({ data }: Props) {
   return (
     <section
       id="newsletter"
-      className="relative isolate overflow-hidden"
+      // Prelazi 24px preko prethodne sekcije sa zaobljenim gornjim ivicama i senkom, kao
+      // kategorije preko hero slike: u uglovima se vidi prethodna sekcija, ne bela pozadina (D-081).
+      className="relative z-10 -mt-6 rounded-t-[24px] shadow-[0_-24px_48px_-20px_rgba(15,15,15,0.25)] isolate overflow-hidden"
       aria-labelledby="newsletter-naslov"
     >
       <Parallax speed={0.1} className="-z-10">

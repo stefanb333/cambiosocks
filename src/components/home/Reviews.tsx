@@ -24,7 +24,9 @@ export function Reviews({ data, reviews, products }: Props) {
 
   return (
     <section
-      className="bg-primary pt-14 pb-14 lg:pt-[86px] lg:pb-[82px]"
+      // Prelazi 24px preko prethodne sekcije sa zaobljenim gornjim ivicama i senkom, kao
+      // kategorije preko hero slike: u uglovima se vidi prethodna sekcija, ne bela pozadina (D-081).
+      className="relative z-10 -mt-6 rounded-t-[24px] shadow-[0_-24px_48px_-20px_rgba(15,15,15,0.25)] bg-primary pt-14 pb-14 lg:pt-[86px] lg:pb-[82px]"
       aria-labelledby="recenzije-naslov"
     >
       <div className="container-page">

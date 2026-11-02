@@ -62,11 +62,32 @@ export function CatalogToolbar(props: ToolbarProps) {
     <button
       type="button"
       onClick={() => setOpen(true)}
-      className={pillClass(activeCount > 0)}
+      // Crno dugme sa ikonicom: razlikuje se od pill-ova kategorija (belo / plavo aktivno), D-082.
+      className="hit flex shrink-0 items-center gap-2 rounded-[99px] border border-black bg-black px-[18px] py-[11px] text-[12px] leading-4 font-semibold whitespace-nowrap text-white transition-colors hover:bg-neutral-800"
       aria-haspopup="dialog"
     >
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        aria-hidden
+      >
+        <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12" />
+        <circle cx="16" cy="6" r="2" />
+        <circle cx="10" cy="12" r="2" />
+        <circle cx="18" cy="18" r="2" />
+      </svg>
       {props.sortLabel}
-      {activeCount ? <span className="ml-1">({activeCount})</span> : null}
+      {activeCount ? (
+        <span className="flex size-5 items-center justify-center rounded-full bg-yellow text-[11px] font-bold text-black">
+          {activeCount}
+          <span className="sr-only"> aktivnih filtera</span>
+        </span>
+      ) : null}
     </button>
   )
 
