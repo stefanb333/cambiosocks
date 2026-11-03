@@ -42,6 +42,70 @@ export const images = {
   // Pojedinačni par (D-076): fotografije proizvoda bez oznake 12X
   socksWhite: { file: 'product-socks-white.png', alt: 'Par belih Cambio čarapa' },
   socksBlack: { file: 'product-socks-black.png', alt: 'Par crnih Cambio čarapa' },
+  // Pojedinačni par, nove fotografije: flat pa model, po boji (D-084)
+  elCrnaFlat: { file: 'single-elegant-crna-flat.jpg', alt: 'Par crnih elegantnih muških čarapa' },
+  elCrnaModel: {
+    file: 'single-elegant-crna-model.jpg',
+    alt: 'Muškarac u crnim elegantnim čarapama',
+  },
+  elKaroFlat: {
+    file: 'single-elegant-karo-flat.jpg',
+    alt: 'Par crnih elegantnih muških čarapa sa sivim karo dezenom',
+  },
+  elKaroModel: {
+    file: 'single-elegant-karo-model.jpg',
+    alt: 'Muškarac u crnim elegantnim čarapama sa karo dezenom',
+  },
+  elTegetFlat: {
+    file: 'single-elegant-teget-flat.jpg',
+    alt: 'Par teget elegantnih muških čarapa sa karo dezenom',
+  },
+  elTegetModel: {
+    file: 'single-elegant-teget-model.jpg',
+    alt: 'Muškarac u teget elegantnim čarapama sa karo dezenom',
+  },
+  t34mBelaFlat: { file: 'single-34-muske-bela-flat.jpg', alt: 'Par belih muških 3/4 čarapa' },
+  t34mCrnaFlat: { file: 'single-34-muske-crna-flat.jpg', alt: 'Par crnih muških 3/4 čarapa' },
+  t34mCrnaModel: { file: 'single-34-muske-crna-model.jpg', alt: 'Noge u crnim 3/4 čarapama' },
+  t34zBelaFlat: { file: 'single-34-zenske-bela-flat.jpg', alt: 'Par belih ženskih 3/4 čarapa' },
+  t34zCrnaFlat: { file: 'single-34-zenske-crna-flat.jpg', alt: 'Par crnih ženskih 3/4 čarapa' },
+  t34zCrnaModel: {
+    file: 'single-34-zenske-crna-model.jpg',
+    alt: 'Ženske noge u crnim 3/4 čarapama',
+  },
+  nzmBelaFlat: { file: 'single-nazuvice-muske-bela-flat.jpg', alt: 'Par belih muških nazuvica' },
+  nzmBelaModel: {
+    file: 'single-nazuvice-muske-bela-model.jpg',
+    alt: 'Muškarac u belim nazuvicama',
+  },
+  nzCrnaFlat: { file: 'single-nazuvice-crna-flat.jpg', alt: 'Par crnih nazuvica' },
+  nzmTegetFlat: {
+    file: 'single-nazuvice-muske-teget-flat.jpg',
+    alt: 'Par teget muških nazuvica',
+  },
+  nzmTegetModel: {
+    file: 'single-nazuvice-muske-teget-model.jpg',
+    alt: 'Muškarac u teget nazuvicama',
+  },
+  nzzBelaFlat: { file: 'single-nazuvice-zenske-bela-flat.jpg', alt: 'Par belih ženskih nazuvica' },
+  nzzBelaModel: {
+    file: 'single-nazuvice-zenske-bela-model.jpg',
+    alt: 'Ženske noge u belim nazuvicama',
+  },
+  nzzCrnaModel: {
+    file: 'single-nazuvice-zenske-crna-model.jpg',
+    alt: 'Ženske noge u crnim nazuvicama',
+  },
+  spCrnaFlat: { file: 'single-sport-crna-flat.jpg', alt: 'Par crnih sportskih čarapa' },
+  spmCrnaModel: {
+    file: 'single-sport-muske-crna-model.jpg',
+    alt: 'Muškarac u crnim sportskim čarapama',
+  },
+  spBelaFlat: { file: 'single-sport-bela-flat.jpg', alt: 'Par belih sportskih čarapa' },
+  spzBelaModel: {
+    file: 'single-sport-zenske-bela-model.jpg',
+    alt: 'Ženske noge u belim sportskim čarapama',
+  },
   // Paketi od 12 pari (D-071): fotografije klijenta na žutoj pozadini sa oznakom "12X"
   bundleArgyle: {
     file: 'bundle-crne-karo.jpg',
@@ -375,6 +439,7 @@ ${closing(`${m.who} ${m.name}`, m.collection)}`,
 
 const WHITE = { value: 'Bela', swatch: '#FFFFFF' }
 const BLACK = { value: 'Crna', swatch: '#0F0F0F' }
+const NAVY = { value: 'Teget', swatch: '#1F2A44' }
 const MEN: Model['collection'] = ['Muške čarape', '/kolekcije/muske-carape']
 const WOMEN: Model['collection'] = ['Ženske čarape', '/kolekcije/zenske-carape']
 const SPORT: Model['collection'] = ['Sportske čarape', '/kolekcije/sport-i-aktivne']
@@ -403,7 +468,22 @@ const tri4 = (who: Model['who']): Model => {
     sku: men ? 'M34' : 'Z34',
     collection: men ? MEN : WOMEN,
     pack: { images: ['bundleWhite'], colors: [{ ...WHITE, image: 'bundleWhite' }] },
-    single: { images: ['socksWhite'], colors: [{ ...WHITE, image: 'socksWhite' }] },
+    // Par (D-084): bela (samo flat) i crna (flat pa model). Redosled galerije: flat pa model po boji.
+    single: men
+      ? {
+          images: ['t34mBelaFlat', 't34mCrnaFlat', 't34mCrnaModel'],
+          colors: [
+            { ...WHITE, image: 't34mBelaFlat' },
+            { ...BLACK, image: 't34mCrnaFlat' },
+          ],
+        }
+      : {
+          images: ['t34zBelaFlat', 't34zCrnaFlat', 't34zCrnaModel'],
+          colors: [
+            { ...WHITE, image: 't34zBelaFlat' },
+            { ...BLACK, image: 't34zCrnaFlat' },
+          ],
+        },
   }
 }
 
@@ -431,8 +511,23 @@ const nazuvice = (who: Model['who']): Model => {
     sku: men ? 'MNZ' : 'ZNZ',
     collection: men ? SPORT : WOMEN,
     pack: { images: ['bundleWhiteAnkle'], colors: [{ ...WHITE, image: 'bundleWhiteAnkle' }] },
-    // Nema fotografije pojedinačnog para nazuvica
-    single: { images: [], colors: [WHITE], status: 'draft' },
+    // Par (D-084): nove fotografije, par je sada aktivan. Flat pa model po boji.
+    single: men
+      ? {
+          images: ['nzmBelaFlat', 'nzmBelaModel', 'nzCrnaFlat', 'nzmTegetFlat', 'nzmTegetModel'],
+          colors: [
+            { ...WHITE, image: 'nzmBelaFlat' },
+            { ...BLACK, image: 'nzCrnaFlat' },
+            { ...NAVY, image: 'nzmTegetFlat' },
+          ],
+        }
+      : {
+          images: ['nzzBelaFlat', 'nzzBelaModel', 'nzCrnaFlat', 'nzzCrnaModel'],
+          colors: [
+            { ...WHITE, image: 'nzzBelaFlat' },
+            { ...BLACK, image: 'nzCrnaFlat' },
+          ],
+        },
   }
 }
 
@@ -458,9 +553,25 @@ const sport = (who: Model['who']): Model => {
     sizes: men ? SIZES_MEN : SIZES_WOMEN,
     sku: men ? 'MSP' : 'ZSP',
     collection: SPORT,
-    // Nema fotografije sportskih čarapa (ni para ni paketa): nacrt dok ne stigne
+    // Paket sportskih (12 pari) i dalje nema fotografiju: ostaje nacrt dok ne stigne.
     pack: { images: [], colors: [WHITE, BLACK], status: 'draft' },
-    single: { images: [], colors: [WHITE, BLACK], status: 'draft' },
+    // Par (D-084): nove fotografije, par je sada aktivan. Flat pa model po boji; boja bez model
+    // fotografije ima samo flat.
+    single: men
+      ? {
+          images: ['spCrnaFlat', 'spmCrnaModel', 'spBelaFlat'],
+          colors: [
+            { ...BLACK, image: 'spCrnaFlat' },
+            { ...WHITE, image: 'spBelaFlat' },
+          ],
+        }
+      : {
+          images: ['spBelaFlat', 'spzBelaModel', 'spCrnaFlat'],
+          colors: [
+            { ...WHITE, image: 'spBelaFlat' },
+            { ...BLACK, image: 'spCrnaFlat' },
+          ],
+        },
   }
 }
 
@@ -496,7 +607,22 @@ const elegant: Model = {
       { value: 'Crna sa rombom', swatch: '#1A1A1A', image: 'bundleDiamond' },
     ],
   },
-  single: { images: ['socksBlack'], colors: [{ ...BLACK, image: 'socksBlack' }] },
+  // Par (D-084): crna, crna karo i teget karo, svaka flat pa model.
+  single: {
+    images: [
+      'elCrnaFlat',
+      'elCrnaModel',
+      'elKaroFlat',
+      'elKaroModel',
+      'elTegetFlat',
+      'elTegetModel',
+    ],
+    colors: [
+      { ...BLACK, image: 'elCrnaFlat' },
+      { value: 'Crna karo', swatch: '#3A3A3A', image: 'elKaroFlat' },
+      { value: 'Teget karo', swatch: '#1F2A44', image: 'elTegetFlat' },
+    ],
+  },
 }
 
 // Redosled: prvo paketi (prva četiri aktivna su izdvojena na početnoj), pa pojedinačni parovi.
