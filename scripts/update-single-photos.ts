@@ -1,5 +1,5 @@
 /**
- * D-084: nove fotografije pojedinačnih parova (flat pa model), nove boje i aktivacija parova
+ * D-084/D-085: nove fotografije pojedinačnih parova (flat pa model), nove boje i aktivacija parova
  * (nazuvice i sportske). Paketi od 12 pari se ne diraju. Ažurira samo proizvode sa slug-om "-par"
  * u postojećoj bazi: tekst ostaje isti, menjaju se slike, boje i varijante.
  * Pokretanje (lokalno):  npm run payload -- run scripts/update-single-photos.ts

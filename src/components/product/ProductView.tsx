@@ -57,11 +57,28 @@ export function ProductView(props: Props) {
     [variants, selection],
   )
 
-  // Slika izabrane varijante postaje aktivna u galeriji.
-  const imageIndexOf = (v: PdpVariant | null | undefined) =>
-    props.gallery.findIndex((g) => g.id === v?.imageId)
-  const [pickedImage, setActive] = useState<number | null>(null)
-  const active = pickedImage ?? Math.max(0, imageIndexOf(initial))
+  // Galerija po boji (D-085), kao Happy Socks: slika varijante je flat te boje, a galerija ide
+  // redom flat, model, flat, model. Za izabranu boju prikazuju se njen flat i slike posle njega
+  // do sledećeg flat-a. Proizvod bez slika po boji prikazuje celu galeriju.
+  const colorIndex = options.findIndex((o) => o.kind === 'color')
+  const colorImage = (value: string) => {
+    const id = variants.find((v) => v.values[colorIndex] === value && v.imageId)?.imageId
+    return props.gallery.find((g) => g.id === id) ?? null
+  }
+  const selectedColor = colorIndex >= 0 ? selection[colorIndex] : null
+  const shownImages = useMemo(() => {
+    const all = props.gallery
+    const flatIds = new Set(variants.map((v) => v.imageId).filter(Boolean))
+    const firstId = variants.find(
+      (v) => selectedColor != null && v.values[colorIndex] === selectedColor && v.imageId,
+    )?.imageId
+    const start = all.findIndex((g) => g.id === firstId)
+    if (start < 0) return all
+    let end = start + 1
+    while (end < all.length && !flatIds.has(all[end].id)) end++
+    return all.slice(start, end)
+  }, [props.gallery, variants, colorIndex, selectedColor])
+  const [active, setActive] = useState(0)
 
   // ?varijanta=ID u adresi posle izbora kupca (deljenje linka na tačnu varijantu), bez skoka skrola.
   useEffect(() => {
@@ -90,8 +107,8 @@ export function ProductView(props: Props) {
       if (fallback) next = fallback.values
     }
     setSelection(next)
-    const idx = imageIndexOf(variants.find((v) => v.values.every((val, i) => val === next[i])))
-    if (idx >= 0) setActive(idx)
+    // Nova boja počinje od svoje prve slike (flat).
+    if (next[colorIndex] !== selection[colorIndex]) setActive(0)
   }
 
   const [status, setStatus] = useState<string>('')
@@ -137,16 +154,18 @@ export function ProductView(props: Props) {
 
   return (
     <section className="bg-white pb-10 lg:pb-[104px]">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-[clamp(40px,calc(40px+46*(100vw-1024px)/416),86px)] lg:pt-[60px] lg:pr-[clamp(32px,calc(32px+42*(100vw-1024px)/416),74px)] lg:pl-[clamp(32px,calc(32px+46*(100vw-1024px)/416),78px)]">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-6 lg:flex-row lg:items-start lg:justify-center lg:gap-[clamp(40px,calc(40px+46*(100vw-1024px)/416),86px)] lg:pt-[60px] lg:pr-[clamp(32px,calc(32px+42*(100vw-1024px)/416),74px)] lg:pl-[clamp(32px,calc(32px+46*(100vw-1024px)/416),78px)]">
         <Gallery
-          images={props.gallery}
-          active={active}
+          key={selectedColor ?? 'sve'}
+          images={shownImages}
+          active={Math.min(active, shownImages.length - 1)}
           onChange={setActive}
           title={props.title}
           slug={props.slug}
         />
 
-        <div className="flex w-full flex-col gap-7 px-[var(--gutter)] lg:min-h-[828px] lg:w-[clamp(420px,calc(420px+140*(100vw-1024px)/416),560px)] lg:shrink-0 lg:gap-9 lg:px-0">
+        {/* Desktop: informacije prate skrol pored slika (sticky), kao na Happy Socks. */}
+        <div className="flex w-full flex-col gap-7 px-[var(--gutter)] lg:sticky lg:top-[calc(var(--header-h,88px)+24px)] lg:w-[clamp(420px,calc(420px+140*(100vw-1024px)/416),560px)] lg:shrink-0 lg:gap-9 lg:px-0">
           {/* Telefon: siva traka preko cele širine (putanja, naziv, cena, zaliha); desktop: samo naslov. */}
           <div className="-mx-[var(--gutter)] -mt-6 flex flex-col gap-2 bg-neutral-100 px-[var(--gutter)] pt-5 pb-6 lg:m-0 lg:gap-0 lg:bg-transparent lg:p-0">
             <nav aria-label="Putanja" className="text-[14px] leading-5 text-neutral-500 lg:hidden">
@@ -228,13 +247,64 @@ export function ProductView(props: Props) {
             {options.map((option, oi) => (
               <fieldset key={option.name} className="flex w-full max-w-[501px] flex-col gap-[22px]">
                 <legend className="mb-[22px] text-[16px] leading-6 text-black">
-                  {option.kind === 'color'
-                    ? 'Dostupne Boje'
-                    : option.kind === 'size'
-                      ? 'Odaberi Veličinu'
-                      : `Odaberi ${option.name}`}
+                  {option.kind === 'color' ? (
+                    <>
+                      Boja: <span className="font-semibold">{selection[oi]}</span>
+                    </>
+                  ) : option.kind === 'size' ? (
+                    'Odaberi Veličinu'
+                  ) : (
+                    `Odaberi ${option.name}`
+                  )}
                 </legend>
-                {option.kind === 'color' ? (
+                {option.kind === 'color' && option.values.every((v) => colorImage(v.value)) ? (
+                  // Izbor boje kao na Happy Socks: sličica flat fotografije, ispod izabrane naziv.
+                  <div
+                    className="flex flex-wrap items-start gap-2"
+                    role="radiogroup"
+                    aria-label={option.name}
+                  >
+                    {option.values.map((v) => {
+                      const selected = selection[oi] === v.value
+                      const available = isAvailable(oi, v.value)
+                      const img = colorImage(v.value)!
+                      return (
+                        <button
+                          key={v.value}
+                          type="button"
+                          role="radio"
+                          aria-checked={selected}
+                          aria-label={`${v.value}${available ? '' : ', nema na stanju'}`}
+                          title={v.value}
+                          onClick={() => select(oi, v.value)}
+                          className="group flex w-[68px] flex-col items-center gap-1.5"
+                        >
+                          <span
+                            className={`relative block h-[84px] w-[68px] overflow-hidden rounded-xl border bg-white transition-colors ${
+                              selected
+                                ? 'border-2 border-black'
+                                : 'border-neutral-200 group-hover:border-neutral-500'
+                            } ${available ? '' : 'opacity-40'}`}
+                          >
+                            <Image
+                              src={img.src}
+                              alt=""
+                              fill
+                              quality={75}
+                              sizes="68px"
+                              className="object-contain p-1"
+                            />
+                          </span>
+                          <span
+                            className={`text-[12px] leading-4 ${selected ? 'font-semibold text-black' : 'text-neutral-500'}`}
+                          >
+                            {v.value}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                ) : option.kind === 'color' ? (
                   <div
                     className="flex flex-wrap items-center gap-[15px]"
                     role="radiogroup"
@@ -430,17 +500,8 @@ function Gallery({
   slug: string
 }) {
   const rowRef = useRef<HTMLDivElement>(null)
-  const thumbsRef = useRef<HTMLDivElement>(null)
   const zoomRef = useRef<HTMLDivElement>(null)
   const [zoom, setZoom] = useState(false)
-
-  // Glavna slika se pretapa tek posle promene (ne pri učitavanju, da LCP slika ne kasni).
-  const [shown, setShown] = useState(active)
-  const [swapped, setSwapped] = useState(false)
-  if (shown !== active) {
-    setShown(active)
-    setSwapped(true)
-  }
 
   // Uvećani prikaz se otvara na slici koja je trenutno aktivna, ne na prvoj.
   useEffect(() => {
@@ -470,8 +531,6 @@ function Gallery({
     const el = row?.querySelector<HTMLElement>(`[data-index="${active}"]`)
     if (row && el && Math.abs(row.scrollLeft - el.offsetLeft) > 4)
       row.scrollTo({ left: el.offsetLeft, behavior: 'smooth' })
-    const thumb = thumbsRef.current?.querySelector<HTMLElement>(`[data-thumb="${active}"]`)
-    thumb?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
   }, [active])
 
   if (!images.length) {
@@ -483,15 +542,13 @@ function Gallery({
     )
   }
 
-  const current = images[Math.min(active, images.length - 1)]
-
   return (
     <div className="w-full lg:flex lg:max-w-[642px] lg:min-w-0 lg:flex-1 lg:flex-col lg:items-center lg:gap-[30px]">
       {/* Telefon i tablet: niz sa prevlačenjem */}
       <div className="relative lg:hidden">
         <div
           ref={rowRef}
-          className="snap-row aspect-[4/5] w-full bg-white sm:aspect-square"
+          className="snap-row aspect-[4/5] w-full bg-white"
           aria-label={`Slike: ${title}`}
         >
           {images.map((img, i) => (
@@ -513,7 +570,7 @@ function Gallery({
                     fetchPriority="high"
                     quality={85}
                     sizes="100vw"
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </ProductMorph>
               ) : (
@@ -523,7 +580,7 @@ function Gallery({
                   fill
                   quality={85}
                   sizes="100vw"
-                  className="object-contain"
+                  className="object-cover"
                 />
               )}
             </button>
@@ -545,81 +602,46 @@ function Gallery({
         ) : null}
       </div>
 
-      {/* Desktop: glavna slika i sličice */}
-      <button
-        type="button"
-        onClick={() => setZoom(true)}
-        className="group relative hidden aspect-square w-full cursor-zoom-in overflow-hidden rounded-2xl bg-[#d9d9d9] lg:block"
-        aria-label="Uvećaj sliku"
-      >
-        <ProductMorph slug={slug}>
-          <Image
-            key={current.id}
-            src={current.src}
-            alt={current.alt || title}
-            fill
-            loading="eager"
-            fetchPriority="high"
-            quality={85}
-            sizes="(min-width: 1440px) 642px, 45vw"
-            className={`object-contain transition-transform duration-500 group-hover:scale-[1.03] ${swapped ? 'image-swap' : ''}`}
-          />
-        </ProductMorph>
-      </button>
-      {images.length > 1 ? (
-        <div className="hidden w-full items-center justify-center gap-6 lg:flex">
+      {/* Desktop: slike izabrane boje jedna ispod druge (flat pa model), kao na Happy Socks. */}
+      <div className="hidden w-full flex-col gap-3 lg:flex">
+        {images.map((img, i) => (
           <button
+            key={img.id}
             type="button"
-            onClick={() => onChange((active - 1 + images.length) % images.length)}
-            aria-label="Prethodna slika"
-            className="press shrink-0 rounded-full transition-transform hover:-translate-x-0.5"
+            onClick={() => {
+              onChange(i)
+              setZoom(true)
+            }}
+            className="group relative aspect-[4/5] w-full cursor-zoom-in overflow-hidden rounded-2xl bg-white"
+            aria-label={`Uvećaj sliku ${i + 1} od ${images.length}`}
           >
-            <img
-              loading="lazy"
-              src="/figma/gallery-prev.svg"
-              alt=""
-              width={57}
-              height={57}
-              className="rotate-180"
-            />
-          </button>
-          {/* Širina prati broj sličica (najviše 3 vidljive), pa strelice stoje uz njih kao u Figmi. */}
-          <div ref={thumbsRef} className="snap-row max-w-[480px] min-w-0 shrink gap-6">
-            {images.map((img, i) => (
-              <button
-                key={img.id}
-                type="button"
-                data-thumb={i}
-                onClick={() => onChange(i)}
-                aria-label={`Slika ${i + 1}`}
-                aria-current={i === active}
-                className={`relative h-[188px] w-[144px] shrink-0 overflow-hidden rounded-2xl bg-[#d9d9d9] transition-opacity ${
-                  i === active
-                    ? 'outline-2 -outline-offset-2 outline-primary'
-                    : 'opacity-80 hover:opacity-100'
-                }`}
-              >
+            {i === 0 ? (
+              <ProductMorph slug={slug}>
                 <Image
                   src={img.src}
-                  alt=""
+                  alt={img.alt || title}
                   fill
+                  loading="eager"
+                  fetchPriority="high"
                   quality={85}
-                  sizes="188px"
-                  className="object-cover"
+                  sizes="(min-width: 1440px) 642px, 45vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-              </button>
-            ))}
-          </div>
-          <button
-            type="button"
-            onClick={() => onChange((active + 1) % images.length)}
-            aria-label="Sledeća slika"
-            className="press shrink-0 rounded-full transition-transform hover:translate-x-0.5"
-          >
-            <img loading="lazy" src="/figma/gallery-next.svg" alt="" width={57} height={57} />
+              </ProductMorph>
+            ) : (
+              <Image
+                src={img.src}
+                alt={img.alt || title}
+                fill
+                quality={85}
+                sizes="(min-width: 1440px) 642px, 45vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            )}
           </button>
-        </div>
-      ) : null}
+        ))}
+      </div>
+
 
       <Sheet
         open={zoom}

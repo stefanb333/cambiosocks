@@ -63,7 +63,7 @@ export function CollectionCatalog({
         selected={filters}
       >
         {visible.length ? (
-          <ul className="mx-auto mt-4 grid max-w-[1306px] grid-cols-2 gap-[2px] px-2 md:mt-8 md:grid-cols-3 md:px-[var(--gutter)] lg:mt-24 lg:grid-cols-4 xl:px-0">
+          <ul className="mx-auto mt-4 grid max-w-[1306px] grid-cols-2 gap-x-3 gap-y-8 px-[var(--gutter)] md:gap-x-5 lg:gap-y-12 md:mt-8 md:grid-cols-3 md:px-[var(--gutter)] lg:mt-24 lg:grid-cols-4 xl:px-0">
             {visible.map((product, i) => (
               <li
                 key={product.id}
