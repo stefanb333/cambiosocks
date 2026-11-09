@@ -76,11 +76,6 @@ export function ListingCard({
           <h3 className="line-clamp-2 font-display text-[max(18px,8cqw)] leading-[1.08] font-bold tracking-[-0.04em] text-primary">
             {product.title}
           </h3>
-          {product.shortDescription ? (
-            <p className="line-clamp-2 text-[max(12px,4cqw)] leading-[1.4] text-neutral-600">
-              {product.shortDescription}
-            </p>
-          ) : null}
 
           {product.sizes.length ? (
             <div className="flex flex-col gap-[max(4px,1.231cqw)]">

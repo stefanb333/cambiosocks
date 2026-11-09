@@ -411,7 +411,7 @@ ${closing(`${m.who} ${m.name}`, m.collection)}`,
 const WHITE = { value: 'Bela', swatch: '#FFFFFF' }
 const BLACK = { value: 'Crna', swatch: '#0F0F0F' }
 const NAVY = { value: 'Teget', swatch: '#1F2A44' }
-const GRAY = { value: 'Siva', swatch: '#8E8E8E' }
+const GRAY = { value: 'Siva', swatch: '#CBCBCB' }
 
 /** Par (D-085): svaka boja ima flat pa model; flat je i slika boje (sličica u izboru boje). */
 const pairs = (...list: [color: Omit<Color, 'image'>, flat: ImageKey, model: ImageKey][]): Variant => ({
