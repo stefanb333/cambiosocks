@@ -6,10 +6,14 @@
  */
 import { COMPANY } from './company'
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000').replace(
-  /\/$/,
-  '',
-)
+/** Pravi domen; koristi se samo ako NEXT_PUBLIC_SERVER_URL nije podešen na produkciji. */
+export const PRODUCTION_URL = 'https://cambiosocks.com'
+
+// Bez podešene promenljive produkcija ne sme da upiše localhost u canonical, sitemap i mejlove.
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SERVER_URL ||
+  (process.env.NODE_ENV === 'production' ? PRODUCTION_URL : 'http://localhost:3000')
+).replace(/\/$/, '')
 export const SITE_NAME = 'Cambio'
 export const absoluteUrl = (path: string) =>
   /^https?:\/\//.test(path) ? path : `${SITE_URL}${path}`

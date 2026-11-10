@@ -12,12 +12,12 @@ import { getAllProductSlugs, getProductBySlug, relatedProducts } from '@/lib/cat
 import { getHomePage, getShopInfo } from '@/lib/data'
 import { getProductReviews } from '@/lib/reviews'
 import { lexicalToPlainText } from '@/lib/richtext'
-import { breadcrumbSchema, jsonLdGraph, productSchema } from '@/lib/seo'
+import { SITE_URL, breadcrumbSchema, jsonLdGraph, productSchema } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 type Props = { params: Promise<{ slug: string }> }
 
-const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+const siteUrl = SITE_URL
 
 /** Putanja (breadcrumb) i kategorija proizvoda prema tipu: vodi na odgovarajuću kolekciju. */
 const TYPE_COLLECTION: Record<string, { name: string; path: string }> = {

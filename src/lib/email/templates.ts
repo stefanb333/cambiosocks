@@ -1,5 +1,6 @@
 import { companyLine } from '@/lib/company'
 import { formatPrice } from '@/lib/money'
+import { SITE_URL } from '@/lib/seo'
 import type { Order } from '@/payload-types'
 import { esc } from './send'
 
@@ -8,7 +9,7 @@ import { esc } from './send'
  * zamenama jer email klijenti ne učitavaju web fontove). Tabele radi podrške u Outlook-u.
  */
 
-const site = () => process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+const site = () => SITE_URL
 
 function layout(title: string, body: string) {
   return `<!doctype html><html lang="sr-Latn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${esc(title)}</title></head>

@@ -74,20 +74,20 @@ Sve su opisane u [.env.example](.env.example). Tajne idu samo u `.env` (nije u r
 
 ### 2. Cloudflare R2 (slike)
 1. Cloudflare > R2 > Create bucket (npr. `cambio-media`).
-2. Bucket > Settings > Public access: uključi R2.dev domen ili poveži svoj (npr. `media.cambio.rs`). Taj URL je `S3_PUBLIC_URL`.
+2. Bucket > Settings > Public access: uključi R2.dev domen ili poveži svoj (npr. `media.cambiosocks.com`). Taj URL je `S3_PUBLIC_URL`.
 3. R2 > Manage API tokens > Create token sa dozvolom **Object Read & Write** za taj bucket. Dobijaš `S3_ACCESS_KEY_ID` i `S3_SECRET_ACCESS_KEY`.
 4. `S3_ENDPOINT` je `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`, `S3_REGION=auto`, `S3_BUCKET` je ime bucketa.
 
 ### 3. Resend (email)
 1. Na [resend.com](https://resend.com) dodaj domen (Domains > Add) i upiši DNS zapise (SPF, DKIM) kod registra domena. Sačekaj status **Verified**.
 2. API Keys > Create (dozvola Sending access). To je `RESEND_API_KEY`.
-3. `EMAIL_FROM`, npr. `Cambio <porudzbine@cambio.rs>` (adresa sa verifikovanog domena).
+3. `EMAIL_FROM`, npr. `Cambio <porudzbine@cambiosocks.com>` (adresa sa verifikovanog domena).
 4. `EMAIL_NOTIFY_TO`: adresa na koju stižu nove porudžbine i kontakt poruke. Može i u adminu: Podešavanja prodavnice > Email adrese za nove porudžbine (ima prednost).
 
 ### 4. Netlify (hosting)
 1. Postavi kod na GitHub i u Netlify-u izaberi Add new site > Import from Git.
 2. Build podešavanja čita iz [netlify.toml](netlify.toml) (`npm run ci`, Node 22). Ništa ne menjaj ručno.
-3. Site configuration > Environment variables: unesi sve promenljive iz tabele iznad. `NEXT_PUBLIC_SERVER_URL` je konačna adresa (npr. `https://cambio.rs`). `PAYLOAD_SECRET` i `REVALIDATE_SECRET` generiši komandom iz `.env.example`.
+3. Site configuration > Environment variables: unesi sve promenljive iz tabele iznad. `NEXT_PUBLIC_SERVER_URL` je konačna adresa (npr. `https://cambiosocks.com`). `PAYLOAD_SECRET` i `REVALIDATE_SECRET` generiši komandom iz `.env.example`.
 4. Domain management: dodaj domen i uključi HTTPS.
 5. Posle prvog deploy-a otvori `/admin` i napravi prvi nalog (postaje administrator), ako seed nije pravio nalog.
 

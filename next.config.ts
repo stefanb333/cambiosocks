@@ -6,7 +6,7 @@ import type { NextConfig } from 'next'
 const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
-// Javni R2 domen za slike (npr. https://media.cambio.rs), vidi .env.example.
+// Javni R2 domen za slike (npr. https://media.cambiosocks.com), vidi .env.example.
 const remotePatterns: NonNullable<NextConfig['images']>['remotePatterns'] = []
 if (process.env.S3_PUBLIC_URL) {
   const url = new URL(process.env.S3_PUBLIC_URL)

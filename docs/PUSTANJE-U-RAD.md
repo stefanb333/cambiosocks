@@ -1,4 +1,4 @@
-# Puštanje sajta u rad (klijentov Netlify i pravi domen)
+# Puštanje sajta u rad (klijentov Netlify, cambiosocks.com)
 
 Kontrolna lista za prelazak sa demo sajta (cambiocarape.netlify.app) na klijentov Netlify nalog i
 pravi domen. Redom, bez preskakanja. Tajne se unose samo u Netlify, nikad u kod.
@@ -14,12 +14,12 @@ pravi domen. Redom, bez preskakanja. Tajne se unose samo u Netlify, nikad u kod.
 
 | Promenljiva | Vrednost na pravom sajtu |
 |---|---|
-| `NEXT_PUBLIC_SERVER_URL` | `https://pravi-domen.rs` (bez kose crte na kraju). Od nje zavise canonical, sitemap, linkovi u mejlovima i kolačić za admin. |
+| `NEXT_PUBLIC_SERVER_URL` | `https://cambiosocks.com` (bez kose crte na kraju). Od nje zavise canonical, sitemap, linkovi u mejlovima i kolačić za admin. |
 | `PAYLOAD_SECRET` | nova nasumična vrednost, najmanje 32 znaka (ne ista kao na demo sajtu) |
 | `DATABASE_URL` | baza koju koristi pravi sajt (pooled konekcija, `sslmode=require`) |
 | `S3_BUCKET`, `S3_ENDPOINT`, `S3_REGION`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_PUBLIC_URL` | skladište slika (R2 ili Supabase Storage) |
 | `S3_CLIENT_UPLOADS` | `1` tek kad je podešen CORS iz tačke 3 (inače ostaviti prazno) |
-| `RESEND_API_KEY`, `EMAIL_FROM`, `EMAIL_NOTIFY_TO` | slanje mejlova; domen pošiljaoca mora biti verifikovan u Resend-u |
+| `RESEND_API_KEY`, `EMAIL_FROM`, `EMAIL_NOTIFY_TO` | slanje mejlova; `EMAIL_FROM` npr. `Cambio <porudzbine@cambiosocks.com>`, domen cambiosocks.com mora biti verifikovan u Resend-u (DNS zapisi kod registra) |
 | `REVALIDATE_SECRET` | nova nasumična vrednost |
 | `SITE_NOINDEX` | **prazno** (sa `1` sajt je sakriven od Google-a, to je samo za demo) |
 | `SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD` | ne postavljati na pravom sajtu |
@@ -33,7 +33,7 @@ bucket mora da dozvoli upload sa domena sajta. Cloudflare R2 > bucket > Settings
 ```json
 [
   {
-    "AllowedOrigins": ["https://pravi-domen.rs", "https://www.pravi-domen.rs"],
+    "AllowedOrigins": ["https://cambiosocks.com", "https://www.cambiosocks.com"],
     "AllowedMethods": ["GET", "PUT", "HEAD"],
     "AllowedHeaders": ["content-type", "content-length", "if-none-match"],
     "ExposeHeaders": ["ETag"],
@@ -60,11 +60,27 @@ dodati sliku veću od 6 MB; mora da se sačuva za nekoliko sekundi. Admin svaku 
   Google ne vidi dva sajta sa istim sadržajem.
 - Migracije se pokreću same pri build-u (`npm run ci`), na zajedničku bazu; trenutno nema novih.
 
-## 4. Domen
+## 4. Domen (cambiosocks.com)
+
+- Ako `NEXT_PUBLIC_SERVER_URL` slučajno nije podešen, produkcija koristi `https://cambiosocks.com`
+  (ne localhost), ali promenljivu ipak postaviti.
 
 - Netlify > Domain management > Add domain, pa DNS zapise kod registra po uputstvu Netlify-a.
 - HTTPS (Let's Encrypt) se uključuje sam kad DNS proradi; sačekati zeleni status pre objave.
 - Ako se koristi i `www`, jedan od dva oblika postaviti kao glavni (drugi preusmerava).
+
+## Admin nalog za klijenta
+
+Nalog pravi vlasnik admina, ne skripta, da lozinka ne prolazi kroz kod ni chat:
+
+1. `https://cambiosocks.com/admin`, prijava postojećim administratorskim nalogom.
+2. Podešavanja > Korisnici admina > Dodaj.
+3. Email `cambio.carape@gmail.com`, uloga **Administrator** (ili Urednik ako klijent ne treba
+   podešavanja prodavnice i korisnike), lozinka, potvrda lozinke, Sačuvaj.
+4. Klijent se prvi put prijavi i odmah promeni lozinku (Nalog > Promeni lozinku) u svoju, od
+   najmanje 12 znakova koja nije ime prodavnice i godina.
+5. Posle 5 pogrešnih lozinki nalog je zaključan 15 minuta; zaboravljena lozinka stiže mejlom kad
+   je Resend podešen.
 
 ## 5. Posle prvog deploya
 
@@ -72,7 +88,7 @@ dodati sliku veću od 6 MB; mora da se sačuva za nekoliko sekundi. Admin svaku 
 2. U Podešavanjima prodavnice upisati adresu za obaveštenja o porudžbinama.
 3. Probna porudžbina na pravom domenu (pouzeće), proveriti mejl kupcu i prodavnici, pa je u
    adminu otkazati.
-4. `https://pravi-domen.rs/robots.txt` i `/sitemap.xml` moraju imati pravi domen, ne localhost ili
+4. `https://cambiosocks.com/robots.txt` i `/sitemap.xml` moraju imati pravi domen, ne localhost ili
    netlify.app adresu.
 5. Google Search Console: dodati domen i poslati `/sitemap.xml`.
 

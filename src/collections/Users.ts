@@ -1,4 +1,5 @@
 import { adminFieldOnly, adminOnly, isAdmin } from '@/access'
+import { SITE_URL } from '@/lib/seo'
 import type { CollectionConfig } from 'payload'
 
 export const Users: CollectionConfig = {
@@ -16,7 +17,7 @@ export const Users: CollectionConfig = {
     lockTime: 15 * 60 * 1000,
     // Kolačić za prijavu ide samo preko HTTPS-a kada sajt radi na HTTPS-u (produkcija).
     cookies: {
-      secure: (process.env.NEXT_PUBLIC_SERVER_URL || '').startsWith('https://'),
+      secure: SITE_URL.startsWith('https://'),
       sameSite: 'Lax',
     },
   },
