@@ -42,9 +42,23 @@ bucket mora da dozvoli upload sa domena sajta. Cloudflare R2 > bucket > Settings
 ]
 ```
 
+**Supabase Storage (trenutno skladište, isto za demo i pravi sajt):** CORS se ne podešava, Supabase
+već dozvoljava PUT iz pregledača sa svih domena. Provereno 10.11.2026: presigned upload u bucket
+`cambio-media` vraća 200 i fajl stiže ceo. Dovoljno je postaviti `S3_CLIENT_UPLOADS=1`.
+
 Posle toga postaviti `S3_CLIENT_UPLOADS=1` i ponovo objaviti (Trigger deploy). Provera: u adminu
 dodati sliku veću od 6 MB; mora da se sačuva za nekoliko sekundi. Admin svaku sliku čuva najviše
 2400 px i kao WebP, a jedna slika ne sme biti veća od 20 MB.
+
+## Ista baza i slike kao demo (izabrano 10.11.2026.)
+
+- Na klijentovom Netlify-u `DATABASE_URL` i sve `S3_*` promenljive su iste kao na demo sajtu, pa
+  proizvodi, porudžbine, admin nalozi i slike već postoje; ništa se ne prebacuje.
+- Admin koristiti samo na pravom domenu: čuvanje u adminu osvežava keš samo sajta na kom je
+  sačuvano, pa bi demo adresa pokazivala zastareo sadržaj.
+- Demo sajt (cambiocarape.netlify.app) posle puštanja ugasiti ili ostaviti sa `SITE_NOINDEX=1`, da
+  Google ne vidi dva sajta sa istim sadržajem.
+- Migracije se pokreću same pri build-u (`npm run ci`), na zajedničku bazu; trenutno nema novih.
 
 ## 4. Domen
 
