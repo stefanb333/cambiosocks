@@ -125,14 +125,14 @@ export function CheckoutForm({
       <ul className="flex flex-col gap-4" aria-busy={loading}>
         {(data?.lines ?? []).map((l) => (
           <li key={l.variantId} className="flex items-center gap-4">
-            <span className="relative h-[64px] w-[72px] shrink-0 overflow-hidden rounded-[3.3px] bg-primary">
+            <span className="relative h-[64px] w-[72px] shrink-0 overflow-hidden rounded-[3.3px] bg-white ring-1 ring-black/5">
               {l.image ? (
                 <Image
                   src={l.image.src}
                   alt={l.image.alt}
                   fill
-                  sizes="72px"
-                  className="object-cover"
+                  sizes="144px"
+                  className="object-contain p-1"
                 />
               ) : null}
               <span className="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-black text-[11px] font-bold text-white">

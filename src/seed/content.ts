@@ -172,7 +172,7 @@ Cambio čarape pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine. Kada
 - **[Muške elegantne čarape](/proizvodi/muske-elegantne-carape)** uz odelo i za posao: crne, karo ili sa rombom.
 - **3/4 čarape** klasične visine, do sredine lista, za patike i svaki dan: [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4).
 - **Nazuvice**, niske do članka, koje ne vire iz patike: [muške](/proizvodi/muske-nazuvice) i [ženske](/proizvodi/zenske-nazuvice).
-- **Sportske čarape** za trening, muške i ženske, uskoro u ponudi.
+- **Sportske čarape** za trening i trčanje, [muške](/proizvodi/muske-sportske-carape-par) i [ženske](/proizvodi/zenske-sportske-carape-par), sa pojačanom petom i prstima.
 ## Par ili paket od 12 pari?
 Svaki model možete da kupite kao pojedinačan par ili u paketu od 12 pari iste boje i veličine. Paket je najisplativiji: cena po paru je niža (od oko 100 RSD), imate čist par za svaki dan u mesecu, a kada se jedan pocepa, ostali se i dalje slažu.
 ## Kako da izaberem veličinu?
@@ -202,7 +202,7 @@ Dobra muška čarapa se ne primećuje tokom dana: ne klizi u cipeli, ne steže o
 - **[Muške elegantne čarape](/proizvodi/muske-elegantne-carape)** idu uz odelo, košulju i cipele: jednobojne crne, sa karo dezenom ili sa diskretnim rombom.
 - **[Muške 3/4 čarape](/proizvodi/muske-carape-3-4)** klasične visine, do sredine lista, za patike, teretanu i svaki dan.
 - **[Muške nazuvice](/proizvodi/muske-nazuvice)** su niske do članka: ne vire iz niskih patika, a štite petu od žuljanja.
-- **Muške sportske čarape** za trening su uskoro u ponudi.
+- **[Muške sportske čarape](/proizvodi/muske-sportske-carape-par)** za trening i trčanje, sa pojačanom petom i prstima.
 Svaki model je dostupan kao pojedinačan par i u paketu od 12 pari iste boje i veličine, za ceo mesec.
 ## Koja veličina muških čarapa?
 Muške čarape su u rasponima 38-42, 42-44 i 44-46, prema broju obuće. Ako nosite 42 ili 44, pogledajte [tabelu veličina čarapa](/blog/tabela-velicina-carapa) i savet za granične brojeve.
@@ -230,7 +230,7 @@ Perite ih naopačke na 30 do 40°C, bez izbeljivača i sušilice. Više saveta j
 ## Sportske, 3/4 ili nazuvice?
 - **[Ženske 3/4 čarape](/proizvodi/zenske-carape-3-4)** klasične visine, do sredine lista, uz helanke, trenerku i patike.
 - **[Ženske nazuvice](/proizvodi/zenske-nazuvice)** su niske do članka: ne vire iz patike, za trening, šetnju i leto.
-- **Ženske sportske čarape** za trening su uskoro u ponudi.
+- **[Ženske sportske čarape](/proizvodi/zenske-sportske-carape-par)** za trening i trčanje, sa pojačanom petom i prstima.
 Svaki model je dostupan kao pojedinačan par i u paketu od 12 pari iste boje i veličine.
 ## Koja veličina ženskih čarapa?
 Ženske čarape su u rasponima 34-36, 36-38 i 38-42, prema broju obuće. Ako ste između dve veličine, za uži kroj izaberite manju, a za opušteniji veću; više u vodiču [Tabela veličina čarapa](/blog/tabela-velicina-carapa).
@@ -251,13 +251,13 @@ Pamuk upija vlagu i diše, pa je stopalo suvo i kada ste ceo dan u zatvorenoj ob
     seo: {
       title: 'Sportske čarape za trčanje i trening',
       description:
-        'Čarape za trening i trčanje: muške i ženske nazuvice do članka koje ne klize u patici, par ili paket od 12 pari. Uskoro i sportske čarape. Pouzećem.',
+        'Čarape za trening i trčanje: muške i ženske nazuvice do članka koje ne klize u patici, par ili paket od 12 pari. Plaćanje pouzećem.',
     },
     description: `## Kakve čarape za trčanje i trening?
 Dobra sportska čarapa ima tri stvari: ojačan đon koji ublažava udarce, zonu koja diše na gornjem delu stopala i elastičnu traku oko svoda koja je drži na mestu. Tako stopalo ostaje suvo, a čarapa ne klizi i ne pravi nabore u patici.
 ## Sportske čarape u ovoj kolekciji
 - **Nazuvice do članka**, [muške](/proizvodi/muske-nazuvice) i [ženske](/proizvodi/zenske-nazuvice), koje ne vire iz patike i ne klize sa pete.
-- **Sportske čarape** za trening, muške i ženske, su uskoro u ponudi.
+- **Sportske čarape** za trening i trčanje, [muške](/proizvodi/muske-sportske-carape-par) i [ženske](/proizvodi/zenske-sportske-carape-par), sa pojačanom petom i prstima.
 Svi modeli su dostupni kao par i u paketu od 12 pari, sa kojim za svaki trening imate svež par.
 ## Koliko pari sportskih čarapa vam treba?
 Ako trenirate tri do četiri puta nedeljno, najbolje je imati bar četiri do pet pari u rotaciji, da svaki par posle pranja potpuno odmori i zadrži elastičnost. Kako da izaberete pravi model, pročitajte u članku [Kako da izaberete čarape za trening](/blog/kako-da-izaberete-carape-za-trening-koje-nece-ometati-tokom-aktivnosti).
@@ -435,11 +435,11 @@ const tri4 = (who: Model['who']): Model => {
       '**Klasična visina, do sredine lista:** čarapa ostaje na mestu i ne skuplja se oko članka.',
       `**${men ? 'Pojačana peta i prsti' : 'Uži ženski kroj'}:** ${men ? 'duži vek uz patike i česta pranja.' : 'prati oblik stopala, bez nabora na prstima i peti.'}`,
       '**Pamuk koji diše:** stopalo ostaje suvo i posle celog dana u patikama.',
-      '**Bela boja:** ide uz sve patike, a pere se na 30 do 40°C.',
+      '**Lako održavanje:** pere se na 30 do 40°C i zadržava oblik.',
     ],
     use: 'klasične visine do sredine lista, za patike i svaki dan',
     seoTitle: `${who} 3/4 čarape klasične visine`,
-    seoWhat: `Bele ${men ? 'muške' : 'ženske'} 3/4 čarape od pamuka, klasične visine do sredine lista, za patike, šetnju i teretanu.`,
+    seoWhat: `${men ? 'Muške' : 'Ženske'} 3/4 čarape od pamuka, klasične visine do sredine lista, za patike, šetnju i teretanu.`,
     tags: [men ? 'muske' : 'zenske', '3-4', 'svakodnevne'],
     pattern: ['jednobojni'],
     sizes: men ? SIZES_MEN : SIZES_WOMEN,
@@ -480,7 +480,7 @@ const nazuvice = (who: Model['who']): Model => {
     ],
     use: 'niske do članka, za patike, trening i leto',
     seoTitle: `${who} nazuvice za patike, do članka`,
-    seoWhat: `Bele ${men ? 'muške' : 'ženske'} nazuvice od pamuka, niske do članka: ne vire iz patike i ne klize sa pete.`,
+    seoWhat: `${men ? 'Muške' : 'Ženske'} nazuvice od pamuka, niske do članka: ne vire iz patike i ne klize sa pete.`,
     tags: [men ? 'muske' : 'zenske', 'nazuvice', 'sport', 'leto'],
     pattern: ['jednobojni'],
     sizes: men ? SIZES_MEN : SIZES_WOMEN,
@@ -974,7 +974,7 @@ Materijal koji brzo odvodi vlagu i ima mrežastu zonu na gornjem delu stopala. S
 ## Koliko pari sportskih čarapa vam treba?
 Ako trenirate tri do četiri puta nedeljno, bar četiri do pet pari, da svaki par posle pranja odmori i zadrži elastičnost.
 ## Naše sportske čarape
-Za trening su tu nazuvice do članka, [muške](/proizvodi/muske-nazuvice) i [ženske](/proizvodi/zenske-nazuvice), i 3/4 čarape klasične visine, [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4), kao par ili u paketu od 12 pari. Sportske čarape za trening su uskoro u ponudi u kolekciji [Sportske čarape](/kolekcije/sport-i-aktivne).`,
+Za trening su tu nazuvice do članka, [muške](/proizvodi/muske-nazuvice) i [ženske](/proizvodi/zenske-nazuvice), i 3/4 čarape klasične visine, [muške](/proizvodi/muske-carape-3-4) i [ženske](/proizvodi/zenske-carape-3-4), kao par ili u paketu od 12 pari. Za trening i trčanje tu su i sportske čarape, [muške](/proizvodi/muske-sportske-carape-par) i [ženske](/proizvodi/zenske-sportske-carape-par), u kolekciji [Sportske čarape](/kolekcije/sport-i-aktivne).`,
   },
   {
     title: 'Tabela veličina čarapa: kako da izaberete pravu veličinu',

@@ -168,6 +168,8 @@ type ProductInput = {
     available: boolean
     color?: string
     size?: string
+    /** Slika boje varijante; bez nje se koristi glavna slika proizvoda. */
+    image?: string
   }[]
 }
 
@@ -231,7 +233,7 @@ export function productSchema(p: ProductInput): Json {
       ...(v.sku ? { sku: v.sku } : {}),
       ...(v.color ? { color: v.color } : {}),
       ...(v.size ? { size: v.size } : {}),
-      image: p.images[0],
+      image: v.image ?? p.images[0],
       offers: offer(v),
     })),
   }

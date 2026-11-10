@@ -110,15 +110,15 @@ export function CartContents({
                     <Link
                       href={`/proizvodi/${line.slug}`}
                       onClick={onClose}
-                      className="relative h-[77px] w-[87.76px] shrink-0 overflow-hidden rounded-[3.3px] bg-primary"
+                      className="relative h-[77px] w-[87.76px] shrink-0 overflow-hidden rounded-[3.3px] bg-white ring-1 ring-black/5"
                     >
                       {line.image ? (
                         <Image
                           src={line.image.src}
                           alt={line.image.alt}
                           fill
-                          sizes="88px"
-                          className="object-cover"
+                          sizes="176px"
+                          className="object-contain p-1"
                         />
                       ) : null}
                     </Link>

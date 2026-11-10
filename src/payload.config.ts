@@ -6,6 +6,7 @@ import { s3Storage } from '@payloadcms/storage-s3'
 import { rsLatin } from '@payloadcms/translations/languages/rsLatin'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
+import { isStaff } from './access'
 import { Customers } from './collections/Customers'
 import { Discounts } from './collections/Discounts'
 import { Media } from './collections/Media'
@@ -25,6 +26,10 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const useS3 = Boolean(process.env.S3_BUCKET)
+// Upload slike direktno iz admina u skladište (R2), mimo serverske funkcije: Netlify funkcija prima
+// najviše ~6 MB po zahtevu, a originalne fotografije su često veće (D-091). Uključuje se tek kad je na
+// bucketu podešen CORS (vidi docs/DEMO-NETLIFY.md).
+const clientUploads = useS3 && process.env.S3_CLIENT_UPLOADS === '1'
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
@@ -80,6 +85,8 @@ export default buildConfig({
     Users,
   ],
   globals,
+  // Gornja granica za jedan fajl; originali se posle smanjuju na 2400 px (Media.resizeOptions).
+  upload: { limits: { fileSize: 20_000_000 } },
   editor: lexicalEditor(),
   email: resendRestAdapter,
   secret: process.env.PAYLOAD_SECRET || '',
@@ -97,6 +104,7 @@ export default buildConfig({
       // Kolone za skladište (prefix, _objectKey) postoje i bez S3 (lokalno), pa su šema i
       // migracije iste u svim okruženjima (D-069).
       alwaysInsertFields: true,
+      clientUploads: clientUploads ? { access: ({ req }) => isStaff({ req }) } : false,
       collections: {
         media: {
           prefix: 'media',

@@ -206,14 +206,14 @@ export function SearchBox({
                     onMouseEnter={() => setActive(i)}
                     className={`flex items-center gap-3 rounded-[14px] p-2 transition-colors ${i === active ? 'bg-neutral-100' : ''}`}
                   >
-                    <span className="relative size-14 shrink-0 overflow-hidden rounded-[10px] bg-beige">
+                    <span className="relative size-14 shrink-0 overflow-hidden rounded-[10px] bg-white ring-1 ring-black/5">
                       {hit.image ? (
                         <Image
                           src={hit.image.src}
                           alt=""
                           fill
-                          sizes="56px"
-                          className="object-cover"
+                          sizes="112px"
+                          className="object-contain p-0.5"
                         />
                       ) : null}
                     </span>

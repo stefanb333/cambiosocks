@@ -21,6 +21,10 @@ export const Media: CollectionConfig = {
     // Samo rasterske slike: SVG može da sadrži skriptu koja bi se izvršila na našem domenu.
     mimeTypes: [...IMAGE_MIME_TYPES],
     focalPoint: true,
+    // Original se čuva najviše 2400 px po dužoj strani (fotografije sa aparata su često 4000+ px i 6+ MB).
+    resizeOptions: { width: 2400, height: 2400, fit: 'inside', withoutEnlargement: true },
+    // Original se čuva kao WebP (PNG sa aparata od 6-7 MB postaje nekoliko stotina KB, providnost ostaje).
+    formatOptions: { format: 'webp', options: { quality: 86 } },
     crop: true,
     adminThumbnail: 'thumb',
     imageSizes: [

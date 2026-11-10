@@ -55,7 +55,8 @@ async function nextOrderNumber(req: PayloadRequest) {
   )
   if (!taken.rows.length) return n
   await db.drizzle.execute(
-    sql`SELECT setval('order_number_seq', (SELECT MAX(order_number) FROM orders))`,
+    // order_number je numeric, a setval traži bigint (bez kasta upit puca i checkout ne radi).
+    sql`SELECT setval('order_number_seq', (SELECT MAX(order_number)::bigint FROM orders))`,
   )
   const next = await db.drizzle.execute(sql`SELECT nextval('order_number_seq') AS n`)
   return Number(next.rows[0]?.n)

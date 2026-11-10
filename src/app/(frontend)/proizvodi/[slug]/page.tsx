@@ -99,6 +99,11 @@ export default async function ProductPage({ params }: Props) {
         available: v.available,
         color: colorAt >= 0 ? v.values[colorAt] : undefined,
         size: sizeAt >= 0 ? v.values[sizeAt] : undefined,
+        // Slika boje varijante (flat), da Google uz svaku varijantu prikaže pravu boju.
+        image: (() => {
+          const img = gallery.find((g) => g.id === v.imageId)
+          return img ? (img.src.startsWith('http') ? img.src : `${siteUrl}${img.src}`) : undefined
+        })(),
       })),
     }),
     breadcrumbSchema([
