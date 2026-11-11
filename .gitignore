@@ -52,8 +52,10 @@ next-env.d.ts
 /.data/
 
 
-# stanje AI alata (oh-my-claudecode), nije deo projekta
+# lokalni alati i meta fajlovi, nisu deo projekta
 .omc/
+/CLAUDE.md
+/AGENTS.md
 
 # snimci iz provera (scripts/screens.mjs, scripts/visual-diff.mjs), mogu ponovo da se naprave
 /docs/screenshots/
