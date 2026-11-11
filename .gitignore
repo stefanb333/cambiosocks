@@ -64,3 +64,6 @@ next-env.d.ts
 # interna dokumentacija, nije deo isporuke
 /DECISIONS.md
 /PLAN.md
+
+# stara Shopify tema, samo lokalna referenca
+/reference-shopify-theme/
