@@ -60,3 +60,7 @@ next-env.d.ts
 # snimci iz provera (scripts/screens.mjs, scripts/visual-diff.mjs), mogu ponovo da se naprave
 /docs/screenshots/
 /docs/diff/
+
+# interna dokumentacija, nije deo isporuke
+/DECISIONS.md
+/PLAN.md
