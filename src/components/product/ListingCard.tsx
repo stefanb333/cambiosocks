@@ -30,7 +30,9 @@ export function ListingCard({
 
   return (
     <article className="@container h-full">
-      <Link href={href} className="group flex h-full flex-col bg-white pb-[4.923cqw]">
+      {/* relative: skriveni spisak boja (sr-only, apsolutni) ostaje u kartici; bez toga se u
+          nizu sa prevlačenjem pozicionira prema body-ju i proširi stranicu na telefonu. */}
+      <Link href={href} className="group relative flex h-full flex-col bg-white pb-[4.923cqw]">
         <div
           className={`relative aspect-[287/367] w-full overflow-hidden bg-white ${rounded ? 'rounded-[5cqw]' : ''}`}
         >

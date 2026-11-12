@@ -119,6 +119,10 @@
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-padding-top: calc(var(--header-h) + 16px);
+    /* Na telefonu "clip" samo na body ne stiže do viewporta: element koji izađe desno (npr.
+       apsolutni span u kartici niza) proširi stranicu, pa se ona umanji i desno ostane prazno.
+       Na html-u se clip primenjuje na viewport, a ne pravi kontejner za skrol (sticky radi). */
+    overflow-x: clip;
   }
 
   body {

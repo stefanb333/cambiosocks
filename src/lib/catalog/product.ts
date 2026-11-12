@@ -91,11 +91,36 @@ export const getProductBySlug = unstable_cache(
       sku: v.sku ?? null,
     }))
 
+    assignColorImagesByPosition(gallery, options, pdpVariants)
+
     return { product, gallery, options, variants: pdpVariants }
   },
   ['product-by-slug'],
   { tags: ['products', 'media'] },
 )
+
+/**
+ * Slike po boji bez ručnog vezivanja slike za varijantu (D-085, kao Happy Socks).
+ * Galerija se slaže redom boja iz opcije: za svaku boju flat pa model. Kada nijedna varijanta
+ * nema svoju sliku, a galerija se ravnomerno deli na boje, boja i dobija slike od i*k do i*k+k-1;
+ * prva (flat) postaje slika varijanti te boje. Izbor boje tada prikazuje sličice čarapa, a galerija
+ * samo slike izabrane boje. Ako je bar jedna slika vezana ručno, važi samo ručno vezivanje.
+ */
+function assignColorImagesByPosition(
+  gallery: GalleryImage[],
+  options: PdpOption[],
+  variants: PdpVariant[],
+) {
+  const colorIndex = options.findIndex((o) => o.kind === 'color')
+  if (colorIndex < 0 || variants.some((v) => v.imageId)) return
+  const colors = options[colorIndex].values.map((v) => v.value)
+  if (!colors.length || !gallery.length || gallery.length % colors.length !== 0) return
+  const perColor = gallery.length / colors.length
+  for (const v of variants) {
+    const i = colors.indexOf(v.values[colorIndex])
+    if (i >= 0) v.imageId = gallery[i * perColor].id
+  }
+}
 
 export const getAllProductSlugs = unstable_cache(
   async () => {

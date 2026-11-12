@@ -30,6 +30,9 @@ const noopSubscribe = () => () => {}
 const readUrlVariant = () =>
   Number(new URLSearchParams(window.location.search).get('varijanta')) || null
 
+/** Kao Happy Socks: za svaku boju flat i jedna slika na modelu. */
+const IMAGES_PER_COLOR = 2
+
 /**
  * Figma "single product" (52:1603): galerija 642px (glavna slika + 3 sličice 144x188 sa
  * strelicama 57px) i informacije 560px (naslov 72px verzal, opis, ocena, materijal, cena,
@@ -58,8 +61,8 @@ export function ProductView(props: Props) {
   )
 
   // Galerija po boji (D-085), kao Happy Socks: slika varijante je flat te boje, a galerija ide
-  // redom flat, model, flat, model. Za izabranu boju prikazuju se njen flat i slike posle njega
-  // do sledećeg flat-a. Proizvod bez slika po boji prikazuje celu galeriju.
+  // redom flat, model, flat, model. Za izabranu boju prikazuju se njen flat i slika posle njega
+  // (najviše IMAGES_PER_COLOR). Proizvod bez slika po boji prikazuje celu galeriju.
   const colorIndex = options.findIndex((o) => o.kind === 'color')
   const colorImage = (value: string) => {
     const id = variants.find((v) => v.values[colorIndex] === value && v.imageId)?.imageId
@@ -76,7 +79,7 @@ export function ProductView(props: Props) {
     if (start < 0) return all
     let end = start + 1
     while (end < all.length && !flatIds.has(all[end].id)) end++
-    return all.slice(start, end)
+    return all.slice(start, Math.min(end, start + IMAGES_PER_COLOR))
   }, [props.gallery, variants, colorIndex, selectedColor])
   const [active, setActive] = useState(0)
 
