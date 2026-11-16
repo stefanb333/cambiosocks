@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 type Data = { text: string; shipment: { cod: number; reference: string } }
 
 /**
- * Blok "Podaci za kurira (AKS)" na porudžbini (D-079): podaci za pošiljku se slažu sami iz
+ * Blok "Podaci za kurira (BEX)" na porudžbini (D-079): podaci za pošiljku se slažu sami iz
  * porudžbine; dugme kopira sve u formu kurirske službe, drugo otvara adresnicu za štampu.
  * Prikazuje sačuvano stanje porudžbine (posle izmene adrese: sačuvati pa osvežiti).
  */
@@ -40,7 +40,7 @@ export function CourierPanel() {
   return (
     <div className="cambio-card cambio-courier">
       <div className="cambio-courier__head">
-        <h3>Podaci za kurira (AKS)</h3>
+        <h3>Podaci za kurira (BEX)</h3>
         {data ? (
           <span className={`cambio-courier__cod ${data.shipment.cod ? '' : 'is-paid'}`}>
             {data.shipment.cod ? `Otkupnina ${data.shipment.cod} RSD` : 'Bez otkupnine'}

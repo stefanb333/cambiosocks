@@ -365,7 +365,7 @@ export const ShopSettings: GlobalConfig = {
               name: 'deliveryEstimate',
               label: 'Rok isporuke',
               type: 'text',
-              defaultValue: '1 do 3 radna dana',
+              defaultValue: '1 do 5 radnih dana',
             },
             {
               name: 'countries',

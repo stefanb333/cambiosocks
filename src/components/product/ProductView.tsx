@@ -83,6 +83,16 @@ export function ProductView(props: Props) {
   }, [props.gallery, variants, colorIndex, selectedColor])
   const [active, setActive] = useState(0)
 
+  // Boja se bira prva (D-094): izbor boje odmah menja sliku, pa kupac vidi šta uzima pre veličine.
+  // Redni broj opcije ostaje originalan, jer se po njemu varijanta traži u `selection`.
+  const orderedOptions = useMemo(
+    () =>
+      options
+        .map((option, index) => ({ option, index }))
+        .sort((a, b) => Number(b.option.kind === 'color') - Number(a.option.kind === 'color')),
+    [options],
+  )
+
   // ?varijanta=ID u adresi posle izbora kupca (deljenje linka na tačnu varijantu), bez skoka skrola.
   useEffect(() => {
     if (!variant || !picked) return
@@ -247,7 +257,7 @@ export function ProductView(props: Props) {
           </div>
 
           <div id="izbor-varijante" {...reveal(4)} className="flex flex-col gap-7 lg:gap-9">
-            {options.map((option, oi) => (
+            {orderedOptions.map(({ option, index: oi }) => (
               <fieldset key={option.name} className="flex w-full max-w-[501px] flex-col gap-[22px]">
                 <legend className="mb-[22px] text-[16px] leading-6 text-black">
                   {option.kind === 'color' ? (
@@ -644,7 +654,6 @@ function Gallery({
           </button>
         ))}
       </div>
-
 
       <Sheet
         open={zoom}

@@ -45,7 +45,7 @@ export default async function CheckoutPage() {
       </header>
       <main id="sadrzaj" className="bg-paper">
         <CheckoutForm
-          deliveryEstimate={shop.deliveryEstimate || '1 do 3 radna dana'}
+          deliveryEstimate={shop.deliveryEstimate || '1 do 5 radnih dana'}
           paymentLabel={payment?.label ?? 'Plaćanje pouzećem'}
           paymentDescription={payment?.description ?? ''}
         />

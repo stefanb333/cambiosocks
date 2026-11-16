@@ -25,7 +25,7 @@ const WEBSITE_ID = `${SITE_URL}/#sajt`
 export const SHOP_POLICY = {
   shippingPrice: 300,
   handlingDays: [0, 1],
-  transitDays: [1, 2],
+  transitDays: [1, 4],
   returnDays: 14,
 }
 

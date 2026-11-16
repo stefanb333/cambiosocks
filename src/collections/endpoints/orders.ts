@@ -67,7 +67,7 @@ function labelHtml(s: Shipment): string {
 
 /**
  * Kurirska služba (D-079): podaci za pošiljku iz porudžbine, bez prepisivanja.
- * - GET /api/orders/courier-csv: porudžbine koje čekaju slanje (Nova, Potvrđena), za uvoz u AKS
+ * - GET /api/orders/courier-csv: porudžbine koje čekaju slanje (Nova, Potvrđena), za uvoz u BEX
  * - GET /api/orders/:id/courier: tekst i podaci za blok na porudžbini u adminu
  * - GET /api/orders/:id/label: adresnica za štampu
  */

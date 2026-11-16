@@ -269,7 +269,7 @@ async function seed() {
     data: {
       shippingPrice: 300,
       freeShippingThreshold: 2000,
-      deliveryEstimate: '1 do 3 radna dana',
+      deliveryEstimate: '1 do 5 radnih dana',
       countries: ['Srbija'],
       newsletterDiscountCode: 'DOBRODOSLI10',
       email: content.contact.email,
@@ -281,7 +281,7 @@ async function seed() {
       defaultCare:
         'Pranje na 30 do 40°C sa sličnim bojama, naopačke. Bez izbeljivača i bez sušenja u mašini.',
       shippingInfo:
-        'Šaljemo kurirskom službom AKS, isporuka na teritoriji Srbije za 1 do 3 radna dana. Dostava 300 RSD, besplatna za porudžbine od 2.000 RSD. Plaćanje pouzećem. Zamena veličine u roku od 14 dana.',
+        'Šaljemo kurirskom službom BEX, isporuka na teritoriji Srbije za 1 do 5 radnih dana. Dostava 300 RSD, besplatna za porudžbine od 2.000 RSD. Plaćanje pouzećem. Zamena veličine u roku od 14 dana.',
       lowStockThreshold: 5,
     },
   })

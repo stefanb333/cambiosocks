@@ -1,7 +1,7 @@
 import type { Order } from '@/payload-types'
 
 /**
- * Podaci za kurirsku službu (AKS) iz porudžbine (D-079): primalac, adresa, telefon, otkupnina,
+ * Podaci za kurirsku službu (BEX) iz porudžbine (D-079): primalac, adresa, telefon, otkupnina,
  * sadržaj i procena mase. Koriste ih blok na porudžbini u adminu, adresnica za štampu i CSV
  * izvoz za uvoz pošiljki. Bez ručnog prepisivanja adrese.
  */
@@ -72,7 +72,7 @@ export function shipmentText(s: Shipment): string {
   ].join('\n')
 }
 
-/** Kolone CSV izvoza za kurira (uvoz pošiljki u AKS portal ili Excel). */
+/** Kolone CSV izvoza za kurira (uvoz pošiljki u BEX portal ili Excel). */
 export const SHIPMENT_CSV_HEADERS = [
   'Referenca',
   'Primalac',

@@ -73,7 +73,7 @@ export const Orders: CollectionConfig = {
           path: '@/components/admin/ExportCsvButton#ExportCsvButton',
           clientProps: {
             collection: 'orders',
-            // Porudžbine koje čekaju slanje, za uvoz pošiljki u AKS (D-079)
+            // Porudžbine koje čekaju slanje, za uvoz pošiljki u BEX (D-079)
             extra: [{ label: 'Izvoz za kurira (CSV)', url: '/api/orders/courier-csv' }],
           },
         },

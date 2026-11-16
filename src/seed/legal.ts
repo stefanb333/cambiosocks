@@ -130,10 +130,10 @@ ${COMPANY.name} je, u skladu sa Zakonom o zaštiti potrošača, obavezan da uče
 const delivery = `Važi od ${VALID_FROM}
 
 ## Gde isporučujemo
-Isporučujemo na celoj teritoriji Republike Srbije, kurirskom službom AKS, na adresu koju unesete pri poručivanju.
+Isporučujemo na celoj teritoriji Republike Srbije, kurirskom službom BEX, na adresu koju unesete pri poručivanju.
 
 ## Rok isporuke
-Pošiljka stiže u roku od 1 do 3 radna dana od porudžbine. Porudžbine primljene vikendom i praznikom obrađujemo prvog sledećeg radnog dana.
+Pošiljka stiže u roku od 1 do 5 radnih dana od porudžbine. Porudžbine primljene vikendom i praznikom obrađujemo prvog sledećeg radnog dana.
 
 ## Cena dostave
 Cena dostave je 300 RSD po porudžbini. Za porudžbine od 2.000 RSD dostava je besplatna. Cena dostave se prikazuje u korpi i u pregledu porudžbine, pre nego što porudžbinu pošaljete.

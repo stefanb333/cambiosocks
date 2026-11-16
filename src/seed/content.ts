@@ -164,7 +164,7 @@ export const collections = [
     seo: {
       title: 'Čarape online: muške, ženske i sportske',
       description:
-        'Pamučne čarape online od proizvođača iz Novog Pazara: muške i ženske, elegantne, 3/4 i nazuvice, kao par ili paket od 12 pari. Dostava 1 do 3 dana.',
+        'Pamučne čarape online od proizvođača iz Novog Pazara: muške i ženske, elegantne, 3/4 i nazuvice, kao par ili paket od 12 pari. Dostava 1 do 5 dana.',
     },
     description: `## Čarape direktno od proizvođača iz Novog Pazara
 Cambio čarape pravimo u sopstvenoj fabrici u Novom Pazaru od 1995. godine. Kada kupujete ovde, kupujete direktno od proizvođača: bez posrednika, sa istim pamukom i istom kontrolom kvaliteta koju godinama koristimo za partnere širom regiona.
@@ -178,7 +178,7 @@ Svaki model možete da kupite kao pojedinačan par ili u paketu od 12 pari iste 
 ## Kako da izaberem veličinu?
 Veličina čarapa je označena brojem obuće, na primer 41-46. Izaberite raspon u koji upada broj vaših cipela; detalje i savete za granične brojeve naći ćete u vodiču [Tabela veličina čarapa](/blog/tabela-velicina-carapa).
 ## Dostava i plaćanje
-Porudžbine isporučuje kurirska služba AKS za 1 do 3 radna dana na celoj teritoriji Srbije; dostava je 300 RSD, a za porudžbine od 2.000 RSD besplatna. Plaćate pouzećem, a fiskalni račun stiže uz pošiljku. Sve uslove pogledajte na stranici [Dostava i plaćanje](/dostava).`,
+Porudžbine isporučuje kurirska služba BEX za 1 do 5 radnih dana na celoj teritoriji Srbije; dostava je 300 RSD, a za porudžbine od 2.000 RSD besplatna. Plaćate pouzećem, a fiskalni račun stiže uz pošiljku. Sve uslove pogledajte na stranici [Dostava i plaćanje](/dostava).`,
   },
   {
     key: 'muske',
@@ -194,7 +194,7 @@ Porudžbine isporučuje kurirska služba AKS za 1 do 3 radna dana na celoj terit
     seo: {
       title: 'Muške čarape od pamuka',
       description:
-        'Muške čarape od pamuka, par ili paket od 12 pari: elegantne za odelo, 3/4 i nazuvice, veličine 38 do 46. Proizvođač iz Novog Pazara, dostava 1 do 3 dana.',
+        'Muške čarape od pamuka, par ili paket od 12 pari: elegantne za odelo, 3/4 i nazuvice, veličine 38 do 46. Proizvođač iz Novog Pazara, dostava 1 do 5 dana.',
     },
     description: `## Pamučne muške čarape koje traju
 Dobra muška čarapa se ne primećuje tokom dana: ne klizi u cipeli, ne steže oko članka i ne tanji se posle nekoliko pranja. Zato naše muške čarape imaju pojačanu petu i prste, pamuk koji diše i manžetnu koja drži bez otiska na koži.
@@ -223,7 +223,7 @@ Perite ih naopačke na 30 do 40°C, bez izbeljivača i sušilice. Više saveta j
     seo: {
       title: 'Ženske čarape od pamuka',
       description:
-        'Ženske čarape od pamuka, par ili paket od 12 pari: 3/4 i nazuvice užeg kroja, veličine 34 do 42. Proizvođač iz Novog Pazara, dostava 1 do 3 dana.',
+        'Ženske čarape od pamuka, par ili paket od 12 pari: 3/4 i nazuvice užeg kroja, veličine 34 do 42. Proizvođač iz Novog Pazara, dostava 1 do 5 dana.',
     },
     description: `## Ženske čarape koje se ne osećaju
 Ženska čarapa treba da prati oblik stopala, a ne da ga steže. Naše ženske čarape imaju uži kroj, ravan šav na prstima koji ne žulja i meku manžetnu koja ne ostavlja trag ni posle celog dana.
@@ -394,7 +394,7 @@ Isti model postoji i u [paketu od 12 pari](/proizvodi/${m.slug}) za ${rsd(PRICE[
 ${closing(`${m.who} ${m.name}`, m.collection)}`,
     seo: {
       title: m.seoTitle,
-      description: `${m.seoWhat} Par za ${rsd(price)} RSD, dostava za 1 do 3 radna dana.`,
+      description: `${m.seoWhat} Par za ${rsd(price)} RSD, dostava za 1 do 5 radnih dana.`,
     },
     productType: m.type,
     tags: [...m.tags, 'par'],
@@ -743,7 +743,7 @@ export const faq = {
     {
       question: 'Koliko košta dostava i koliko traje?',
       answer:
-        'Dostava košta 300 RSD po porudžbini, a za porudžbine od 2.000 RSD je besplatna. Šaljemo kurirskom službom AKS i pošiljka stiže za 1 do 3 radna dana, na celoj teritoriji Srbije.',
+        'Dostava košta 300 RSD po porudžbini, a za porudžbine od 2.000 RSD je besplatna. Šaljemo kurirskom službom BEX i pošiljka stiže za 1 do 5 radnih dana, na celoj teritoriji Srbije.',
     },
     {
       question: 'Kako se plaća porudžbina?',
@@ -846,7 +846,7 @@ export const pageSeo: Record<string, { title: string; description: string }> = {
   dostava: {
     title: 'Dostava i plaćanje',
     description:
-      'Dostava čarapa širom Srbije kurirskom službom AKS za 300 RSD, besplatno od 2.000 RSD. Isporuka za 1 do 3 radna dana, plaćanje pouzećem, fiskalni račun uz pošiljku.',
+      'Dostava čarapa širom Srbije kurirskom službom BEX za 300 RSD, besplatno od 2.000 RSD. Isporuka za 1 do 5 radnih dana, plaćanje pouzećem, fiskalni račun uz pošiljku.',
   },
   'uslovi-koriscenja': {
     title: 'Uslovi korišćenja i kupovine',

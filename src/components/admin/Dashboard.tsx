@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { formatPrice } from '@/lib/money'
+import { DashIcon } from './DashboardIcons'
 import type { ServerProps } from 'payload'
 
 /**
@@ -68,43 +69,48 @@ export async function Dashboard({ payload, user }: ServerProps) {
   const settings = await payload.findGlobal({ slug: 'shop-settings', depth: 0 })
   const lowStockLimit = settings.lowStockThreshold ?? 5
 
-  const [orders, pending, recent, activeProducts, lowStock, pendingReviews] = await Promise.all([
-    payload.find({
-      collection: 'orders',
-      where: { createdAt: { greater_than_equal: from60.toISOString() } },
-      select: { total: true, status: true, createdAt: true },
-      pagination: false,
-      depth: 0,
-    }),
-    payload.count({ collection: 'orders', where: { status: { equals: 'nova' } } }),
-    payload.find({
-      collection: 'orders',
-      sort: '-createdAt',
-      limit: 6,
-      depth: 0,
-      select: {
-        name: true,
-        total: true,
-        status: true,
-        createdAt: true,
-        email: true,
-        shippingAddress: true,
-      },
-    }),
-    payload.count({ collection: 'products', where: { status: { equals: 'active' } } }),
-    payload.find({
-      collection: 'variants',
-      where: {
-        and: [{ trackInventory: { equals: true } }, { stock: { less_than_equal: lowStockLimit } }],
-      },
-      sort: 'stock',
-      limit: 6,
-      depth: 1,
-      select: { title: true, stock: true, product: true },
-      populate: { products: { title: true } },
-    }),
-    payload.count({ collection: 'reviews', where: { status: { equals: 'pending' } } }),
-  ])
+  const [orders, pending, recent, activeProducts, lowStock, pendingReviews, toShip] =
+    await Promise.all([
+      payload.find({
+        collection: 'orders',
+        where: { createdAt: { greater_than_equal: from60.toISOString() } },
+        select: { total: true, status: true, createdAt: true },
+        pagination: false,
+        depth: 0,
+      }),
+      payload.count({ collection: 'orders', where: { status: { equals: 'nova' } } }),
+      payload.find({
+        collection: 'orders',
+        sort: '-createdAt',
+        limit: 6,
+        depth: 0,
+        select: {
+          name: true,
+          total: true,
+          status: true,
+          createdAt: true,
+          email: true,
+          shippingAddress: true,
+        },
+      }),
+      payload.count({ collection: 'products', where: { status: { equals: 'active' } } }),
+      payload.find({
+        collection: 'variants',
+        where: {
+          and: [
+            { trackInventory: { equals: true } },
+            { stock: { less_than_equal: lowStockLimit } },
+          ],
+        },
+        sort: 'stock',
+        limit: 6,
+        depth: 1,
+        select: { title: true, stock: true, product: true },
+        populate: { products: { title: true } },
+      }),
+      payload.count({ collection: 'reviews', where: { status: { equals: 'pending' } } }),
+      payload.count({ collection: 'orders', where: { status: { equals: 'potvrdjena' } } }),
+    ])
 
   // --- Brojke za 30 dana i poređenje sa prethodnih 30 (otkazane se ne računaju u prihod)
   const valid = orders.docs.filter((o) => o.status !== 'otkazana')
@@ -142,21 +148,99 @@ export async function Dashboard({ payload, user }: ServerProps) {
 
   const stats = [
     {
+      icon: 'novac',
+      tone: 'green',
       label: 'Prihod, 30 dana',
       value: formatPrice(revenue),
       change: trend(revenue, sum(previous)),
     },
     {
+      icon: 'torba',
+      tone: 'blue',
       label: 'Porudžbine, 30 dana',
       value: String(current.length),
       change: trend(current.length, previous.length),
     },
     {
+      icon: 'korpa',
+      tone: 'violet',
       label: 'Prosečna korpa',
       value: formatPrice(average),
       change: trend(average, previous.length ? sum(previous) / previous.length : 0),
     },
-    { label: 'Aktivni proizvodi', value: String(activeProducts.totalDocs), change: null },
+    {
+      icon: 'kutija',
+      tone: 'amber',
+      label: 'Aktivni proizvodi',
+      value: String(activeProducts.totalDocs),
+      change: null,
+    },
+  ]
+
+  /** Šta čeka obradu — svaka kartica vodi pravo na filtriranu listu (D-095). */
+  const tasks = [
+    {
+      icon: 'zvono',
+      tone: 'blue',
+      label: 'Nove porudžbine',
+      count: pending.totalDocs,
+      href: `${ORDERS}?where[status][equals]=nova`,
+      done: 'Nema novih',
+    },
+    {
+      icon: 'kamion',
+      tone: 'violet',
+      label: 'Za slanje',
+      count: toShip.totalDocs,
+      href: `${ORDERS}?where[status][equals]=potvrdjena`,
+      done: 'Sve poslato',
+    },
+    {
+      icon: 'zaliha',
+      tone: 'amber',
+      label: 'Niska zaliha',
+      count: lowStock.totalDocs,
+      href: '/admin/collections/variants?sort=stock',
+      done: 'Zaliha je uredna',
+    },
+    {
+      icon: 'zvezda',
+      tone: 'green',
+      label: 'Recenzije na čekanju',
+      count: pendingReviews.totalDocs,
+      href: '/admin/collections/reviews?where[status][equals]=pending',
+      done: 'Nema na čekanju',
+    },
+  ]
+
+  /** Prečice do glavnih delova admina, da se klijent lakše snađe gde je šta. */
+  const shortcuts = [
+    {
+      icon: 'kutija',
+      label: 'Proizvodi',
+      hint: 'Cene, slike, opis',
+      href: '/admin/collections/products',
+    },
+    { icon: 'torba', label: 'Porudžbine', hint: 'Obrada i slanje', href: ORDERS },
+    {
+      icon: 'zaliha',
+      label: 'Zalihe',
+      hint: 'Varijante i stanje',
+      href: '/admin/collections/variants',
+    },
+    { icon: 'zvezda', label: 'Recenzije', hint: 'Odobravanje', href: '/admin/collections/reviews' },
+    {
+      icon: 'stranica',
+      label: 'Stranice',
+      hint: 'Tekstovi sajta',
+      href: '/admin/collections/pages',
+    },
+    {
+      icon: 'zupcanik',
+      label: 'Podešavanja',
+      hint: 'Dostava i kontakt',
+      href: '/admin/globals/shop-settings',
+    },
   ]
 
   return (
@@ -212,6 +296,9 @@ export async function Dashboard({ payload, user }: ServerProps) {
       <section className="cambio-dash__stats" aria-label="Brojke">
         {stats.map((s) => (
           <div key={s.label} className="cambio-card cambio-stat">
+            <span className={`cambio-ico cambio-ico--${s.tone}`} aria-hidden>
+              <DashIcon name={s.icon} />
+            </span>
             <p className="cambio-stat__label">{s.label}</p>
             <p className="cambio-stat__value">{s.value}</p>
             {s.change !== null ? (
@@ -229,6 +316,21 @@ export async function Dashboard({ payload, user }: ServerProps) {
               </p>
             )}
           </div>
+        ))}
+      </section>
+
+      <section className="cambio-dash__tasks" aria-label="Čeka obradu">
+        {tasks.map((t) => (
+          <Link key={t.label} href={t.href} className="cambio-card cambio-task">
+            <span className={`cambio-ico cambio-ico--${t.tone}`} aria-hidden>
+              <DashIcon name={t.icon} />
+            </span>
+            <span className="cambio-task__text">
+              <span className="cambio-task__label">{t.label}</span>
+              <span className="cambio-task__hint">{t.count ? 'čeka vas' : t.done}</span>
+            </span>
+            <span className={`cambio-task__count ${t.count ? 'is-on' : ''}`}>{t.count || '—'}</span>
+          </Link>
         ))}
       </section>
 
@@ -342,6 +444,26 @@ export async function Dashboard({ payload, user }: ServerProps) {
           )}
         </section>
       </div>
+
+      <section className="cambio-card cambio-short" aria-labelledby="cambio-short-title">
+        <div className="cambio-card__head">
+          <h2 id="cambio-short-title">Prečice</h2>
+          <span>najčešći poslovi</span>
+        </div>
+        <div className="cambio-short__grid">
+          {shortcuts.map((s) => (
+            <Link key={s.label} href={s.href} className="cambio-short__item">
+              <span className="cambio-ico cambio-ico--plain" aria-hidden>
+                <DashIcon name={s.icon} />
+              </span>
+              <span>
+                <strong>{s.label}</strong>
+                <small>{s.hint}</small>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
