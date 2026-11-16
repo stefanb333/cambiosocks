@@ -16,11 +16,45 @@ const RULES: [RegExp, string][] = [
   [/1 do 3 radna dana/g, '1 do 5 radnih dana'],
   [/1 do 3 dana/g, '1 do 5 dana'],
   [/\bAKS\b/g, 'BEX'],
+  // Dostava je besplatna za sve porudžbine (cena u podešavanjima je 0), a tekstovi su pominjali
+  // 300 RSD i prag od 2.000 RSD. Duža pravila idu prva, da kraća ne pokvare rečenicu.
+  [
+    /Cena dostave je 300 RSD po porudžbini\. Za porudžbine od 2\.000 RSD dostava je besplatna\./g,
+    'Dostava je besplatna za sve porudžbine.',
+  ],
+  [
+    /Dostava košta 300 RSD po porudžbini, a za porudžbine od 2\.000 RSD je besplatna\./g,
+    'Dostava je besplatna za sve porudžbine.',
+  ],
+  [
+    /Dostava 300 RSD, besplatna za porudžbine od 2\.000 RSD\./g,
+    'Dostava je besplatna za sve porudžbine.',
+  ],
+  [/ za 300 RSD, besplatno od 2\.000 RSD/g, ', besplatno za sve porudžbine'],
+  [/300 RSD za dostavu, besplatno od 2\.000 RSD/g, 'besplatna dostava'],
 ]
 
 const fix = (s: string) => RULES.reduce((out, [from, to]) => out.replace(from, to), s)
 
-/** Menja samo "text" čvorove u Lexical sadržaju; struktura dokumenta ostaje ista. */
+/**
+ * Polja koja nose tekst za čitanje. Namerno nije "svaki string": slug, blockType, url i slično
+ * ne smeju da se diraju. Pored Lexical čvorova ("text"), ovde su i blokovi tipa česta pitanja.
+ */
+const TEXT_KEYS = new Set([
+  'text',
+  'question',
+  'answer',
+  'heading',
+  'subheading',
+  'subtitle',
+  'intro',
+  'body',
+  'caption',
+  'note',
+  'description',
+])
+
+/** Menja samo tekstualna polja; struktura dokumenta ostaje ista. */
 function fixNodes(value: unknown): { value: unknown; changed: number } {
   let changed = 0
   const walk = (node: unknown): unknown => {
@@ -28,7 +62,7 @@ function fixNodes(value: unknown): { value: unknown; changed: number } {
     if (node && typeof node === 'object') {
       const out: Record<string, unknown> = { ...(node as Record<string, unknown>) }
       for (const [key, val] of Object.entries(out)) {
-        if (key === 'text' && typeof val === 'string') {
+        if (TEXT_KEYS.has(key) && typeof val === 'string') {
           const next = fix(val)
           if (next !== val) changed++
           out[key] = next

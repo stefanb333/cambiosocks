@@ -281,7 +281,7 @@ async function seed() {
       defaultCare:
         'Pranje na 30 do 40°C sa sličnim bojama, naopačke. Bez izbeljivača i bez sušenja u mašini.',
       shippingInfo:
-        'Šaljemo kurirskom službom BEX, isporuka na teritoriji Srbije za 1 do 5 radnih dana. Dostava 300 RSD, besplatna za porudžbine od 2.000 RSD. Plaćanje pouzećem. Zamena veličine u roku od 14 dana.',
+        'Šaljemo kurirskom službom BEX, isporuka na teritoriji Srbije za 1 do 5 radnih dana. Dostava je besplatna za sve porudžbine. Plaćanje pouzećem. Zamena veličine u roku od 14 dana.',
       lowStockThreshold: 5,
     },
   })

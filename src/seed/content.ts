@@ -44,17 +44,26 @@ export const images = {
   socksBlack: { file: 'product-socks-black.png', alt: 'Par crnih Cambio čarapa' },
   // Pojedinačni par (D-085): svaka boja ima tačno dve fotografije, flat pa model. Flat je ujedno
   // sličica boje na stranici proizvoda. Stare model fotografije ostaju tamo gde nove ne postoje.
-  elRombFlat: { file: 'par-elegant-romb-flat.jpg', alt: 'Crne elegantne muške čarape sa sitnim rombom, par' },
+  elRombFlat: {
+    file: 'par-elegant-romb-flat.jpg',
+    alt: 'Crne elegantne muške čarape sa sitnim rombom, par',
+  },
   elCrnaModel: {
     file: 'single-elegant-crna-model.jpg',
     alt: 'Muškarac u crnim elegantnim čarapama',
   },
-  elKaroFlat: { file: 'par-elegant-karo-flat.jpg', alt: 'Crne elegantne muške čarape sa sivim karo dezenom, par' },
+  elKaroFlat: {
+    file: 'par-elegant-karo-flat.jpg',
+    alt: 'Crne elegantne muške čarape sa sivim karo dezenom, par',
+  },
   elKaroModel: {
     file: 'single-elegant-karo-model.jpg',
     alt: 'Muškarac u crnim elegantnim čarapama sa karo dezenom',
   },
-  elTegetFlat: { file: 'par-elegant-teget-flat.jpg', alt: 'Teget elegantne muške čarape sa karo dezenom, par' },
+  elTegetFlat: {
+    file: 'par-elegant-teget-flat.jpg',
+    alt: 'Teget elegantne muške čarape sa karo dezenom, par',
+  },
   elTegetModel: {
     file: 'single-elegant-teget-model.jpg',
     alt: 'Muškarac u teget elegantnim čarapama sa karo dezenom',
@@ -90,17 +99,29 @@ export const images = {
   spCrnaFlat: { file: 'par-sport-crna-flat.jpg', alt: 'Crne sportske čarape od pamuka, par' },
   spSivaFlat: { file: 'par-sport-siva-flat.jpg', alt: 'Sive sportske čarape od pamuka, par' },
   spTegetFlat: { file: 'par-sport-teget-flat.jpg', alt: 'Teget sportske čarape od pamuka, par' },
-  spmBelaModel: { file: 'par-sport-muske-bela-model.jpg', alt: 'Muškarac u belim sportskim čarapama' },
+  spmBelaModel: {
+    file: 'par-sport-muske-bela-model.jpg',
+    alt: 'Muškarac u belim sportskim čarapama',
+  },
   spmCrnaModel: {
     file: 'single-sport-muske-crna-model.jpg',
     alt: 'Muškarac u crnim sportskim čarapama',
   },
-  spmSivaModel: { file: 'par-sport-muske-siva-model.jpg', alt: 'Muškarac u sivim sportskim čarapama' },
-  spmTegetModel: { file: 'par-sport-muske-teget-model.jpg', alt: 'Muškarac u teget sportskim čarapama' },
+  spmSivaModel: {
+    file: 'par-sport-muske-siva-model.jpg',
+    alt: 'Muškarac u sivim sportskim čarapama',
+  },
+  spmTegetModel: {
+    file: 'par-sport-muske-teget-model.jpg',
+    alt: 'Muškarac u teget sportskim čarapama',
+  },
   spzBelaModel: { file: 'par-sport-zenske-bela-model.jpg', alt: 'Žena u belim sportskim čarapama' },
   spzCrnaModel: { file: 'par-sport-zenske-crna-model.jpg', alt: 'Žena u crnim sportskim čarapama' },
   spzSivaModel: { file: 'par-sport-zenske-siva-model.jpg', alt: 'Žena u sivim sportskim čarapama' },
-  spzTegetModel: { file: 'par-sport-zenske-teget-model.jpg', alt: 'Žena u teget sportskim čarapama' },
+  spzTegetModel: {
+    file: 'par-sport-zenske-teget-model.jpg',
+    alt: 'Žena u teget sportskim čarapama',
+  },
   // Paketi od 12 pari (D-089): koriste iste nove flat fotografije kao pojedinačni proizvodi,
   // deljene po alt tekstu; nema zasebnih "bundle" slika ni žute pozadine.
   aboutHero: {
@@ -178,7 +199,7 @@ Svaki model možete da kupite kao pojedinačan par ili u paketu od 12 pari iste 
 ## Kako da izaberem veličinu?
 Veličina čarapa je označena brojem obuće, na primer 41-46. Izaberite raspon u koji upada broj vaših cipela; detalje i savete za granične brojeve naći ćete u vodiču [Tabela veličina čarapa](/blog/tabela-velicina-carapa).
 ## Dostava i plaćanje
-Porudžbine isporučuje kurirska služba BEX za 1 do 5 radnih dana na celoj teritoriji Srbije; dostava je 300 RSD, a za porudžbine od 2.000 RSD besplatna. Plaćate pouzećem, a fiskalni račun stiže uz pošiljku. Sve uslove pogledajte na stranici [Dostava i plaćanje](/dostava).`,
+Porudžbine isporučuje kurirska služba BEX za 1 do 5 radnih dana na celoj teritoriji Srbije; dostava je besplatna za sve porudžbine. Plaćate pouzećem, a fiskalni račun stiže uz pošiljku. Sve uslove pogledajte na stranici [Dostava i plaćanje](/dostava).`,
   },
   {
     key: 'muske',
@@ -414,7 +435,9 @@ const NAVY = { value: 'Teget', swatch: '#1F2A44' }
 const GRAY = { value: 'Siva', swatch: '#CBCBCB' }
 
 /** Par (D-085): svaka boja ima flat pa model; flat je i slika boje (sličica u izboru boje). */
-const pairs = (...list: [color: Omit<Color, 'image'>, flat: ImageKey, model: ImageKey][]): Variant => ({
+const pairs = (
+  ...list: [color: Omit<Color, 'image'>, flat: ImageKey, model: ImageKey][]
+): Variant => ({
   images: list.flatMap(([, flat, model]) => [flat, model]),
   colors: list.map(([color, flat]) => ({ ...color, image: flat })),
 })
@@ -743,7 +766,7 @@ export const faq = {
     {
       question: 'Koliko košta dostava i koliko traje?',
       answer:
-        'Dostava košta 300 RSD po porudžbini, a za porudžbine od 2.000 RSD je besplatna. Šaljemo kurirskom službom BEX i pošiljka stiže za 1 do 5 radnih dana, na celoj teritoriji Srbije.',
+        'Dostava je besplatna za sve porudžbine. Šaljemo kurirskom službom BEX i pošiljka stiže za 1 do 5 radnih dana, na celoj teritoriji Srbije.',
     },
     {
       question: 'Kako se plaća porudžbina?',
@@ -846,7 +869,7 @@ export const pageSeo: Record<string, { title: string; description: string }> = {
   dostava: {
     title: 'Dostava i plaćanje',
     description:
-      'Dostava čarapa širom Srbije kurirskom službom BEX za 300 RSD, besplatno od 2.000 RSD. Isporuka za 1 do 5 radnih dana, plaćanje pouzećem, fiskalni račun uz pošiljku.',
+      'Dostava čarapa širom Srbije kurirskom službom BEX, besplatno za sve porudžbine. Isporuka za 1 do 5 radnih dana, plaćanje pouzećem, fiskalni račun uz pošiljku.',
   },
   'uslovi-koriscenja': {
     title: 'Uslovi korišćenja i kupovine',

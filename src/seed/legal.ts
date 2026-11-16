@@ -136,7 +136,7 @@ Isporučujemo na celoj teritoriji Republike Srbije, kurirskom službom BEX, na a
 Pošiljka stiže u roku od 1 do 5 radnih dana od porudžbine. Porudžbine primljene vikendom i praznikom obrađujemo prvog sledećeg radnog dana.
 
 ## Cena dostave
-Cena dostave je 300 RSD po porudžbini. Za porudžbine od 2.000 RSD dostava je besplatna. Cena dostave se prikazuje u korpi i u pregledu porudžbine, pre nego što porudžbinu pošaljete.
+Dostava je besplatna za sve porudžbine. Cena dostave se prikazuje u korpi i u pregledu porudžbine, pre nego što porudžbinu pošaljete.
 
 ## Plaćanje
 Plaćanje je pouzećem: ukupan iznos (proizvodi i dostava) plaćate kuriru gotovinom prilikom preuzimanja pošiljke. Fiskalni račun dobijate uz pošiljku.

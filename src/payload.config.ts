@@ -36,6 +36,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname) },
+    // Admin je samo svetao (D-098): bez tamne teme i bez prekidača u podešavanjima naloga.
+    theme: 'light',
     // Cambio tema admina (D-059): fontovi, logo, pregled prodavnice; stilovi u app/(payload)/custom.scss
     components: {
       graphics: {
