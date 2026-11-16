@@ -512,15 +512,17 @@ a {
 }
 
 /* ================= Prijava ================= */
+/* Prijava: svetla podloga, bela kartica (admin je samo svetao, D-098). */
 .template-minimal {
-  background: linear-gradient(135deg, #0462cd, #0b3f86);
+  background: var(--theme-elevation-50);
 }
 
 .template-minimal__wrap {
   padding: calc(var(--base) * 2) calc(var(--base) * 1.8);
-  border-radius: 28px;
+  border: 1px solid var(--cambio-line);
+  border-radius: 24px;
   background: var(--cambio-surface);
-  box-shadow: 0 12px 32px -16px rgb(0 0 0 / 0.4);
+  box-shadow: var(--cambio-shadow);
 }
 
 /* ================= Pregled prodavnice (Dashboard.tsx) ================= */
