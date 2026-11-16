@@ -4,12 +4,13 @@
  * Podešavanjima prodavnice; sve ostalo što je klijent menjao ostaje netaknuto.
  *
  * Provera bez upisa:  npm run payload -- run scripts/update-dostava.ts
- * Upis u bazu:        npm run payload -- run scripts/update-dostava.ts --upisi
+ * Upis u bazu:        UPISI=1 npm run payload -- run scripts/update-dostava.ts
  */
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
-const WRITE = process.argv.includes('--upisi')
+// Zastavica ide kroz okruženje: payload CLI ne prosleđuje dodatne argumente skripti.
+const WRITE = process.env.UPISI === '1' || process.argv.includes('--upisi')
 
 const RULES: [RegExp, string][] = [
   [/1 do 3 radna dana/g, '1 do 5 radnih dana'],
@@ -44,10 +45,10 @@ const payload = await getPayload({ config })
 console.log(WRITE ? '=== UPIS U BAZU ===' : '=== PROVERA (bez upisa) ===')
 
 // 1) Podešavanja prodavnice: rok isporuke i tekst "Dostava i zamena" na stranici proizvoda.
-const shop = (await payload.findGlobal({ slug: 'shop-settings', depth: 0 })) as Record<
-  string,
-  unknown
->
+const shop = (await payload.findGlobal({
+  slug: 'shop-settings',
+  depth: 0,
+})) as unknown as Record<string, unknown>
 const settingsPatch: Record<string, string> = {}
 for (const field of ['deliveryEstimate', 'shippingInfo'] as const) {
   const before = typeof shop[field] === 'string' ? (shop[field] as string) : ''
@@ -62,23 +63,62 @@ if (Object.keys(settingsPatch).length && WRITE) {
   console.log('  -> sačuvano')
 }
 
-// 2) Stranice: zamena samo u tekstu, uz zadržavanje ostalog sadržaja.
+/** SEO naslov i opis (meta description, og, JSON-LD) čuvaju se odvojeno od sadržaja. */
+function fixSeo(seo: unknown): { value: Record<string, unknown>; changed: number } | null {
+  if (!seo || typeof seo !== 'object') return null
+  const out = { ...(seo as Record<string, unknown>) }
+  let changed = 0
+  for (const key of ['title', 'description'] as const) {
+    const val = out[key]
+    if (typeof val !== 'string') continue
+    const next = fix(val)
+    if (next !== val) {
+      out[key] = next
+      changed++
+    }
+  }
+  return changed ? { value: out, changed } : null
+}
+
+// 2) Stranice: zamena u tekstu sadržaja i u SEO opisu, uz zadržavanje ostalog.
 const pages = await payload.find({ collection: 'pages', limit: 200, depth: 0, pagination: false })
 for (const page of pages.docs) {
-  const { value, changed } = fixNodes(page.layout)
-  if (!changed) continue
-  console.log(`\nStranica /${page.slug} — ${changed} ${changed === 1 ? 'izmena' : 'izmena'}`)
+  const body = fixNodes(page.layout)
+  const seo = fixSeo((page as { seo?: unknown }).seo)
+  const total = body.changed + (seo?.changed ?? 0)
+  if (!total) continue
+  console.log(`\nStranica /${page.slug} — sadržaj: ${body.changed}, SEO: ${seo?.changed ?? 0}`)
   if (WRITE) {
-    await payload.update({
-      collection: 'pages',
-      id: page.id,
-      data: { layout: value as never },
-    })
+    const data: Record<string, unknown> = {}
+    if (body.changed) data.layout = body.value
+    if (seo) data.seo = seo.value
+    await payload.update({ collection: 'pages', id: page.id, data: data as never })
     console.log('  -> sačuvano')
   }
 }
 
-// 3) Proizvodi: opis i kratak opis mogu pominjati rok ili kurira.
+// 3) Objave na blogu: isti tekst može stajati u uvodu i SEO opisu.
+const posts = await payload.find({ collection: 'posts', limit: 200, depth: 0, pagination: false })
+for (const post of posts.docs) {
+  const body = fixNodes((post as { content?: unknown }).content)
+  const seo = fixSeo((post as { seo?: unknown }).seo)
+  const excerptRaw = (post as { excerpt?: unknown }).excerpt
+  const excerpt = typeof excerptRaw === 'string' ? fix(excerptRaw) : null
+  const excerptChanged = excerpt !== null && excerpt !== excerptRaw
+  const total = body.changed + (seo?.changed ?? 0) + (excerptChanged ? 1 : 0)
+  if (!total) continue
+  console.log(`\nObjava /${post.slug} — ${total} izmena`)
+  if (WRITE) {
+    const data: Record<string, unknown> = {}
+    if (body.changed) data.content = body.value
+    if (seo) data.seo = seo.value
+    if (excerptChanged) data.excerpt = excerpt
+    await payload.update({ collection: 'posts', id: post.id, data: data as never })
+    console.log('  -> sačuvano')
+  }
+}
+
+// 4) Proizvodi: opis, kratak opis i SEO mogu pominjati rok ili kurira.
 const products = await payload.find({
   collection: 'products',
   limit: 200,
@@ -91,6 +131,8 @@ for (const p of products.docs) {
   if (fix(short) !== short) patch.shortDescription = fix(short)
   const desc = fixNodes(p.description)
   if (desc.changed) patch.description = desc.value
+  const seo = fixSeo((p as { seo?: unknown }).seo)
+  if (seo) patch.seo = seo.value
   if (!Object.keys(patch).length) continue
   console.log(`\nProizvod "${p.title}" — ${Object.keys(patch).join(', ')}`)
   if (WRITE) {
@@ -99,5 +141,5 @@ for (const p of products.docs) {
   }
 }
 
-console.log(WRITE ? '\nGotovo.' : '\nNijedna izmena nije upisana. Dodaj --upisi za upis.')
+console.log(WRITE ? '\nGotovo.' : '\nNijedna izmena nije upisana. Pokreni sa UPISI=1 za upis.')
 process.exit(0)

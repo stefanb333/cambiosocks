@@ -73,8 +73,11 @@ export const Orders: CollectionConfig = {
           path: '@/components/admin/ExportCsvButton#ExportCsvButton',
           clientProps: {
             collection: 'orders',
-            // Porudžbine koje čekaju slanje, za uvoz pošiljki u BEX (D-079)
-            extra: [{ label: 'Izvoz za kurira (CSV)', url: '/api/orders/courier-csv' }],
+            // Porudžbine koje čekaju slanje: adresnice za slip štampač (D-097) i uvoz u BEX (D-079)
+            extra: [
+              { label: 'Štampaj adresnice', url: '/api/orders/labels' },
+              { label: 'Izvoz za kurira (CSV)', url: '/api/orders/courier-csv' },
+            ],
           },
         },
       ],

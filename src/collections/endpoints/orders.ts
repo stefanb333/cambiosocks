@@ -25,12 +25,38 @@ async function orderById(req: PayloadRequest): Promise<Order | null> {
     .catch(() => null)
 }
 
-/** Adresnica za štampu (nalepnica 100x150 mm): pošiljalac, primalac, otkupnina, referenca. */
-function labelHtml(s: Shipment): string {
+/** Jedna adresnica (nalepnica 100x150 mm): pošiljalac, primalac, otkupnina, referenca. */
+function labelCard(s: Shipment): string {
   const row = (label: string, value: string) =>
     value ? `<p><span>${esc(label)}</span><strong>${esc(value)}</strong></p>` : ''
+  return `<div class="label">
+  <div class="from"><h2>Pošiljalac</h2>${esc(COMPANY.name)}<br>${esc(COMPANY.street)}, ${esc(COMPANY.city)}<br>${esc(COMPANY.phone)}</div>
+  <div class="to"><h2>Primalac</h2><div class="name">${esc(s.recipient)}</div>${esc(s.street)}<br>${esc(s.postalCode)} ${esc(s.city)}<br>Tel: ${esc(s.phone)}</div>
+  <div class="cod"><small>Otkupnina</small>${s.cod ? `${s.cod} RSD` : 'NEMA (plaćeno)'}</div>
+  <div class="meta">
+    ${row('Sadržaj', s.contents)}
+    ${row('Masa (procena)', `${s.weightKg} kg`)}
+    ${row('Napomena', s.note)}
+  </div>
+  <div class="ref">${esc(s.reference)}</div>
+</div>`
+}
+
+/**
+ * Dokument za štampu na slip (termalnom) štampaču: svaka adresnica je zasebna strana
+ * 100x150 mm, prozor za štampu se otvara sam. Jedna porudžbina ili ceo spisak za slanje.
+ */
+function labelDocument(shipments: Shipment[]): string {
+  const title =
+    shipments.length === 1
+      ? `Adresnica ${shipments[0].reference}`
+      : `Adresnice (${shipments.length})`
+  const hint =
+    shipments.length === 1
+      ? 'Format nalepnice 100x150 mm.'
+      : `${shipments.length} adresnica, svaka na svojoj nalepnici 100x150 mm.`
   return `<!doctype html>
-<html lang="sr"><head><meta charset="utf-8"><title>Adresnica ${esc(s.reference)}</title>
+<html lang="sr"><head><meta charset="utf-8"><title>${esc(title)}</title>
 <style>
   @page { size: 100mm 150mm; margin: 6mm; }
   * { box-sizing: border-box; }
@@ -45,22 +71,13 @@ function labelHtml(s: Shipment): string {
   .meta p { display: flex; justify-content: space-between; gap: 3mm; margin: 0 0 1mm; font-size: 9pt; }
   .meta span { color: #444; }
   .ref { margin-top: auto; text-align: center; font-size: 20pt; font-weight: 700; letter-spacing: .04em; }
+  .label + .label { page-break-before: always; break-before: page; }
   .no-print { margin: 6mm 0; font: 14px Arial; }
   @media print { .no-print { display: none; } }
 </style></head>
 <body>
-<div class="no-print"><button onclick="print()">Odštampaj</button> Format nalepnice 100x150 mm.</div>
-<div class="label">
-  <div class="from"><h2>Pošiljalac</h2>${esc(COMPANY.name)}<br>${esc(COMPANY.street)}, ${esc(COMPANY.city)}<br>${esc(COMPANY.phone)}</div>
-  <div class="to"><h2>Primalac</h2><div class="name">${esc(s.recipient)}</div>${esc(s.street)}<br>${esc(s.postalCode)} ${esc(s.city)}<br>Tel: ${esc(s.phone)}</div>
-  <div class="cod"><small>Otkupnina</small>${s.cod ? `${s.cod} RSD` : 'NEMA (plaćeno)'}</div>
-  <div class="meta">
-    ${row('Sadržaj', s.contents)}
-    ${row('Masa (procena)', `${s.weightKg} kg`)}
-    ${row('Napomena', s.note)}
-  </div>
-  <div class="ref">${esc(s.reference)}</div>
-</div>
+<div class="no-print"><button onclick="print()">Odštampaj</button> ${esc(hint)}</div>
+${shipments.map(labelCard).join('\n')}
 <script>window.addEventListener('load', () => setTimeout(() => print(), 300))</script>
 </body></html>`
 }
@@ -99,6 +116,31 @@ export const orderEndpoints: Endpoint[] = [
     },
   },
   {
+    // Sve adresnice za porudžbine koje čekaju slanje, jedna za drugom, za slip štampač (D-097).
+    path: '/labels',
+    method: 'get',
+    handler: async (req) => {
+      if (!isStaff({ req })) return forbidden()
+      const { docs } = await req.payload.find({
+        collection: 'orders',
+        where: { status: { in: TO_SHIP } },
+        sort: 'createdAt',
+        pagination: false,
+        depth: 0,
+        overrideAccess: true,
+      })
+      if (!docs.length) {
+        return new Response(
+          `<!doctype html><meta charset="utf-8"><p style="font:16px Arial;padding:24px">Nema porudžbina koje čekaju slanje.</p>`,
+          { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } },
+        )
+      }
+      return new Response(labelDocument(docs.map(shipmentFromOrder)), {
+        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' },
+      })
+    },
+  },
+  {
     path: '/:id/courier',
     method: 'get',
     handler: async (req) => {
@@ -119,7 +161,7 @@ export const orderEndpoints: Endpoint[] = [
       if (!isStaff({ req })) return forbidden()
       const order = await orderById(req)
       if (!order) return new Response('Porudžbina nije pronađena.', { status: 404 })
-      return new Response(labelHtml(shipmentFromOrder(order)), {
+      return new Response(labelDocument([shipmentFromOrder(order)]), {
         headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' },
       })
     },
