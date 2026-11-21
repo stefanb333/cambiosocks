@@ -646,15 +646,28 @@ html.motion .drop-in {
   }
 }
 
-/* ---------- Navigacija: podvlaka koja se "iscrta" sleva ---------- */
-.nav-link {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-  transition: background-size 0.35s var(--ease-out-expo);
+/* ---------- Navigacija: žuti pill na hover (margina poništava padding, razmak ostaje isti) ---------- */
+.nav-pill {
+  margin-inline: -12px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  transition:
+    background-color 0.25s var(--ease-out-expo),
+    color 0.25s var(--ease-out-expo);
 }
 
-.nav-link:hover,
-.nav-link:focus-visible {
-  background-size: 100% 1px;
+.nav-pill:hover,
+.nav-pill:focus-visible,
+.nav-pill[aria-expanded='true'] {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+/* Bela strelica iz providnog headera postaje tamna na žutoj podlozi */
+.nav-pill:hover img,
+.nav-pill:focus-visible img,
+.nav-pill[aria-expanded='true'] img {
+  filter: brightness(0);
 }
 
 /* ---------- FAQ: glatko otvaranje odgovora (Chrome 131+, ostali otvaraju odmah) ---------- */

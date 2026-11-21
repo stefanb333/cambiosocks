@@ -36,7 +36,7 @@ export default async function HomePage() {
         <div className="bg-white">
           <MarqueeCross first={BRAND_FACTS} second={BRAND_RANGE} />
         </div>
-        <Featured data={home.featured} />
+        <Featured data={home.featured} listing={products} />
         <CtaBanner
           headingLine1={home.ctaBanner?.headingLine1}
           headingLine2={home.ctaBanner?.headingLine2}

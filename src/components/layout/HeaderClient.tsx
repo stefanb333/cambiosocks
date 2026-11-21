@@ -179,7 +179,7 @@ function DesktopNav({ items, light = false }: { items: NavItem[]; light?: boolea
           <Link
             key={item.label}
             href={item.url}
-            className={`nav-link text-center text-[16px] leading-6 whitespace-nowrap ${light ? 'text-white' : 'text-black'}`}
+            className={`nav-pill text-center text-[16px] leading-6 whitespace-nowrap ${light ? 'text-white' : 'text-black'}`}
           >
             {item.label}
           </Link>
@@ -222,7 +222,7 @@ function Dropdown({ item, light }: { item: NavItem; light: boolean }) {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1.5 text-center text-[16px] leading-6 whitespace-nowrap ${light ? 'text-white' : 'text-black'}`}
+        className={`nav-pill flex items-center gap-1.5 text-center text-[16px] leading-6 whitespace-nowrap ${light ? 'text-white' : 'text-black'}`}
       >
         {item.label}
         <span className="flex h-[5px] w-[10px] items-center justify-center" aria-hidden>
@@ -248,7 +248,7 @@ function Dropdown({ item, light }: { item: NavItem; light: boolean }) {
           <li>
             <Link
               href={item.url}
-              className="block rounded-[8px] px-3 py-2 text-[15px] hover:bg-neutral-100"
+              className="block rounded-[8px] px-3 py-2 text-[15px] transition-colors duration-200 hover:bg-yellow focus-visible:bg-yellow"
               onClick={() => setOpen(false)}
             >
               Sve čarape
@@ -258,7 +258,7 @@ function Dropdown({ item, light }: { item: NavItem; light: boolean }) {
             <li key={child.url}>
               <Link
                 href={child.url}
-                className="block rounded-[8px] px-3 py-2 text-[15px] hover:bg-neutral-100"
+                className="block rounded-[8px] px-3 py-2 text-[15px] transition-colors duration-200 hover:bg-yellow focus-visible:bg-yellow"
                 onClick={() => setOpen(false)}
               >
                 {child.label}

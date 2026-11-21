@@ -1,24 +1,25 @@
 import { WordReveal } from '@/components/motion/WordReveal'
-import { FeaturedCard } from '@/components/product/FeaturedCard'
-import { isProduct } from '@/lib/data'
-import type { HomePage, Product } from '@/payload-types'
+import { ListingCard } from '@/components/product/ListingCard'
+import type { ListingProduct } from '@/lib/catalog/listing-shared'
+import type { HomePage } from '@/payload-types'
 
-type Props = { data: HomePage['featured'] }
+type Props = { data: HomePage['featured']; listing: ListingProduct[] }
 
 /**
- * Figma "featured" (25:509): traka 1439x128 sa gradijentom (radijus 16px), 4 kartice 325x501
- * sa razmakom 22px (širina reda 1366px), tekst ispod 18/28.
- * Telefon: kartice u horizontalnom nizu sa prevlačenjem, isti izgled kartice kao u Figmi.
+ * Izdvojeni proizvodi: ista kartica kao u prodavnici (ListingCard), u mreži 2/3/4 kolone.
+ * Redosled i izbor određuje polje "Izdvojeni proizvodi" na početnoj strani u adminu (do 8);
+ * neaktivni proizvodi nisu u listi, pa se ne prikazuju.
  */
-export function Featured({ data }: Props) {
+export function Featured({ data, listing }: Props) {
+  const byId = new Map(listing.map((p) => [p.id, p]))
   const products = (data?.products ?? [])
-    .filter(isProduct)
-    .filter((p) => (p as Product).status === 'active') as Product[]
+    .map((p) => byId.get(typeof p === 'object' ? p.id : p))
+    .filter((p): p is ListingProduct => Boolean(p))
   if (!products.length) return null
 
   return (
     <section
-      className="flex flex-col items-center gap-10 bg-white pb-12 lg:min-h-[907px] lg:gap-[70px] lg:pb-[60px]"
+      className="flex flex-col items-center gap-10 bg-white pb-12 lg:gap-[70px] lg:pb-[60px]"
       aria-labelledby="featured-naslov"
     >
       <div
@@ -32,19 +33,15 @@ export function Featured({ data }: Props) {
         />
       </div>
 
-      <ul className="snap-row w-full scroll-px-4 gap-3 px-4 xl:grid xl:w-[min(1366px,calc(100%-2*var(--gutter)+90px))] xl:grid-cols-4 xl:gap-[22px] xl:overflow-visible xl:px-0 lg:scroll-px-[var(--gutter)] lg:px-[var(--gutter)]">
+      <ul className="grid w-full max-w-[1306px] grid-cols-2 gap-x-3 gap-y-8 px-[var(--gutter)] md:grid-cols-3 md:gap-x-5 lg:grid-cols-4 lg:gap-y-12 xl:px-0">
         {products.map((product, i) => (
           <li
             key={product.id}
             data-reveal="card"
             className="card-lift"
-            style={{ '--i': i } as React.CSSProperties}
+            style={{ '--i': i % 4 } as React.CSSProperties}
           >
-            <FeaturedCard
-              product={product}
-              buttonLabel={data?.buttonLabel || 'Dodaj u Korpu'}
-              colorsLabel={data?.colorsLabel || 'Dostupne Boje'}
-            />
+            <ListingCard product={product} priority={i < 2} />
           </li>
         ))}
       </ul>
