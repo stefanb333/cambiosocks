@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import { formatPrice } from '@/lib/money'
-import { DashIcon } from './DashboardIcons'
 import type { ServerProps } from 'payload'
 
 /**
- * Pregled prodavnice na početnoj strani admina (D-059): pozdrav sa brzim akcijama, brojke za
- * poslednjih 30 dana sa poređenjem, prihod po danu, poslednje porudžbine i varijante sa niskom
- * zalihom. Server komponenta: podaci se čitaju direktno iz baze, bez JS-a u pregledaču.
- * Ispod nje ostaju Payload kartice kolekcija.
+ * Pregled prodavnice na početnoj strani admina: šta čeka obradu, brojke za poslednjih 30 dana,
+ * prihod po danu, niska zaliha, poslednje porudžbine i prečice do svih delova admina.
+ * Server komponenta: podaci se čitaju direktno iz baze. Ravan, miran izgled bez ikonica i senki.
  */
 
 const TZ = 'Europe/Belgrade'
@@ -147,65 +145,41 @@ export async function Dashboard({ payload, user }: ServerProps) {
   }).format(now)
 
   const stats = [
+    { label: 'Prihod', value: formatPrice(revenue), change: trend(revenue, sum(previous)) },
     {
-      icon: 'novac',
-      tone: 'green',
-      label: 'Prihod, 30 dana',
-      value: formatPrice(revenue),
-      change: trend(revenue, sum(previous)),
-    },
-    {
-      icon: 'torba',
-      tone: 'blue',
-      label: 'Porudžbine, 30 dana',
+      label: 'Porudžbine',
       value: String(current.length),
       change: trend(current.length, previous.length),
     },
     {
-      icon: 'korpa',
-      tone: 'violet',
       label: 'Prosečna korpa',
       value: formatPrice(average),
       change: trend(average, previous.length ? sum(previous) / previous.length : 0),
     },
-    {
-      icon: 'kutija',
-      tone: 'amber',
-      label: 'Aktivni proizvodi',
-      value: String(activeProducts.totalDocs),
-      change: null,
-    },
+    { label: 'Aktivni proizvodi', value: String(activeProducts.totalDocs), change: null },
   ]
 
-  /** Šta čeka obradu — svaka kartica vodi pravo na filtriranu listu (D-095). */
+  /** Šta čeka obradu: svako polje vodi pravo na filtriranu listu. */
   const tasks = [
     {
-      icon: 'zvono',
-      tone: 'blue',
       label: 'Nove porudžbine',
       count: pending.totalDocs,
       href: `${ORDERS}?where[status][equals]=nova`,
       done: 'Nema novih',
     },
     {
-      icon: 'kamion',
-      tone: 'violet',
       label: 'Za slanje',
       count: toShip.totalDocs,
       href: `${ORDERS}?where[status][equals]=potvrdjena`,
-      done: 'Sve poslato',
+      done: 'Sve je poslato',
     },
     {
-      icon: 'zaliha',
-      tone: 'amber',
       label: 'Niska zaliha',
       count: lowStock.totalDocs,
       href: '/admin/collections/variants?sort=stock',
       done: 'Zaliha je uredna',
     },
     {
-      icon: 'zvezda',
-      tone: 'green',
       label: 'Recenzije na čekanju',
       count: pendingReviews.totalDocs,
       href: '/admin/collections/reviews?where[status][equals]=pending',
@@ -213,40 +187,52 @@ export async function Dashboard({ payload, user }: ServerProps) {
     },
   ]
 
-  /** Prečice do glavnih delova admina, da se klijent lakše snađe gde je šta. */
+  /** Svi delovi admina na jednom mestu, grupisani kao u bočnoj navigaciji. */
+  const C = '/admin/collections'
+  const G = '/admin/globals'
   const shortcuts = [
     {
-      icon: 'kutija',
-      label: 'Proizvodi',
-      hint: 'Cene, slike, opis',
-      href: '/admin/collections/products',
-    },
-    { icon: 'torba', label: 'Porudžbine', hint: 'Obrada i slanje', href: ORDERS },
-    {
-      icon: 'zaliha',
-      label: 'Zalihe',
-      hint: 'Varijante i stanje',
-      href: '/admin/collections/variants',
-    },
-    { icon: 'zvezda', label: 'Recenzije', hint: 'Odobravanje', href: '/admin/collections/reviews' },
-    {
-      icon: 'stranica',
-      label: 'Stranice',
-      hint: 'Tekstovi sajta',
-      href: '/admin/collections/pages',
+      title: 'Prodavnica',
+      links: [
+        { label: 'Proizvodi', href: `${C}/products` },
+        { label: 'Varijante i zalihe', href: `${C}/variants` },
+        { label: 'Kolekcije', href: `${C}/shop-collections` },
+      ],
     },
     {
-      icon: 'zupcanik',
-      label: 'Podešavanja',
-      hint: 'Dostava i kontakt',
-      href: '/admin/globals/shop-settings',
+      title: 'Prodaja',
+      links: [
+        { label: 'Porudžbine', href: ORDERS },
+        { label: 'Kupci', href: `${C}/customers` },
+        { label: 'Popusti', href: `${C}/discounts` },
+        { label: 'Newsletter prijave', href: `${C}/subscribers` },
+        { label: 'Recenzije', href: `${C}/reviews` },
+      ],
+    },
+    {
+      title: 'Sadržaj',
+      links: [
+        { label: 'Stranice', href: `${C}/pages` },
+        { label: 'Blog', href: `${C}/posts` },
+        { label: 'Mediji', href: `${C}/media` },
+      ],
+    },
+    {
+      title: 'Sajt',
+      links: [
+        { label: 'Početna stranica', href: `${G}/home-page` },
+        { label: 'Zaglavlje (meni)', href: `${G}/header` },
+        { label: 'Podnožje', href: `${G}/footer` },
+        { label: 'Promo traka', href: `${G}/promo-bar` },
+        { label: 'Podešavanja prodavnice', href: `${G}/shop-settings` },
+      ],
     },
   ]
 
   return (
     <div className="cambio-dash">
-      <section className="cambio-dash__hero">
-        <div className="cambio-dash__hero-text">
+      <header className="cambio-dash__head">
+        <div>
           <p className="cambio-dash__eyebrow">{dateLine}</p>
           <h1 className="cambio-dash__title">
             {greeting(now)}
@@ -262,81 +248,65 @@ export async function Dashboard({ payload, user }: ServerProps) {
           </p>
         </div>
         <div className="cambio-dash__actions">
-          <Link
-            className="cambio-pill cambio-pill--yellow"
-            href="/admin/collections/products/create"
-          >
+          <Link className="cambio-btn cambio-btn--primary" href={`${C}/products/create`}>
             Novi proizvod
           </Link>
-          <Link
-            className="cambio-pill cambio-pill--glass"
-            href={`${ORDERS}?where[status][equals]=nova`}
-          >
-            Za obradu
-            {pending.totalDocs ? (
-              <span className="cambio-pill__count">{pending.totalDocs}</span>
-            ) : null}
-          </Link>
-          {/* Recenzije kupaca na čekanju (D-068) */}
-          <Link
-            className="cambio-pill cambio-pill--glass"
-            href="/admin/collections/reviews?where[status][equals]=pending"
-          >
-            Recenzije
-            {pendingReviews.totalDocs ? (
-              <span className="cambio-pill__count">{pendingReviews.totalDocs}</span>
-            ) : null}
-          </Link>
-          <a className="cambio-pill cambio-pill--glass" href="/" target="_blank" rel="noreferrer">
+          <a className="cambio-btn" href="/" target="_blank" rel="noreferrer">
             Otvori prodavnicu ↗
           </a>
         </div>
+      </header>
+
+      <section aria-labelledby="cambio-todo-title">
+        <h2 id="cambio-todo-title" className="cambio-dash__label">
+          Čeka obradu
+        </h2>
+        <div className="cambio-strip">
+          {tasks.map((t) => (
+            <Link
+              key={t.label}
+              href={t.href}
+              className="cambio-strip__cell cambio-strip__cell--link"
+            >
+              <span className="cambio-strip__label">{t.label}</span>
+              <span className={`cambio-strip__value ${t.count ? 'is-on' : 'is-off'}`}>
+                {t.count || '0'}
+              </span>
+              <span className="cambio-strip__note">{t.count ? 'Otvori listu →' : t.done}</span>
+            </Link>
+          ))}
+        </div>
       </section>
 
-      <section className="cambio-dash__stats" aria-label="Brojke">
-        {stats.map((s) => (
-          <div key={s.label} className="cambio-card cambio-stat">
-            <span className={`cambio-ico cambio-ico--${s.tone}`} aria-hidden>
-              <DashIcon name={s.icon} />
-            </span>
-            <p className="cambio-stat__label">{s.label}</p>
-            <p className="cambio-stat__value">{s.value}</p>
-            {s.change !== null ? (
-              <p className={`cambio-stat__trend ${s.change >= 0 ? 'is-up' : 'is-down'}`}>
-                {s.change >= 0 ? '↑' : '↓'} {Math.abs(s.change)}%{' '}
-                <span>u odnosu na prethodnih 30 dana</span>
-              </p>
-            ) : (
-              <p className="cambio-stat__trend">
-                <span>
-                  {s.label === 'Aktivni proizvodi'
-                    ? 'vidljivo u prodavnici'
-                    : 'nema podataka za poređenje'}
+      <section aria-labelledby="cambio-stats-title">
+        <h2 id="cambio-stats-title" className="cambio-dash__label">
+          Poslednjih 30 dana
+        </h2>
+        <div className="cambio-strip">
+          {stats.map((s) => (
+            <div key={s.label} className="cambio-strip__cell">
+              <span className="cambio-strip__label">{s.label}</span>
+              <span className="cambio-strip__value">{s.value}</span>
+              {s.change !== null ? (
+                <span className={`cambio-strip__note ${s.change >= 0 ? 'is-up' : 'is-down'}`}>
+                  {s.change >= 0 ? '+' : '−'}
+                  {Math.abs(s.change)}% u odnosu na prethodnih 30 dana
                 </span>
-              </p>
-            )}
-          </div>
-        ))}
-      </section>
-
-      <section className="cambio-dash__tasks" aria-label="Čeka obradu">
-        {tasks.map((t) => (
-          <Link key={t.label} href={t.href} className="cambio-card cambio-task">
-            <span className={`cambio-ico cambio-ico--${t.tone}`} aria-hidden>
-              <DashIcon name={t.icon} />
-            </span>
-            <span className="cambio-task__text">
-              <span className="cambio-task__label">{t.label}</span>
-              <span className="cambio-task__hint">{t.count ? 'čeka vas' : t.done}</span>
-            </span>
-            <span className={`cambio-task__count ${t.count ? 'is-on' : ''}`}>{t.count || '—'}</span>
-          </Link>
-        ))}
+              ) : (
+                <span className="cambio-strip__note">
+                  {s.label === 'Aktivni proizvodi'
+                    ? 'Vidljivo u prodavnici'
+                    : 'Nema podataka za poređenje'}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
       </section>
 
       <div className="cambio-dash__grid">
-        <section className="cambio-card cambio-chart" aria-labelledby="cambio-chart-title">
-          <div className="cambio-card__head">
+        <section className="cambio-panel cambio-chart" aria-labelledby="cambio-chart-title">
+          <div className="cambio-panel__head">
             <h2 id="cambio-chart-title">Prihod po danu</h2>
             <span>poslednjih {CHART_DAYS} dana</span>
           </div>
@@ -346,12 +316,7 @@ export async function Dashboard({ payload, user }: ServerProps) {
                 <span className="cambio-chart__track">
                   <span
                     className="cambio-chart__bar"
-                    style={
-                      {
-                        height: `${Math.max(3, (d.total / max) * 100)}%`,
-                        '--i': i,
-                      } as React.CSSProperties
-                    }
+                    style={{ height: `${Math.max(2, (d.total / max) * 100)}%` }}
                     data-empty={d.total ? undefined : ''}
                   />
                 </span>
@@ -364,8 +329,8 @@ export async function Dashboard({ payload, user }: ServerProps) {
           </ol>
         </section>
 
-        <section className="cambio-card cambio-stock" aria-labelledby="cambio-stock-title">
-          <div className="cambio-card__head">
+        <section className="cambio-panel cambio-stock" aria-labelledby="cambio-stock-title">
+          <div className="cambio-panel__head">
             <h2 id="cambio-stock-title">Niska zaliha</h2>
             <span>{lowStockLimit} kom ili manje</span>
           </div>
@@ -394,73 +359,71 @@ export async function Dashboard({ payload, user }: ServerProps) {
             </p>
           )}
         </section>
-
-        <section className="cambio-card cambio-orders" aria-labelledby="cambio-orders-title">
-          <div className="cambio-card__head">
-            <h2 id="cambio-orders-title">Poslednje porudžbine</h2>
-            <Link href={ORDERS}>Sve porudžbine →</Link>
-          </div>
-          {recent.docs.length ? (
-            <table className="cambio-orders__table">
-              <thead>
-                <tr>
-                  <th scope="col">Broj</th>
-                  <th scope="col">Kupac</th>
-                  <th scope="col">Status</th>
-                  <th scope="col" className="is-num">
-                    Iznos
-                  </th>
-                  <th scope="col" className="is-num">
-                    Vreme
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {recent.docs.map((o) => (
-                  <tr key={o.id}>
-                    <td>
-                      <Link href={`${ORDERS}/${o.id}`}>{o.name ?? `#${o.id}`}</Link>
-                    </td>
-                    <td className="cambio-orders__customer">
-                      {o.shippingAddress?.name || o.email}
-                    </td>
-                    <td>
-                      <span className={`cambio-status cambio-status--${o.status}`}>
-                        {STATUS_LABELS[o.status ?? ''] ?? o.status}
-                      </span>
-                    </td>
-                    <td className="is-num">{formatPrice(o.total ?? 0)}</td>
-                    <td className="is-num cambio-orders__time">
-                      {timeAgo(o.createdAt, now.getTime())}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p className="cambio-empty">
-              Još nema porudžbina. Kada kupac poruči, porudžbina se pojavljuje ovde.
-            </p>
-          )}
-        </section>
       </div>
 
-      <section className="cambio-card cambio-short" aria-labelledby="cambio-short-title">
-        <div className="cambio-card__head">
-          <h2 id="cambio-short-title">Prečice</h2>
-          <span>najčešći poslovi</span>
+      <section className="cambio-panel" aria-labelledby="cambio-orders-title">
+        <div className="cambio-panel__head">
+          <h2 id="cambio-orders-title">Poslednje porudžbine</h2>
+          <Link href={ORDERS}>Sve porudžbine →</Link>
         </div>
-        <div className="cambio-short__grid">
-          {shortcuts.map((s) => (
-            <Link key={s.label} href={s.href} className="cambio-short__item">
-              <span className="cambio-ico cambio-ico--plain" aria-hidden>
-                <DashIcon name={s.icon} />
-              </span>
-              <span>
-                <strong>{s.label}</strong>
-                <small>{s.hint}</small>
-              </span>
-            </Link>
+        {recent.docs.length ? (
+          <table className="cambio-orders__table">
+            <thead>
+              <tr>
+                <th scope="col">Broj</th>
+                <th scope="col">Kupac</th>
+                <th scope="col">Status</th>
+                <th scope="col" className="is-num">
+                  Iznos
+                </th>
+                <th scope="col" className="is-num">
+                  Vreme
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {recent.docs.map((o) => (
+                <tr key={o.id}>
+                  <td>
+                    <Link href={`${ORDERS}/${o.id}`}>{o.name ?? `#${o.id}`}</Link>
+                  </td>
+                  <td className="cambio-orders__customer">{o.shippingAddress?.name || o.email}</td>
+                  <td>
+                    <span className={`cambio-status cambio-status--${o.status}`}>
+                      {STATUS_LABELS[o.status ?? ''] ?? o.status}
+                    </span>
+                  </td>
+                  <td className="is-num">{formatPrice(o.total ?? 0)}</td>
+                  <td className="is-num cambio-orders__time">
+                    {timeAgo(o.createdAt, now.getTime())}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className="cambio-empty">
+            Još nema porudžbina. Kada kupac poruči, porudžbina se pojavljuje ovde.
+          </p>
+        )}
+      </section>
+
+      <section aria-labelledby="cambio-short-title">
+        <h2 id="cambio-short-title" className="cambio-dash__label">
+          Svi delovi admina
+        </h2>
+        <div className="cambio-short">
+          {shortcuts.map((g) => (
+            <nav key={g.title} className="cambio-short__group" aria-label={g.title}>
+              <h3>{g.title}</h3>
+              <ul>
+                {g.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href}>{l.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           ))}
         </div>
       </section>

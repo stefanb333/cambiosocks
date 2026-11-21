@@ -22,7 +22,7 @@ export function Icon() {
   return <span role="img" aria-label="Cambio" style={mark('/figma/logo-dark.svg', 56, 26)} />
 }
 
-/** Logo na vrhu bočne navigacije (tamna traka kao footer sajta, custom.scss). */
+/** Logo na vrhu bočne navigacije (bela traka, custom.scss). */
 export function NavBrand() {
   return (
     <Link href="/admin" className="cambio-nav-brand" aria-label="Cambio admin, kontrolni panel">
